@@ -1,52 +1,59 @@
 package com.example.registration.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-	private String fullName;
+
+    private String fullName;
     private String email;
     private String password;
     private String availability;
-    
+
     private String phoneNumber;
     private String address;
 
     private String vehicleNumber;
     private String vehicleModel;
-   
-    private String role; 
 
+    private String role;
 
+    private String hasElectric;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private PasswordResetToken passwordResetToken;
+
+    public PasswordResetToken getPasswordResetToken() {
+        return passwordResetToken;
+    }
+
+    public void setPasswordResetToken(PasswordResetToken passwordResetToken) {
+        this.passwordResetToken = passwordResetToken;
+    }
 
     public String getFullName() {
-		return fullName;
-	}
+        return fullName;
+    }
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-    
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getAvailability() {
         return availability;
     }
@@ -56,35 +63,35 @@ public class User {
     }
 
 
-	public String getAddress() {
-		return address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public String getVehicleNumber() {
-		return vehicleNumber;
-	}
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
 
-	public void setVehicleNumber(String vehicleNumber) {
-		this.vehicleNumber = vehicleNumber;
-	}
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
+    }
 
-	public String getVehicleModel() {
-		return vehicleModel;
-	}
+    public String getVehicleModel() {
+        return vehicleModel;
+    }
 
-	public void setVehicleModel(String vehicleModel) {
-		this.vehicleModel = vehicleModel;
-	}
+    public void setVehicleModel(String vehicleModel) {
+        this.vehicleModel = vehicleModel;
+    }
 
-	public User() {
+    public User() {
     }
 
     // Modified constructor
-    public User(String fullName, String email, String password, String availability, String phoneNumber, String address, String vehicleNumber, String vehicleModel, String role) {
+    public User(String fullName, String email, String password, String availability, String phoneNumber, String address, String vehicleNumber, String vehicleModel, String role,String hasElectric) {
         super();
         this.fullName = fullName;
         this.email = email;
@@ -92,9 +99,10 @@ public class User {
         this.availability = availability;
         this.phoneNumber = phoneNumber;
         this.address = address;  // Now it's a String
-		this.vehicleNumber = vehicleNumber;
+        this.vehicleNumber = vehicleNumber;
         this.vehicleModel = vehicleModel;
         this.role = role;  // Now it's a String
+        this.hasElectric = hasElectric;
 
     }
 
@@ -106,7 +114,7 @@ public class User {
         this.id = id;
     }
 
-   
+
 
     public String getEmail() {
         return email;
@@ -138,5 +146,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;  // Setting role as String
+    }
+
+    public String getHasElectric() {
+        return hasElectric;
+    }
+
+    public void setHasElectric(String hasElectric) {
+        this.hasElectric = hasElectric;
     }
 }

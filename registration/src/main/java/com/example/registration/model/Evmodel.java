@@ -1,0 +1,79 @@
+package com.example.registration.model;
+
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "evmodel")
+
+public class Evmodel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    //private int reservation_id;
+    private Integer reservation_id; // This will auto-generate the ID
+
+
+    private String location;
+
+    @Temporal(TemporalType.DATE)
+    private Date reservation_Date;
+
+    private String start_time;
+    private String end_time;
+    private String vechile_id;
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getReservation_id() {
+        return reservation_id;
+    }
+    public void setReservation_id(Integer reservation_id) {
+        this.reservation_id = reservation_id;
+    }
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    public Date getReservation_Date() {
+        return reservation_Date;
+    }
+    public void setReservation_Date(Date reservation_Date) {
+        this.reservation_Date = reservation_Date;
+    }
+    public String getStart_time() {
+        return start_time;
+    }
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
+    public String getEnd_time() {
+        return end_time;
+    }
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
+    }
+    public String getVechile_id() {
+        return vechile_id;
+    }
+    public void setVechile_id(String vechile_id) {
+        this.vechile_id = vechile_id;
+    }
+
+   
+}

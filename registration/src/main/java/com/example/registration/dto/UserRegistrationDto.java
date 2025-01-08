@@ -8,7 +8,7 @@ public class UserRegistrationDto {
     private String email;
     private String password;
     private String availability;
-    
+
 
     private String phoneNumber;
     private String address;
@@ -17,6 +17,12 @@ public class UserRegistrationDto {
 
     private String vehicleModel;
     private String role; // New field for role
+
+
+    private String hasElectric;
+
+
+
 
     public String getFullName() {
         return fullName;
@@ -71,9 +77,9 @@ public class UserRegistrationDto {
     }
 
     // Constructor with role field
-    public UserRegistrationDto(String fullName, String email, String password, String availability,String phoneNumber,String address,String vehicleNumber,String vehicleModel, String role) {
+    public UserRegistrationDto(String fullName, String email, String password, String availability,String phoneNumber,String address,String vehicleNumber,String vehicleModel, String role,String hasElectric) {
         this.fullName = fullName;
-        
+
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
@@ -82,9 +88,10 @@ public class UserRegistrationDto {
         this.vehicleNumber = vehicleNumber;
         this.vehicleModel = vehicleModel;
         this.role = role; // Assigning role
+        this.hasElectric = hasElectric;
     }
 
-    
+
 
     public String getEmail() {
         return email;
@@ -117,5 +124,13 @@ public class UserRegistrationDto {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getHasElectric() {
+        return hasElectric;
+    }
+
+    public void setHasElectric(String hasElectric) {
+        this.hasElectric = hasElectric;
     }
 }

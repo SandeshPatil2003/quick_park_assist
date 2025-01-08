@@ -96,17 +96,18 @@
               <li class="nav-item" th:classappend="${#request.requestURI == '/about'} ? 'active'">
                 <a class="nav-link active" th:href="@{/registration}">Registration</a>
               </li>
-              <li class="nav-item" th:classappend="${#request.requestURI == '/pricing'} ? 'active'">
-                <a class="nav-link" th:href="@{/pricing}">Smart spots</a>
+              <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"
+                  th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
+                <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
               </li>
               <li class="nav-item" th:classappend="${#request.requestURI == '/why'} ? 'active'">
-                <a class="nav-link" th:href="@{/why}">Booking</a>
+                <a class="nav-link" th:href="@{/booking}">Booking</a>
               </li>
               <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
                 <a class="nav-link" th:href="@{/testimonial}">Addon Services</a>
               </li>
               <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
-                <a class="nav-link" th:href="@{/testimonial}">Ev charge</a>
+                <a class="nav-link" th:href="@{/reservations}">Ev charge</a>
               </li>
             </ul>
 

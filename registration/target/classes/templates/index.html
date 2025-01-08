@@ -23,7 +23,8 @@
   <!-- Nice select -->
   <link rel="stylesheet" href="css/nice-select.min.css">
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
 
 
   <!-- Owl slider stylesheet -->
@@ -31,7 +32,8 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
   <!-- Font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
 
   <!-- Custom styles for this template -->
   <link href="css/homeStyle.css" rel="stylesheet" />
@@ -70,17 +72,19 @@
               <li class="nav-item" th:classappend="${#request.requestURI == '/about'} ? 'active'">
                 <a class="nav-link" th:href="@{/registration}">Registration</a>
               </li>
-              <li class="nav-item" th:classappend="${#request.requestURI == '/pricing'} ? 'active'">
-                <a class="nav-link" th:href="@{/pricing}">Smart spots</a>
+              <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"
+                  th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
+                <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
               </li>
+
               <li class="nav-item" th:classappend="${#request.requestURI == '/why'} ? 'active'">
-                <a class="nav-link" th:href="@{/why}">Booking</a>
+                <a class="nav-link" th:href="@{/booking}">Booking</a>
               </li>
               <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
                 <a class="nav-link" th:href="@{/testimonial}">Addon Services</a>
               </li>
               <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
-                <a class="nav-link" th:href="@{/testimonial}">Ev charge</a>
+                <a class="nav-link" th:href="@{/reservations}">Ev charge</a>
               </li>
             </ul>
 
@@ -119,52 +123,198 @@
             Finding Parking Lots Made Easy
           </h1>
           <p>
-            Necessitatibus non ducimus hic dolor? Maiores itaque vitae sit blanditiis porro, a expedita ex. Totam vel sed
-            obcaecati. Placeat maxime asperiores deleniti tenetur officiis laboriosam laborum a nihil quisquam quis!
+            Struggling to find a parking spot? Our platform simplifies parking by providing real-time information on available parking lots near you. Whether you're at work, shopping, or traveling, we make parking stress-free by helping you find spots quickly and easily. Save time and reduce the hassle with our user-friendly system designed for your convenience.
           </p>
         </div>
-        <div class="find_form_container">
-          <form action="#" th:action="@{/search}">
-            <div class="form-row">
-              <div class="col-md-4 px-0">
-                <div class="form-group">
-                  <label for="">Select Parking</label>
-                  <div class="input-group">
-                    <select class="form-control" name="parking">
-                      <option data-display="Highway Park" value="highway">Highway Park</option>
-                      <option value="mall">Mall Park</option>
-                      <option value="airport">Airport Park</option>
-                      <option value="city">City Park</option>
-                    </select>
-                  </div>
+
+        <br> <br>
+        <!--        login form-->
+        <!--        <div class="find_form_container">-->
+        <div th:if="${user == null}" class="col-md bg-light py-5">
+          <!-- Add New Parking Spot Form -->
+          <div class="container" style="max-height: 400px; overflow-y: auto;">
+            <h1 class="text-center">User Login Page</h1>
+            <form th:action="@{/login}" method="post" class="mt-4">
+              <!-- Error message -->
+              <div th:if="${param.error}">
+                <div class="alert alert-danger mb-4">
+                  Invalid username or password.
                 </div>
               </div>
-              <div class="col-md-4 px-0">
-                <div class="form-group">
-                  <label for="">Your Name</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" name="name" placeholder="John Doe" />
-                  </div>
+
+              <!-- Logout message -->
+              <div th:if="${param.logout}">
+                <div class="alert alert-info">You have been logged out.</div>
+              </div>
+
+              <div class="form-group row align-items-center mb-3">
+                <label for="username" class="col-sm-3 col-form-label text-end">
+                  Username:
+                </label>
+                <div class="col-sm-9">
+                  <input
+                          type="text"
+                          class="form-control"
+                          id="username"
+                          name="username"
+                          placeholder="Enter Email ID"
+                          autofocus="autofocus"
+                          required
+                  />
                 </div>
               </div>
-              <div class="col-md-4 px-0">
-                <div class="form-group">
-                  <label for="">Your Mobile Number</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" name="mobile" placeholder="01 2345678910" />
-                  </div>
+
+              <div class="form-group row align-items-center mb-3">
+                <label for="password" class="col-sm-3 col-form-label text-end">
+                  Password:
+                </label>
+                <div class="col-sm-9">
+                  <input
+                          type="password"
+                          id="password"
+                          name="password"
+                          class="form-control"
+                          placeholder="Enter Password"
+                          required
+                  />
                 </div>
               </div>
+
+              <div class="form-group row">
+                <div class="col-sm-9 offset-sm-3">
+                  <input
+                          type="submit"
+                          name="login-submit"
+                          id="login-submit"
+                          class="btn btn-primary w-100"
+                          value="Log In"
+                  />
+                </div>
+              </div>
+            </form>
+
+            <!-- Forgot Password link outside the form -->
+            <div class="form-group text-center mt-3">
+              <a href="/forgotPassword" th:href="@{/forgotPassword}" class="btn btn-light" style="color: #ff6f3c;">Forgot Password?</a>
             </div>
-            <div class="btn-box">
-              <button type="submit" class="">
-                <span>
-                  Search Now
-                </span>
+
+            <div class="form-group text-center mt-3">
+      <span>
+        New user?
+        <a href="/" th:href="@{/registration}">Register here</a>
+      </span>
+            </div>
+          </div>
+        </div>
+
+
+        <br> <br>
+        <style>
+          .card {
+            border-radius: 15px;
+            border: none;
+            width: 100%; /* Ensures the card takes up the full width available */
+            max-width: 700px; /* Increase the max width to make the card wider */
+            margin: 0 auto; /* Center the card horizontally */
+          }
+
+          .card-title {
+            font-size: 1.8rem; /* Increase the font size of the title */
+            font-weight: bold;
+          }
+
+          .card-text {
+            line-height: 1.6;
+            font-size: 1.2rem; /* Increase the font size for better readability */
+          }
+
+          .btn-warning {
+            background-color: #ff6f3c;
+            border-color: #ff6f3c;
+            color: white;
+          }
+
+          .alert {
+            background: linear-gradient(to right, #56ccf2, #155263);
+            color: white;
+            border-radius: 15px;
+            padding: 40px 25px; /* Increased padding */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
+            width: 100%;
+            max-width: 900px; /* Make alert the same width as the card */
+            margin: 0 auto; /* Center the alert horizontally */
+          }
+
+          @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+          }
+        </style>
+
+        <div class="row justify-content-center">
+          <!-- Display message if user is not null -->
+          <div th:if="${user != null}">
+            <div class="alert alert-dismissible fade show" role="alert">
+              <h4 class="alert-heading text-center" style="font-size: 1.8em; font-weight: bold;">
+                Welcome Back, <span th:text="${user.fullName}"></span>!
+              </h4>
+              <p class="text-center" style="font-size: 1.2em; margin-top: 10px;">
+                We're thrilled to have you back. Here's a quick overview of your profile details.
+              </p>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: white;">
+                <span aria-hidden="true">&times;</span>
               </button>
             </div>
-          </form>
+          </div>
+
+
+          <div class="container mt-4">
+            <div class="row justify-content-center">
+              <!-- Check if user data exists -->
+              <div class="col-md-8" th:if="${user != null}"> <!-- Changed col-md-6 to col-md-8 for more width -->
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary" th:text="${user.fullName}"></h5>
+                    <p class="card-text">
+                      <strong>Email:</strong> <span th:text="${user.email}"></span><br />
+                      <strong>Status:</strong>
+                      <span th:text="${user.availability}"
+                            th:class="${user.availability == 'ACTIVE' ? 'text-success' : 'text-danger'}">
+              </span><br />
+                      <strong>Phone:</strong> <span th:text="${user.phoneNumber}"></span><br />
+                      <strong>Address:</strong> <span th:text="${user.address}"></span><br />
+                      <strong>Role:</strong> <span th:text="${user.role}"></span><br />
+                      <strong>Has Electric Vehicle:</strong>
+                      <span th:text="${user.hasElectric}"></span>
+                    </p>
+
+                    <!-- Updated button to Update Profile -->
+                    <a href="/edit/{email}" class="btn btn-warning btn-sm"
+                       th:href="@{/edit/{email}(email=${user.email})}">
+                      Update Profile
+                    </a>
+
+                    <!-- Updated button to Book Spot -->
+                    <a href="/booking" class="btn btn-warning btn-sm ml-2" th:href="@{/booking}">
+                      Booking Spot
+                    </a>
+
+                    <!-- Updated button for EV reservation -->
+                    <a href="/reservations" class="btn btn-warning btn-sm ml-2" th:href="@{/reservations}"
+                       th:if="${user.hasElectric == 'YES'}">
+                      Add EV
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+      </div>
+
       </div>
     </section>
     <!-- End slider section -->
@@ -212,7 +362,7 @@
 	</div>
   </section>
   <!-- End About Section -->
-  
+
 
   <!-- why section -->
 
@@ -432,7 +582,7 @@
     </div>
   </section>
   <!-- end info_section -->
-  
+
 <!-- footer section -->
 <footer class="footer_section">
     <div class="container">

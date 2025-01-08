@@ -2,12 +2,13 @@ package com.example.registration.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.registration.model.User;
 import com.example.registration.service.UserServiceImpl;
@@ -19,12 +20,12 @@ public class MainController {
 
     @GetMapping("/login")
     public String login() {
-        return "registersection/login";
+        return "index";
     }
 
     @GetMapping("/register")
     public String register() {
-        return "registersection/register";
+        return "registersection/registeration";
     }
 
     @GetMapping("")
@@ -70,15 +71,24 @@ public class MainController {
     }
 
 
-    // Handle DELETE request for user deletion by email
-    // @DeleteMapping("/remove/{email}")
-    // public String deleteUser(@PathVariable String email) {
-    //     boolean isDeleted = userService.deleteUserByEmail(email);
-    //     if (isDeleted) {
-    //         return "User deleted successfully.";
-    //     } else {
-    //         return "User not found.";
-    //     }
-    // }
+
+
+    @GetMapping("/")
+    public String viewUserProfile(Model model, @AuthenticationPrincipal UserDetails loggedInUser) {
+        if (loggedInUser != null) {
+            // Fetch logged-in user details using email
+            User user = userService.getUserByEmail(loggedInUser.getUsername());
+            model.addAttribute("user", user); // Pass only this user to the view
+        } else {
+            model.addAttribute("user", null); // No user is logged in
+        }
+        return "index"; // Adjust to the correct template name
+    }
+
+
+
+
+
+
 
 }

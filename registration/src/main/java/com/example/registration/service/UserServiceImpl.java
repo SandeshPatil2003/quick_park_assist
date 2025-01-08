@@ -43,7 +43,8 @@ public class UserServiceImpl implements UserService {
                 registrationDto.getAddress(),
                 registrationDto.getVehicleNumber(),
                 registrationDto.getVehicleModel(),
-                registrationDto.getRole());
+                registrationDto.getRole(),
+                registrationDto.getHasElectric());
 
         return userRepository.save(user);
     }
@@ -71,7 +72,12 @@ public class UserServiceImpl implements UserService {
         return Collections.singletonList(new SimpleGrantedAuthority(role)); // Wrap the String in a
                                                                             // SimpleGrantedAuthority
     }
-
+    @Override
+    public Long findUserIdByUsername(String email) {
+        return userRepository.findIdByEmail(email)
+                .map(User::getId)
+                .orElseThrow(() -> new UsernameNotFoundException("User with email not found: " + email));
+    }
     // view all user
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -111,4 +117,5 @@ public class UserServiceImpl implements UserService {
     //     return false;  // Return false if user is not found
     // }
 
+    
 }

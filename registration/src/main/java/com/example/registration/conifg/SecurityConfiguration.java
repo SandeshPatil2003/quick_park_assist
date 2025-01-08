@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.example.registration.service.UserService;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -38,6 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+
     @Override
 protected void configure(HttpSecurity http) throws Exception {
     http
@@ -48,7 +50,9 @@ protected void configure(HttpSecurity http) throws Exception {
                 "/js/**",           // Allow JS files
                 "/images/**",       // Allow image files
                 "/index**",         // Allow index page
-                "/static/**"     // Allow static resources (optional, not typically needed)
+                "/static/**"  ,   // Allow static resources (optional, not typically needed)
+                 "/reset-password",
+                    "/forgotPassword","/resetPassword/**"
             ).permitAll()           // Allow everyone to access these paths
             .antMatchers("/admin/**").hasRole("ADMIN") // Restrict admin pages to ROLE_ADMIN
             .antMatchers("/user/**").hasAnyRole("USER", "ADMIN") // Restrict user pages to ROLE_USER or ROLE_ADMIN
@@ -65,4 +69,5 @@ protected void configure(HttpSecurity http) throws Exception {
             .logoutSuccessUrl("/") // Redirect after logout
             .permitAll();         // Allow logout for everyone
 }
+
 }
