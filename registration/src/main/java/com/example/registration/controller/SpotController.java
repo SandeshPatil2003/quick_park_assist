@@ -90,8 +90,8 @@ public class SpotController {
     }
 
     @PostMapping("/removeSpot")
-    public String removeSpot(@RequestParam Long spotId) {
-        spotService.removeSpot(spotId);
+    public String removeSpot(@RequestParam Long id) {
+        spotService.removeSpot(id);
         return "redirect:/remove";
     }
 
