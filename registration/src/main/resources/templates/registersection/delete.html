@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
   <head>
     <!-- Basic -->
     <meta charset="utf-8" />
@@ -93,9 +93,19 @@
               <li class="nav-item" th:classappend="${#request.requestURI == '/'} ? 'active'">
                 <a class="nav-link" th:href="@{/}">Home</a>
               </li>
-              <li class="nav-item" th:classappend="${#request.requestURI == '/about'} ? 'active'">
-                <a class="nav-link active" th:href="@{/registration}">Registration</a>
               </li>
+              <li class="nav-item"
+                  th:classappend="${#request.requestURI == '/delete'} ? 'active'">
+                <a class="nav-link"
+                   th:href="@{/registration}">
+                  <span sec:authorize="isAnonymous()">Registration</span>
+                  <span sec:authorize="isAuthenticated()">Add Vehicle</span>
+
+                </a>
+              </li>
+<!--              <li class="nav-item" th:classappend="${#request.requestURI == '/about'} ? 'active'">-->
+<!--                <a class="nav-link active" th:href="@{/registration}">Registration</a>-->
+<!--              </li>-->
               <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"
                   th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
                 <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
@@ -104,7 +114,7 @@
                 <a class="nav-link" th:href="@{/booking}">Booking</a>
               </li>
               <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
-                <a class="nav-link" th:href="@{/testimonial}">Addon Services</a>
+                <a class="nav-link" th:href="@{/addon-service}">Addon Services</a>
               </li>
               <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
                 <a class="nav-link" th:href="@{/reservations}">Ev charge</a>
@@ -158,11 +168,13 @@ function confirmLogout() {
             <h3 style="color: white;">Parking Spots</h3>
             <ul class="nav flex-column">
               <li class="nav-item">
-                  <a class="nav-link  text-light" 
-                  th:href="@{/registration}" 
-                  onclick="toggleForm('addNewSpotForm')">
-                  New User Registration
-               </a>
+                <a class="nav-link text-light"
+                   th:href="@{/registration}"
+                   onclick="toggleForm('addNewSpotForm')">
+                  <span sec:authorize="isAnonymous()">New User Registration</span>
+                  <span sec:authorize="isAuthenticated()">Add Vehicle</span>
+                </a>
+
               </li>
               <li class="nav-item">
                 <a
@@ -172,7 +184,14 @@ function confirmLogout() {
                   >View User profiles</a
                 >
               </li>
-              
+              <li class="nav-item">
+                <a
+                        class="nav-link text-light"
+                        th:href="@{/view-vehicle}"
+                        onclick="toggleForm('userVehiclesFrom')"
+                >View User Vehicles</a
+                >
+              </li>
               <li class="nav-item" th:if="${#authentication.authenticated}">
                 
 

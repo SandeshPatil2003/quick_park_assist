@@ -58,6 +58,9 @@ public class BookingService {
         throw new RuntimeException("Invalid status: " + status);
     }
 }
+    public boolean existsByMobileNumberAndUserId(String mobileNumber, Long userId) {
+        return bookingRepository.existsByMobileNumberAndUserId(mobileNumber, userId);
+    }
 
 
     public void updateBookingStatuses() {

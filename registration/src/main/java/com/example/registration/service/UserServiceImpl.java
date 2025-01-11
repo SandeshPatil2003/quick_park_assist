@@ -41,10 +41,8 @@ public class UserServiceImpl implements UserService {
                 registrationDto.getAvailability(),
                 registrationDto.getPhoneNumber(),
                 registrationDto.getAddress(),
-                registrationDto.getVehicleNumber(),
-                registrationDto.getVehicleModel(),
-                registrationDto.getRole(),
-                registrationDto.getHasElectric());
+                registrationDto.getRole()
+               );
 
         return userRepository.save(user);
     }
@@ -99,7 +97,7 @@ public class UserServiceImpl implements UserService {
         // Return the user if found, else return null
     }
 
-    
+
     public void deleteUserByEmail(String email) {
         User user = userRepository.findByEmail(email);
         userRepository.delete(user);  // Delete user from the repository by email
@@ -116,6 +114,22 @@ public class UserServiceImpl implements UserService {
     //     }
     //     return false;  // Return false if user is not found
     // }
+    @Override
+    public String findMobileNumberByUserId(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        return user.getPhoneNumber();  // Access mobileNumber from the User entity
+//        return userRepository.findMobileNumberById(userId);  // If using Option 1
+        // return userRepository.findMobileNumberByUserId(userId);  // If using Option 2
+    }
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByEmail(username);  // Assuming username is email
+    }
 
+    @Override
+    public User findUserById(Long id) {
+        // Find and return the user by ID from the repository
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    }
     
 }

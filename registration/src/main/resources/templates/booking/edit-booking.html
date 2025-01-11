@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Parking Spot Booking</title>
@@ -37,7 +37,16 @@
 
         <ul th:class="@{navbar-nav}">
           <li th:class="@{nav-item}"><a th:href="@{/}" th:class="@{nav-link}">HOME</a></li>
-          <li th:class="@{nav-item}"><a th:href="@{/registration}" th:class="@{nav-link}">REGISTRATION</a></li>
+          <li class="nav-item"
+              th:classappend="${#request.requestURI == '/users'} ? 'active'">
+            <a class="nav-link"
+               th:href="@{/registration}">
+              <span sec:authorize="isAnonymous()">Registration</span>
+              <span sec:authorize="isAuthenticated()">Add Vehicle</span>
+
+            </a>
+          </li>
+<!--          <li th:class="@{nav-item}"><a th:href="@{/registration}" th:class="@{nav-link}">REGISTRATION</a></li>-->
           <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"
               th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
             <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>

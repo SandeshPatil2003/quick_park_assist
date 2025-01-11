@@ -18,5 +18,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     // Fetch bookings by user ID and a list of statuses without Simulating
     List<Booking> findByUserIdAndStatusIn(Long userId, List<Booking.Status> statuses);
 
+    boolean existsByMobileNumberAndUserId(String mobileNumber, Long userId);
 
 }

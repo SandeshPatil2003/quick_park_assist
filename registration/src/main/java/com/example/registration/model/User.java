@@ -2,6 +2,8 @@ package com.example.registration.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,12 +22,33 @@ public class User {
     private String phoneNumber;
     private String address;
 
-    private String vehicleNumber;
-    private String vehicleModel;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Vehicle> vehicles = new ArrayList<>();
+
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.add(vehicle);
+        vehicle.setUser(this);
+    }
+
+    public void removeVehicle(Vehicle vehicle) {
+        vehicles.remove(vehicle);
+        vehicle.setUser(null);
+    }
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    // Setter for vehicles
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+//    private String vehicleNumber;
+//    private String vehicleModel;
 
     private String role;
 
-    private String hasElectric;
+//    private String hasElectric;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private PasswordResetToken passwordResetToken;
@@ -70,42 +93,39 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    public String getVehicleNumber() {
-        return vehicleNumber;
-    }
-
-    public void setVehicleNumber(String vehicleNumber) {
-        this.vehicleNumber = vehicleNumber;
-    }
-
-    public String getVehicleModel() {
-        return vehicleModel;
-    }
-
-    public void setVehicleModel(String vehicleModel) {
-        this.vehicleModel = vehicleModel;
-    }
+//
+//    public String getVehicleNumber() {
+//        return vehicleNumber;
+//    }
+//
+//    public void setVehicleNumber(String vehicleNumber) {
+//        this.vehicleNumber = vehicleNumber;
+//    }
+//
+//    public String getVehicleModel() {
+//        return vehicleModel;
+//    }
+//
+//    public void setVehicleModel(String vehicleModel) {
+//        this.vehicleModel = vehicleModel;
+//    }
 
     public User() {
     }
 
     // Modified constructor
-    public User(String fullName, String email, String password, String availability, String phoneNumber, String address, String vehicleNumber, String vehicleModel, String role,String hasElectric) {
+    public User(String fullName, String email, String password, String availability, String phoneNumber,
+                String address, String role) {
         super();
         this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.availability = availability;
         this.phoneNumber = phoneNumber;
-        this.address = address;  // Now it's a String
-        this.vehicleNumber = vehicleNumber;
-        this.vehicleModel = vehicleModel;
-        this.role = role;  // Now it's a String
-        this.hasElectric = hasElectric;
-
+        this.address = address;
+        this.role = role;
+//        this.vehicles = new ArrayList<>();
     }
-
     public Long getId() {
         return id;
     }
@@ -148,11 +168,11 @@ public class User {
         this.role = role;  // Setting role as String
     }
 
-    public String getHasElectric() {
-        return hasElectric;
-    }
+//    public String getHasElectric() {
+//        return hasElectric;
+//    }
 
-    public void setHasElectric(String hasElectric) {
-        this.hasElectric = hasElectric;
-    }
+//    public void setHasElectric(String hasElectric) {
+//        this.hasElectric = hasElectric;
+//    }
 }

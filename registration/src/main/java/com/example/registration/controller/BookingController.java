@@ -223,11 +223,34 @@ public String updateBooking(@PathVariable("id") Long bookingId,
         return "booking/view-booking-by-number";  // user enter their mobile number and find bookings
     }
 
-
     //process the form and fetch bookings by mobile number
     @GetMapping("/viewBooking-number")
     public String viewBooking(@RequestParam("mobileNumber") String mobileNumber, Model model) {
         bookingService.updateBookingStatuses();
+        // Fetch the currently logged-in user's email/username
+        String email = UserContext.getCurrentUsername();
+
+        // Retrieve the user ID based on the username
+        Long userId = userService.findUserIdByUsername(email);
+
+        // Fetch the user's registered mobile number
+        String registeredMobileNumber = userService.findMobileNumberByUserId(userId);
+        // Check if the entered mobile number matches the user's registered number
+//        if (!mobileNumber.equals(registeredMobileNumber)) {
+//            // If not, show an error message
+//            model.addAttribute("error", "Please enter your own registered mobile number.");
+//            return "booking/view-booking-by-number";  // Return to the same page with error
+//        }
+        // ✅ Check if entered number matches the user's registered number
+        // ✅ OR if the booking with that number belongs to the user
+        boolean isOwnerOfBooking = bookingService.existsByMobileNumberAndUserId(mobileNumber, userId);
+
+        if (!mobileNumber.equals(registeredMobileNumber) && !isOwnerOfBooking) {
+            model.addAttribute("error", "Please enter your own registered mobile number.");
+            return "booking/view-booking-by-number";  // Stay on the same page with error
+        }
+
+
         // Fetch bookings based on the mobile number
         List<Booking> bookings = bookingService.findByMobileNumber(mobileNumber);
 
@@ -237,9 +260,27 @@ public String updateBooking(@PathVariable("id") Long bookingId,
 
         model.addAttribute("bookings", bookings);  // Add bookings to the model
 
+        model.addAttribute("message", "Here are your booking details for the entered mobile number.");
+
         // Return the same page (viewBookingForm.html) with the booking details
         return "booking/view-booking-by-number";
     }
+    //process the form and fetch bookings by mobile number
+//    @GetMapping("/viewBooking-number")
+//    public String viewBooking(@RequestParam("mobileNumber") String mobileNumber, Model model) {
+//        bookingService.updateBookingStatuses();
+//        // Fetch bookings based on the mobile number
+//        List<Booking> bookings = bookingService.findByMobileNumber(mobileNumber);
+//
+//        // Sort bookings by startTime in descending order (most recent first)
+//        bookings.sort((b1, b2) -> b2.getStartTime().compareTo(b1.getStartTime()));
+//
+//
+//        model.addAttribute("bookings", bookings);  // Add bookings to the model
+//
+//        // Return the same page (viewBookingForm.html) with the booking details
+//        return "booking/view-booking-by-number";
+//    }
     @GetMapping("/viewBookingToCancel")
     public String viewBookings(Model model) {
 

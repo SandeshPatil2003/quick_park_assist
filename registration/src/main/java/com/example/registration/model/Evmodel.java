@@ -1,6 +1,7 @@
 package com.example.registration.model;
 
 
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -24,13 +25,15 @@ public class Evmodel {
 
 
     private String location;
+    private double duration;
 
     @Temporal(TemporalType.DATE)
     private Date reservation_Date;
 
     private String start_time;
     private String end_time;
-    private String vechile_id;
+    private String vehicle_id;
+    private Long userId;
     public Long getId() {
         return id;
     }
@@ -68,12 +71,28 @@ public class Evmodel {
     public void setEnd_time(String end_time) {
         this.end_time = end_time;
     }
-    public String getVechile_id() {
-        return vechile_id;
+    public String getVehicle_id() {
+        return vehicle_id;
     }
-    public void setVechile_id(String vechile_id) {
-        this.vechile_id = vechile_id;
+    public void setVehicle_id(String vehicle_id) {
+        this.vehicle_id = vehicle_id;
+    }
+    public Long getUserId() {
+        return userId;
     }
 
-   
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+    public double getDuration() {
+        return duration;
+    }
+
+    public void setDuration(double duration) {
+        this.duration = duration;
+    }
+    // Optionally, calculate end_time based on duration if needed
+    public LocalTime calculateEndTime(LocalTime startTime) {
+        return startTime.plusHours((long) duration);
+    }
 }

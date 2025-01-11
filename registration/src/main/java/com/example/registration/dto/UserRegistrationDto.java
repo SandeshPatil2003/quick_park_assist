@@ -13,13 +13,13 @@ public class UserRegistrationDto {
     private String phoneNumber;
     private String address;
 
-    private String vehicleNumber;
+//    private String vehicleNumber;
 
-    private String vehicleModel;
+//    private String vehicleModel;
     private String role; // New field for role
 
 
-    private String hasElectric;
+//    private String hasElectric;
 
 
 
@@ -48,21 +48,21 @@ public class UserRegistrationDto {
         this.address = address;
     }
 
-    public String getVehicleNumber() {
-        return vehicleNumber;
-    }
+//    public String getVehicleNumber() {
+//        return vehicleNumber;
+//    }
 
-    public void setVehicleNumber(String vehicleNumber) {
-        this.vehicleNumber = vehicleNumber;
-    }
+//    public void setVehicleNumber(String vehicleNumber) {
+//        this.vehicleNumber = vehicleNumber;
+//    }
 
-    public String getVehicleModel() {
-        return vehicleModel;
-    }
+//    public String getVehicleModel() {
+//        return vehicleModel;
+//    }
 
-    public void setVehicleModel(String vehicleModel) {
-        this.vehicleModel = vehicleModel;
-    }
+//    public void setVehicleModel(String vehicleModel) {
+//        this.vehicleModel = vehicleModel;
+//    }
 
     public String getAvailability() {
         return availability;
@@ -77,7 +77,7 @@ public class UserRegistrationDto {
     }
 
     // Constructor with role field
-    public UserRegistrationDto(String fullName, String email, String password, String availability,String phoneNumber,String address,String vehicleNumber,String vehicleModel, String role,String hasElectric) {
+    public UserRegistrationDto(String fullName, String email, String password, String availability,String phoneNumber,String address, String role) {
         this.fullName = fullName;
 
         this.email = email;
@@ -85,10 +85,10 @@ public class UserRegistrationDto {
         this.phoneNumber = phoneNumber;
         this.availability = availability;
         this.address = address;
-        this.vehicleNumber = vehicleNumber;
-        this.vehicleModel = vehicleModel;
+//        this.vehicleNumber = vehicleNumber;
+//        this.vehicleModel = vehicleModel;
         this.role = role; // Assigning role
-        this.hasElectric = hasElectric;
+//        this.hasElectric = hasElectric;
     }
 
 
@@ -126,11 +126,11 @@ public class UserRegistrationDto {
         this.role = role;
     }
 
-    public String getHasElectric() {
-        return hasElectric;
-    }
+//    public String getHasElectric() {
+//        return hasElectric;
+//    }
 
-    public void setHasElectric(String hasElectric) {
-        this.hasElectric = hasElectric;
-    }
+//    public void setHasElectric(String hasElectric) {
+//        this.hasElectric = hasElectric;
+//    }
 }

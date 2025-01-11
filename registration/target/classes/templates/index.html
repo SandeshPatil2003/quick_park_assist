@@ -69,8 +69,13 @@
               <li class="nav-item" th:classappend="${#request.requestURI == '/'} ? 'active'">
                 <a class="nav-link" th:href="@{/}">Home</a>
               </li>
-              <li class="nav-item" th:classappend="${#request.requestURI == '/about'} ? 'active'">
-                <a class="nav-link" th:href="@{/registration}">Registration</a>
+              <li class="nav-item"
+                  th:classappend="${#request.requestURI == '/registration'} ? 'active'">
+                <a class="nav-link"
+                   th:href="@{/registration}">
+                  <span th:if="${user==null}">Registration</span>
+                  <span th:if="${user!=null}">Add Vehicle</span>
+                </a>
               </li>
               <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"
                   th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
@@ -137,7 +142,7 @@
             <form th:action="@{/login}" method="post" class="mt-4">
               <!-- Error message -->
               <div th:if="${param.error}">
-                <div class="alert alert-danger mb-4">
+                <div class="alert alert-danger mb-4 ">
                   Invalid username or password.
                 </div>
               </div>
@@ -149,7 +154,7 @@
 
               <div class="form-group row align-items-center mb-3">
                 <label for="username" class="col-sm-3 col-form-label text-end">
-                  Username:
+                  Email:
                 </label>
                 <div class="col-sm-9">
                   <input
@@ -285,8 +290,8 @@
                       <strong>Phone:</strong> <span th:text="${user.phoneNumber}"></span><br />
                       <strong>Address:</strong> <span th:text="${user.address}"></span><br />
                       <strong>Role:</strong> <span th:text="${user.role}"></span><br />
-                      <strong>Has Electric Vehicle:</strong>
-                      <span th:text="${user.hasElectric}"></span>
+<!--                      <strong>Has Electric Vehicle:</strong>-->
+<!--                      <span th:text="${user.hasElectric}"></span>-->
                     </p>
 
                     <!-- Updated button to Update Profile -->
@@ -294,17 +299,27 @@
                        th:href="@{/edit/{email}(email=${user.email})}">
                       Update Profile
                     </a>
+                    <a href="/spot-management" class="btn btn-warning btn-sm ml-2" th:href="@{/spot-management}"
+                       th:if="${user.role == 'SPOT_OWNER'}">
+                      Add Spots
+                    </a>
+
+                    <a href="/registration" class="btn btn-warning btn-sm ml-2" th:href="@{/registration}">
+                      Add Vehicles
+                    </a>
 
                     <!-- Updated button to Book Spot -->
                     <a href="/booking" class="btn btn-warning btn-sm ml-2" th:href="@{/booking}">
                       Booking Spot
                     </a>
-
-                    <!-- Updated button for EV reservation -->
-                    <a href="/reservations" class="btn btn-warning btn-sm ml-2" th:href="@{/reservations}"
-                       th:if="${user.hasElectric == 'YES'}">
-                      Add EV
+                    <a href="/view-vehicle" class="btn btn-warning btn-sm ml-2" th:href="@{/view-vehicle}">
+                      View Vehicle
                     </a>
+                    <!-- Updated button for EV reservation -->
+<!--                    <a href="/reservations" class="btn btn-warning btn-sm ml-2" th:href="@{/reservations}"-->
+<!--                       th:if="${user.hasElectric == 'YES'}">-->
+<!--                      Add EV-->
+<!--                    </a>-->
 
                   </div>
                 </div>

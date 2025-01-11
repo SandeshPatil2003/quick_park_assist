@@ -47,7 +47,7 @@ public class PasswordResetService {
             String resetLink = generateResetToken(user);
 
             SimpleMailMessage msg = new SimpleMailMessage();
-            msg.setFrom("harmandeep02315@gmail.com");// input the senders email ID
+            msg.setFrom("sandeshp9011@gmail.com");// input the senders email ID
             msg.setTo(user.getEmail());
 
             msg.setSubject("Welcome To Quick Parking Spot");
@@ -85,6 +85,6 @@ public class PasswordResetService {
 
     public boolean hasExipred(LocalDateTime expiryDateTime) {
         LocalDateTime currentDateTime = LocalDateTime.now();
-        return expiryDateTime.isAfter(currentDateTime);
+        return expiryDateTime.isBefore(currentDateTime);
     }
 }

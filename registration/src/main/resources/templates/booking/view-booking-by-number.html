@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Parking Spot Booking</title>
@@ -38,7 +38,16 @@
 
                 <ul th:class="@{navbar-nav}">
                     <li th:class="@{nav-item}"><a th:href="@{/}" th:class="@{nav-link}">HOME</a></li>
-                    <li th:class="@{nav-item}"><a th:href="@{/registration}" th:class="@{nav-link}">REGISTRATION</a></li>
+                    <li class="nav-item"
+                        th:classappend="${#request.requestURI == '/registration'} ? 'active'">
+                        <a class="nav-link"
+                           th:href="@{/registration}">
+                            <span sec:authorize="isAnonymous()">Registration</span>
+                            <span sec:authorize="isAuthenticated()">Add Vehicle</span>
+
+                        </a>
+                    </li>
+<!--                    <li th:class="@{nav-item}"><a th:href="@{/registration}" th:class="@{nav-link}">REGISTRATION</a></li>-->
                     <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"
                         th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
                         <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
@@ -101,6 +110,11 @@
         <!-- View Booking Form -->
         <div th:class="@{view-booking-container}">
             <h2 style="color: #333333;">Search Booking by Mobile Number</h2>
+            <!-- Show error message -->
+            <div th:if="${error}" th:class="@{alert alert-danger}">
+                <p th:text="${error}"></p>
+            </div>
+
             <form action="/viewBooking-number" method="get">
                 <div>
                     <label for="searchMobileNumber">Mobile Number</label>
@@ -112,6 +126,9 @@
             <!-- Display the Booking Details if Found -->
             <div th:if="${bookings != null and not #lists.isEmpty(bookings)}">
                 <h2 style="color: #333333;">Your Booking Details</h2>
+                <div th:if="${message}" th:class="@{alert alert-success}">
+                    <p th:text="${message}"></p>
+                </div>
                 <table>
                     <thead>
                     <tr>

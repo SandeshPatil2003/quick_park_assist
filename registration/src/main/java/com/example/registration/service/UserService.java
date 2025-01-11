@@ -15,8 +15,11 @@ public interface UserService extends UserDetailsService {
 
     // Find a user's ID by email (username is email)
     Long findUserIdByUsername(String email);  // Change parameter name to email
+    // Method declaration to fetch mobile number by user ID
+    String findMobileNumberByUserId(Long userId);
 
-
+    User findByUsername(String username);
+    User findUserById(Long id);
     //boolean deleteUserByEmail(String email);
     //void deleteUserByEmail(String email);
     

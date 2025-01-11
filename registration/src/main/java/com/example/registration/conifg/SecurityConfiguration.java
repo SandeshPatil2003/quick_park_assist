@@ -43,9 +43,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
 protected void configure(HttpSecurity http) throws Exception {
     http
+            .csrf().disable() // CSRF protection is disabled
         .authorizeRequests()
             .antMatchers(
-                "/registration**",  // Permit registration
+                "/registration**",// Permit registration
+                    "/searchspots",
                 "/css/**",          // Allow CSS files
                 "/js/**",           // Allow JS files
                 "/images/**",       // Allow image files
