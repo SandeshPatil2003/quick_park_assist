@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8b160f72-4785-462e-88f0-db7afc648c71" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/.idea/git_toolbox_blame.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/.idea/quick-park-assist.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/DatabaseFiles/quick_park_assist.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/RegistrationApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/ServletInitializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/conifg/SecurityConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/controller/BookingController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/controller/CustomErrorController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/controller/EVChargingStationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/controller/EvController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/controller/ForgotPasswordController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/controller/MainController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/controller/SpotController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/controller/UserRegistrationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/controller/VehicleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/controller/addonController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/dto/UserRegistrationDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/dto/VehicleDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/model/AddonService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/model/AddonServiceBooking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/model/Booking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/model/EVChargingStation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/model/Evmodel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/model/PasswordResetToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/model/Spot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/model/Vehicle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/repository/BookingRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/repository/EVChargingStationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/repository/EvRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/repository/SpotRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/repository/TokenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/repository/VehicleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/repository/addonRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/repository/addonServiceBookingRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/schedular/BookingStatusUpdater.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/service/BookingService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/service/EVChargingStationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/service/EvService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/service/PasswordResetService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/service/SpotService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/service/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/service/VehicleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/java/com/example/quickParkAssist/util/UserContext.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/carImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/font-awesome.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/homeStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/nice-select.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/spotbooking/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/spotmanagement/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/style.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/style.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/css/tailwind.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/images/about-img.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/images/c1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/images/c2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/images/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/images/pricing-bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/images/slider-bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/images/w1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/images/w2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/images/w3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/js/custom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/js/jquery-3.4.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/js/jquery.nice-select.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/static/js/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/addonService/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/addonService/modify-addon-price.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/addonService/modify-addon-service-duration.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/addonService/modify-addon-services.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/addonService/remove-addon-services.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/addonService/view-all-addon-services.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/booking/booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/booking/cancel-booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/booking/edit-booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/booking/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/booking/modify-booking-details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/booking/view-booking-by-number.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/booking/view-booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/errorsection/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/errorsection/500.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/errorsection/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/forgotPassword.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/registersection/add-vehicle.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/registersection/delete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/registersection/edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/registersection/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/registersection/registration.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/registersection/users.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/registersection/view-vehicle.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/reservations/create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/reservations/delete_page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/reservations/edit_page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/reservations/update.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/reservations/view.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/resetPassword.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/spotmanagement/addSpots.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/spotmanagement/availableSpots.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/spotmanagement/editSpots.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/spotmanagement/remove.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/spotmanagement/searchResults.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/spotmanagement/searchSpot.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/main/resources/templates/spotmanagement/unavailableSpots.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/quick-park-assist/quick-park-assist/quick-park-assist/src/test/java/com/example/quickParkAssist/RegistrationApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2rhDTLw0kU1X8rawhn9FstTQsli" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.RegistrationApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "feature-user-registration-integrated",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="RegistrationApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.quickParkAssist.RegistrationApplication" />
+      <module name="registration-login-spring-boot-security-thymeleaf" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.quickParkAssist.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.RegistrationApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8b160f72-4785-462e-88f0-db7afc648c71" name="Changes" comment="" />
+      <created>1737002419199</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737002419199</updated>
+    </task>
+    <servers />
+  </component>
+</project>

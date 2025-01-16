@@ -1,0 +1,638 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    &lt;!&ndash; Basic &ndash;&gt;-->
+<!--    <meta charset="utf-8" />-->
+<!--    <meta-->
+<!--            name="viewport"-->
+<!--            content="width=device-width, initial-scale=1, shrink-to-fit=no"-->
+<!--    />-->
+<!--    <title>Quick Park Assist</title>-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">-->
+
+<!--    <link-->
+<!--            rel="stylesheet"-->
+<!--            href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"-->
+<!--            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"-->
+<!--            crossorigin="anonymous"-->
+<!--    />-->
+<!--    <link th:href="@{/css/homeStyle.css}" rel="stylesheet" />-->
+
+
+<!--    <style>-->
+<!--        .active{-->
+<!--          background-color: #ff6f3c;-->
+<!--          color: white;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+
+<!--<body class="hero-area">-->
+<!--<div class="bg-box">-->
+<!--    <img th:src="@{/images/slider-bg.jpg}" alt="" />-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Header section starts &ndash;&gt;-->
+<!--<header class="header_section">-->
+<!--    <div class="container-fluid">-->
+<!--        <nav class="navbar navbar-expand-lg custom_nav-container">-->
+<!--            <a class="navbar-brand" href="/" th:href="@{/}">-->
+<!--            <span>-->
+<!--              Quick Park Assist-->
+<!--            </span>-->
+<!--            </a>-->
+
+<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
+<!--                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class=""> </span>-->
+<!--            </button>-->
+
+<!--            <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--                <ul class="navbar-nav">-->
+<!--                    <li class="nav-item" th:classappend="${#request.requestURI == '/'} ? 'active'">-->
+<!--                        <a class="nav-link" th:href="@{/}">Home</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item" th:classappend="${#request.requestURI == '/about'} ? 'active'">-->
+<!--                        <a class="nav-link active" th:href="@{/registration}">Registration</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"-->
+<!--                        th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">-->
+<!--                        <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item" th:classappend="${#request.requestURI == '/why'} ? 'active'">-->
+<!--                        <a class="nav-link" th:href="@{/why}">Booking</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">-->
+<!--                        <a class="nav-link" th:href="@{/testimonial}">Addon Services</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">-->
+<!--                        <a class="nav-link" th:href="@{/testimonial}">Ev charge</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+
+<!--                &lt;!&ndash; Authentication Section &ndash;&gt;-->
+<!--                <ul class="navbar-nav ml-auto">-->
+<!--                    <li th:if="${#authentication.authenticated}" class="nav-item dropdown">-->
+<!--                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
+<!--                           aria-haspopup="true" aria-expanded="false">-->
+<!--                            <i class="fa fa-user"></i> <span th:text="${#authentication.name}">User</span>-->
+<!--                        </a>-->
+<!--                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                            <a class="dropdown-item" th:href="@{/logout}">Logout</a>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li th:if="${!#authentication.authenticated}" class="nav-item">-->
+<!--                        <a class="nav-link" th:href="@{/login}"><i class="fa fa-sign-in"></i> Login</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+
+<!--                <form class="form-inline">-->
+<!--                    <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">-->
+<!--                        <i class="fa fa-search" aria-hidden="true"></i>-->
+<!--                    </button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </nav>-->
+<!--    </div>-->
+<!--</header>-->
+<!--&lt;!&ndash; End header section &ndash;&gt;-->
+
+<!--&lt;!&ndash; About Section &ndash;&gt;-->
+<!--<div class="container-fluid m-5" >-->
+<!--    <div class="row  my-5">-->
+<!--        &lt;!&ndash; Sidebar Navigation &ndash;&gt;-->
+<!--        <div class="col-md-3 bg-dark p-5">-->
+<!--            <h3 style="color: white;">Parking Spots</h3>-->
+<!--            <ul class="nav flex-column ">-->
+<!--                <li class="nav-item ">-->
+<!--                    <a class="nav-link text-light"-->
+<!--                       th:href="@{/registration}"-->
+<!--                       onclick="toggleForm('addNewSpotForm')">-->
+<!--                        New User Registration-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a-->
+<!--                            class="nav-link active text-light"-->
+<!--                            th:href="@{/users}"-->
+<!--                            onclick="toggleForm('searchSpotForm')"-->
+<!--                    >View User profiles</a-->
+<!--                    >-->
+<!--                </li>-->
+
+<!--                <li class="nav-item" th:if="${#authentication.authenticated}">-->
+
+
+<!--                    <a th:href="@{/edit/{email}(email=${#authentication.name})}" class="nav-link text-light"-->
+
+<!--                       onclick="toggleForm('modifySpotForm')">Update User profile</a>-->
+
+
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a-->
+<!--                            class="nav-link text-light"-->
+<!--                            th:href="@{/delete}"-->
+<!--                            onclick="toggleForm('removeSpotForm')"-->
+<!--                    >Deactivate/Delete account</a-->
+<!--                    >-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Forms Section &ndash;&gt;-->
+<!--        <div class="col-md-8 bg-light py-5">-->
+<!--            &lt;!&ndash; Add New Parking Spot Form &ndash;&gt;-->
+<!--            <div class="container my-4" style="max-height: 400px; overflow-y: auto;">-->
+<!--                <div class="table-responsive">-->
+<!--                    <table class="table table-striped table-bordered table-hover">-->
+<!--                        <thead class="table-primary">-->
+<!--                        <tr>-->
+<!--                            <th>Full Name</th>-->
+<!--                            <th>Email</th>-->
+<!--                            <th>Status</th>-->
+<!--                            <th>Phone</th>-->
+<!--                            <th>Address</th>-->
+<!--                            <th>Role</th>-->
+<!--&lt;!&ndash;                            <th>Has Electric</th>&ndash;&gt;-->
+<!--                            <th>Actions</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                        <tr th:each="user : ${users}">-->
+<!--                            <td th:text="${user.fullName}"></td>-->
+<!--                            <td th:text="${user.email}"></td>-->
+<!--                            <td th:text="${user.availability}"-->
+<!--                                th:class="${user.availability == 'ACTIVE' ? 'bg-success text-white' : 'bg-danger text-white'}">-->
+<!--                            </td>-->
+<!--                            <td th:text="${user.phoneNumber}"></td>-->
+<!--                            <td th:text="${user.address}"></td>-->
+<!--                            <td th:text="${user.role}"></td>-->
+<!--&lt;!&ndash;                            <td th:text="${user.hasElectric}"></td>&ndash;&gt;-->
+
+
+
+
+<!--                            <td>-->
+<!--                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#viewDetailsModal"-->
+<!--                                        th:data-fullName="${user.fullName}"-->
+<!--                                        th:data-email="${user.email}"-->
+<!--                                        th:data-availability="${user.availability}"-->
+<!--                                        th:data-phoneNumber="${user.phoneNumber}"-->
+<!--                                        th:data-address="${user.address}"-->
+
+<!--                                        th:data-role="${user.role}">-->
+<!--&lt;!&ndash;                                        th:data-hasElectric = "${user.hasElectric}">&ndash;&gt;-->
+<!--                                    View-->
+<!--                                </button>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                </div>-->
+
+<!--            </div>-->
+
+
+<!--        </div>-->
+
+<!--    </div>-->
+
+
+
+<!--    &lt;!&ndash; Modal &ndash;&gt;-->
+<!--    <div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog modal-dialog-centered">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="viewDetailsModalLabel">Reservation Details</h5>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <ul class="list-group">-->
+<!--                        <li class="list-group-item"><strong>Full Name:</strong> <span id="modal-fullName"></span></li>-->
+<!--                        <li class="list-group-item"><strong>Email:</strong> <span id="modal-email"></span></li>-->
+<!--                        <li class="list-group-item"><strong>Active:</strong> <span id="modal-availability"></span></li>-->
+<!--                        <li class="list-group-item"><strong>Phone:</strong> <span id="modal-phoneNumber"></span></li>-->
+<!--                        <li class="list-group-item"><strong>Address:</strong> <span id="modal-address"></span></li>-->
+<!--&lt;!&ndash;                        <li class="list-group-item"><strong>Vehicle Number:</strong> <span id="modal-vehicleNumber"></span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="list-group-item"><strong>Vehicle Model:</strong> <span id="modal-vehicleModel"></span></li>&ndash;&gt;-->
+<!--                        <li class="list-group-item"><strong>Role:</strong> <span id="modal-role"></span></li>-->
+<!--&lt;!&ndash;                        <li class ="list-group-item"><strong>Has Electric Vehicle:</strong> <span id="modal-hasElectric"></span></li>&ndash;&gt;-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--        const viewDetailsModal = document.getElementById('viewDetailsModal');-->
+<!--        viewDetailsModal.addEventListener('show.bs.modal', function (event) {-->
+<!--            const button = event.relatedTarget; // Button that triggered the modal-->
+<!--            const fullName = button.getAttribute('data-fullName');-->
+<!--            const email = button.getAttribute('data-email');-->
+<!--            const availability = button.getAttribute('data-availability');-->
+<!--            const phoneNumber = button.getAttribute('data-phoneNumber');-->
+<!--            const address = button.getAttribute('data-address');-->
+<!--&lt;!&ndash;            const vehicleNumber = button.getAttribute('data-vehicleNumber');&ndash;&gt;-->
+<!--&lt;!&ndash;            const vehicleModel = button.getAttribute('data-vehicleModel');&ndash;&gt;-->
+<!--            const role = button.getAttribute('data-role');-->
+<!--&lt;!&ndash;            const hasElectric = button.getAttribute('data-hasElectric');&ndash;&gt;-->
+
+<!--            // Populate the modal fields-->
+<!--            document.getElementById('modal-fullName').textContent = fullName;-->
+<!--            document.getElementById('modal-email').textContent = email;-->
+<!--            document.getElementById('modal-availability').textContent = availability;-->
+<!--            document.getElementById('modal-phoneNumber').textContent = phoneNumber;-->
+<!--            document.getElementById('modal-address').textContent = address;-->
+<!--&lt;!&ndash;            document.getElementById('modal-vehicleNumber').textContent = vehicleNumber;&ndash;&gt;-->
+<!--&lt;!&ndash;            document.getElementById('modal-vehicleModel').textContent = vehicleModel;&ndash;&gt;-->
+<!--            document.getElementById('modal-role').textContent = role;-->
+<!--&lt;!&ndash;            document.getElementById('modal-hasElectric').textContent= hasElectric;&ndash;&gt;-->
+<!--        });-->
+<!--    </script>-->
+
+
+
+
+<!--    <script>-->
+<!--        function toggleForm(formId) {-->
+<!--    // Hide all forms-->
+<!--    const forms = document.querySelectorAll("form");-->
+<!--    forms.forEach((form) => (form.style.display = "none"));-->
+
+<!--    // Show the selected form-->
+<!--    const selectedForm = document.getElementById(formId);-->
+<!--    if (selectedForm) {-->
+<!--      selectedForm.style.display = "block";-->
+<!--    }-->
+<!--  }-->
+
+<!--    </script>-->
+
+<!--    &lt;!&ndash; jQery &ndash;&gt;-->
+<!--    <script src="js/jquery-3.4.1.min.js"></script>-->
+<!--    &lt;!&ndash; popper js &ndash;&gt;-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">-->
+<!--    </script>-->
+<!--    &lt;!&ndash; nice select &ndash;&gt;-->
+<!--    <script src="js/jquery.nice-select.min.js"></script>-->
+<!--    &lt;!&ndash; bootstrap js &ndash;&gt;-->
+<!--    <script src="js/bootstrap.js"></script>-->
+<!--    &lt;!&ndash; owl slider &ndash;&gt;-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">-->
+<!--    </script>-->
+<!--    &lt;!&ndash; custom js &ndash;&gt;-->
+<!--    <script src="js/custom.js"></script>-->
+
+
+<!--    <script-->
+<!--            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"-->
+<!--    ></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Quick Park Assist</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" />
+    <link th:href="@{/css/homeStyle.css}" rel="stylesheet" />
+
+    <style>
+        .active {
+          background-color: #ff6f3c;
+          color: white;
+        }
+
+    </style>
+</head>
+
+<body class="hero-area">
+<div class="bg-box">
+    <img th:src="@{/images/slider-bg.jpg}" alt="" />
+</div>
+<!-- Header section starts -->
+<header class="header_section">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="/" th:href="@{/}">
+            <span>
+              Quick Park Assist
+            </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item" th:classappend="${#request.requestURI == '/'} ? 'active'">
+                        <a class="nav-link" th:href="@{/}">Home</a>
+                    </li>
+                    </li>
+
+                    <li class="nav-item"
+                        th:classappend="${#request.requestURI == '/users'} ? 'active'">
+                        <a class="nav-link"
+                           th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/users' : '/registration'">
+                            <span th:if="${user == null}">Registration</span>
+                            <span th:if="${user != null && user.role == 'SPOT_OWNER'}">View Profile</span>
+                            <span th:if="${user != null && user.role != 'SPOT_OWNER' }">Add Vehicle</span>
+                        </a>
+                    </li>
+
+<!--                    <li class="nav-item"-->
+<!--                        th:classappend="${#request.requestURI == '/users'} ? 'active'">-->
+<!--                        <a class="nav-link"-->
+<!--                           th:href="@{/registration}">-->
+<!--                            <span sec:authorize="isAnonymous()">Registration</span>-->
+<!--                            <span sec:authorize="isAuthenticated()">Add Vehicle</span>-->
+
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item" th:classappend="${#request.requestURI == '/about'} ? 'active'">-->
+<!--                        <a class="nav-link active" th:href="@{/registration}">Registration</a>-->
+<!--                    </li>-->
+                    <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"
+                        th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
+                        <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
+                    </li>
+                    <!--              <li class="nav-item" th:classappend="${#request.requestURI == '/pricing'} ? 'active'">-->
+                    <!--                <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>-->
+                    <!--              </li>-->
+                    <li class="nav-item" th:classappend="${#request.requestURI == '/why'} ? 'active'" th:if="${user.role != 'SPOT_OWNER'}">
+                        <a class="nav-link" th:href="@{/booking}">Booking</a>
+                    </li>
+                    <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
+                        <a class="nav-link"
+                           th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/addAddonServices' :  '/viewAllAddonServices'">
+                            Addon Services
+                        </a>
+                    </li>
+                    <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'" th:if="${user.role != 'SPOT_OWNER'}">
+                        <a class="nav-link" th:href="@{/reservations}">Ev charge</a>
+                    </li>
+                </ul>
+
+                <!-- Authentication Section -->
+                <ul class="navbar-nav ml-auto">
+                    <li th:if="${#authentication.authenticated}" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"></i> <span th:text="${#authentication.name}">User</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                        </div>
+                    </li>
+                    <li th:if="${!#authentication.authenticated}" class="nav-item">
+                        <a class="nav-link" th:href="@{/login}"><i class="fa fa-sign-in"></i> Login</a>
+                    </li>
+                </ul>
+
+                <form class="form-inline">
+                    <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- End header section -->
+
+<!-- About Section -->
+<div class="container-fluid m-5" >
+    <div class="row  my-5">
+        <!-- Sidebar Navigation -->
+        <div class="col-md-3 bg-dark p-5">
+            <h3 style="color: white;">Parking Spots</h3>
+            <ul class="nav flex-column ">
+                <li class="nav-item"
+                    th:if="${user.role != 'SPOT_OWNER'}">
+                    <a class="nav-link text-light"
+                       th:href="@{/registration}"
+                       onclick="toggleForm('addNewSpotForm')">
+                        <span sec:authorize="isAnonymous()">New User Registration</span>
+                        <span sec:authorize="isAuthenticated()" >Add Vehicle</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                            class="nav-link active text-light"
+                            th:href="@{/users}"
+                            onclick="toggleForm('searchSpotForm')"
+                    >View User profiles</a
+                    >
+                </li>
+                <li class="nav-item"
+                    th:if="${user.role != 'SPOT_OWNER'}">
+                    <a class="nav-link text-light"
+                       th:href="@{/view-vehicle}"
+                       onclick="toggleForm('userVehiclesForm')">
+                        View User Vehicles
+                    </a>
+                </li>
+
+
+                <li class="nav-item" th:if="${#authentication.authenticated}">
+
+
+                    <a th:href="@{/edit/{email}(email=${#authentication.name})}" class="nav-link text-light"
+
+                       onclick="toggleForm('modifySpotForm')">Update User profile</a>
+
+
+                </li>
+                <li class="nav-item">
+                    <a
+                            class="nav-link text-light"
+                            th:href="@{/delete}"
+                            onclick="toggleForm('removeSpotForm')"
+                    >Deactivate/Delete account</a
+                    >
+                </li>
+            </ul>
+        </div>
+
+<!--        &lt;!&ndash; User Details Section &ndash;&gt;-->
+<!--        <div class="col-md-8 bg-light py-5">-->
+<!--            <div id="successMessage" th:if="${message}" th:class="@{alert alert-success}">-->
+<!--                <p th:text="${message}"></p>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Displaying Logged-in User's Details &ndash;&gt;-->
+<!--            <div class="container my-4">-->
+<!--                <div class="table-responsive">-->
+
+<!--                    <table class="table table-striped table-bordered table-hover">-->
+<!--                        <thead class="table-primary">-->
+<!--                        <tr>-->
+<!--                            <th>Full Name</th>-->
+<!--                            <th>Email</th>-->
+<!--                            <th>Status</th>-->
+<!--                            <th>Phone</th>-->
+<!--                            <th>Address</th>-->
+<!--                            <th>Role</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                        <tr>-->
+<!--                            <td th:text="${user.fullName}"></td>-->
+<!--                            <td th:text="${user.email}"></td>-->
+<!--                            <td th:text="${user.availability}" th:class="${user.availability == 'ACTIVE' ? 'bg-success text-white' : 'bg-danger text-white'}"></td>-->
+<!--                            <td th:text="${user.phoneNumber}"></td>-->
+<!--                            <td th:text="${user.address}"></td>-->
+<!--                            <td th:text="${user.role}"></td>-->
+<!--                        </tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="viewDetailsModalLabel">User Details</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <ul class="list-group">-->
+<!--                    <li class="list-group-item"><strong>Full Name:</strong> <span id="modal-fullName"></span></li>-->
+<!--                    <li class="list-group-item"><strong>Email:</strong> <span id="modal-email"></span></li>-->
+<!--                    <li class="list-group-item"><strong>Active:</strong> <span id="modal-availability"></span></li>-->
+<!--                    <li class="list-group-item"><strong>Phone:</strong> <span id="modal-phoneNumber"></span></li>-->
+<!--                    <li class="list-group-item"><strong>Address:</strong> <span id="modal-address"></span></li>-->
+<!--                    <li class="list-group-item"><strong>Vehicle Number:</strong> <span id="modal-vehicleNumber"></span></li>-->
+<!--                    <li class="list-group-item"><strong>Vehicle Model:</strong> <span id="modal-vehicleModel"></span></li>-->
+<!--                    <li class="list-group-item"><strong>Role:</strong> <span id="modal-role"></span></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+        <!-- User Profile Section -->
+        <div class="col-md-8 bg-light py-4 shadow-sm rounded">
+            <div class=" text-center mb-3">
+                <h3 class="text-primary">User Profile</h3>
+            </div>
+            <div class="px-4 py-3 ">
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                    <strong>Full Name:</strong> <span th:text="${user.fullName}"></span>
+                </p>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                    <strong>Email:</strong> <span th:text="${user.email}"></span>
+                </p>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                    <strong>Status:</strong>
+                    <span th:text="${user.availability}"
+                          th:class="${user.availability == 'ACTIVE' ? 'text-success' : 'text-danger'}"></span>
+                </p>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                    <strong>Phone:</strong> <span th:text="${user.phoneNumber}"></span>
+                </p>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                    <strong>Address:</strong> <span th:text="${user.address}"></span>
+                </p>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                    <strong>Role:</strong> <span th:text="${user.role}"></span>
+                </p>
+            </div>
+
+            <div class="text-center mt-3">
+
+                <a  href="/edit/{email}"  th:href="@{/edit/{email}(email=${user.email})}"  class="btn btn-primary mr-4">Update Profile</a>
+                <a href="/spot-management" class="btn btn-warning text-white mr-4" th:href="@{/spot-management}"
+                   th:if="${user.role == 'SPOT_OWNER'}">
+                    Add Spots
+                </a>
+
+                <a href="/registration"
+                   th:href="@{/registration}"
+                   class="btn btn-info mr-4"
+                  th:if="${user.role != 'SPOT_OWNER'}">
+                    Add Vehicles
+                </a>
+
+                <a href="/view-vehicle"
+                   th:href="@{/view-vehicle}"
+                   class="btn btn-success mr-4"
+                   th:if="${user.role != 'SPOT_OWNER'}">
+                    View Vehicles
+                </a>
+
+                <a href="/" class="btn btn-secondary">Home</a>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+    const viewDetailsModal = document.getElementById('viewDetailsModal');
+    viewDetailsModal.addEventListener('show.bs.modal', function (event) {
+      const button = event.relatedTarget; // Button that triggered the modal
+      const fullName = button.getAttribute('data-fullName');
+      const email = button.getAttribute('data-email');
+      const availability = button.getAttribute('data-availability');
+      const phoneNumber = button.getAttribute('data-phoneNumber');
+      const address = button.getAttribute('data-address');
+      const vehicleNumber = button.getAttribute('data-vehicleNumber');
+      const vehicleModel = button.getAttribute('data-vehicleModel');
+      const role = button.getAttribute('data-role');
+
+      document.getElementById('modal-fullName').textContent = fullName;
+      document.getElementById('modal-email').textContent = email;
+      document.getElementById('modal-availability').textContent = availability;
+      document.getElementById('modal-phoneNumber').textContent = phoneNumber;
+      document.getElementById('modal-address').textContent = address;
+      document.getElementById('modal-vehicleNumber').textContent = vehicleNumber;
+      document.getElementById('modal-vehicleModel').textContent = vehicleModel;
+      document.getElementById('modal-role').textContent = role;
+    });
+</script>
+<!-- JavaScript to fade out the message -->
+<script>
+    // Wait for the page to load
+    window.onload = function() {
+        // Select the message div
+        const messageDiv = document.getElementById('successMessage');
+
+        if (messageDiv) {
+            // Set timeout to fade out after 1 seconds (1000ms)
+            setTimeout(function() {
+                messageDiv.style.transition = "opacity 1s ease";
+                messageDiv.style.opacity = "0";
+
+                // Remove the div after fade-out
+                setTimeout(function() {
+                    messageDiv.style.display = "none";
+                }, 1000);  // Wait for the fade-out to complete
+            }, 1000);  // Delay before starting the fade
+        }
+    };
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
