@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Basic -->
     <meta charset="utf-8" />
@@ -108,18 +108,7 @@
     </div>
 </header>
 <!-- End header section -->
-<script>
-    function updateProfile() {
-      // Redirect to the profile update page
-      window.location.href = '/updateProfile';
-  }
 
-  function confirmLogout() {
-      // Show the logout confirmation modal
-      $('#logoutConfirmationModal').modal('show');
-  }
-
-</script>
 <!-- About Section -->
 <div class="container-fluid m-5" >
     <div class="row  my-5">
@@ -176,6 +165,8 @@
         <div class="col-md-8 bg-light py-5 needs-validation">
             <!-- Add New Parking Spot Form -->
             <div th:if="${!isLoggedIn}" class="container" style="max-height: 400px; overflow-y: auto;">
+                <h3 class=" mb-4">Create Your Account</h3>
+
                 <div th:if="${param.success}">
                     <div class="alert alert-info">You've successfully registered to our awesome app!</div>
                 </div>
@@ -236,8 +227,18 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label" for="phoneNumber">Phone Number</label>
                         <div class="col-sm-9">
-                            <input id="phoneNumber" class="form-control" th:field="*{phoneNumber}" required minlength="10" maxlength="15" placeholder="Enter your phone number" />
-                            <div class="invalid-feedback">Please provide a valid phone number (between 10 and 15 numbers).</div>
+                            <input
+                                    id="phoneNumber"
+                                    class="form-control"
+                                    th:field="*{phoneNumber}"
+                                    required
+                                    minlength="10"
+                                    maxlength="15"
+                                    placeholder="Enter your phone number"
+                                    pattern="^\d{10,15}$"
+                            />
+                            <div class="invalid-feedback">Please provide a valid phone number (10 to 15 digits).</div>
+
                         </div>
                     </div>
 
@@ -250,22 +251,6 @@
                         </div>
                     </div>
 
-                    <!--                    &lt;!&ndash; Vehicle Number &ndash;&gt;-->
-                    <!--                    <div class="form-group row">-->
-                    <!--                        <label class="col-sm-3 col-form-label" for="vehicleNumber">Vehicle Number</label>-->
-                    <!--                        <div class="col-sm-9">-->
-                    <!--                            <input id="vehicleNumber" class="form-control" th:field="*{vehicleNumber}" required minlength="6" maxlength="50" />-->
-                    <!--                            <div class="invalid-feedback">Please provide a valid vehicle number (between 6 and 50 characters).</div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-
-                    <!--                    &lt;!&ndash; Vehicle Model &ndash;&gt;-->
-                    <!--                    <div class="form-group row">-->
-                    <!--                        <label class="col-sm-3 col-form-label" for="vehicleModel">Vehicle Model</label>-->
-                    <!--                        <div class="col-sm-9">-->
-                    <!--                            <input id="vehicleModel" class="form-control" th:field="*{vehicleModel}" required />-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
 
                     <!-- Role Selection Dropdown -->
                     <div class="form-group row">
@@ -279,16 +264,6 @@
                         </div>
                     </div>
 
-                    <!--                    &lt;!&ndash; Has Electric Vehicle &ndash;&gt;-->
-                    <!--                    <div class="form-group row">-->
-                    <!--                        <label class="col-sm-3 col-form-label" for="hasElectric">Has Electric Vehicles</label>-->
-                    <!--                        <div class="col-sm-9">-->
-                    <!--                            <select id="hasElectric" class="form-control" th:field="*{hasElectric}" required>-->
-                    <!--                                <option value="NO">No</option>-->
-                    <!--                                <option value="YES">Yes</option>-->
-                    <!--                            </select>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
 
                     <!-- Submit Button -->
                     <div class="form-group row">
@@ -304,6 +279,8 @@
 
             <!-- Add New Vehicle Form -->
             <div th:if="${isLoggedIn}" class="container" style="max-height: 400px; overflow-y: auto;">
+                <h3 class=" mb-4">Register Your Vehicle</h3>
+
                 <div th:if="${message}" class="alert alert-success">
                     <p th:text="${message}"></p>
                 </div>
@@ -327,19 +304,6 @@
                         </div>
                     </div>
 
-                    <!--                    &lt;!&ndash; Vehicle Type &ndash;&gt;-->
-                    <!--                    <div class="form-group row">-->
-                    <!--                        <label class="col-sm-3 col-form-label" for="vehicleType">Vehicle Type</label>-->
-                    <!--                        <div class="col-sm-9">-->
-                    <!--                            <select id="vehicleType" class="form-control" th:field="*{vehicleType}" required>-->
-                    <!--                                <option value="CAR">Car</option>-->
-                    <!--                                <option value="BIKE">Bike</option>-->
-                    <!--                                <option value="TRUCK">Truck</option>-->
-                    <!--                                <option value="OTHER">Other</option>-->
-                    <!--                            </select>-->
-                    <!--                            <div class="invalid-feedback">Please select the type of vehicle.</div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
 
                     <!-- Has Electric Vehicle -->
                     <div class="form-group row">
@@ -366,12 +330,24 @@
                 </form>
             </div>
         </div>
+    </div>
+</div>
 
 
+<script>
+            function updateProfile() {
+              // Redirect to the profile update page
+              window.location.href = '/updateProfile';
+          }
 
+          function confirmLogout() {
+              // Show the logout confirmation modal
+              $('#logoutConfirmationModal').modal('show');
+          }
 
+</script>
 
-        <script>
+<script>
             (function () {
               'use strict';
               var forms = document.querySelectorAll('.needs-validation');
@@ -386,14 +362,11 @@
               });
             })();
 
-
-
-
-        </script>
+</script>
 
 
         <!--            validation for strong password-->
-        <script>
+<script>
             const passwordInput = document.getElementById('password');
             const errorSpan = document.getElementById('password-error');
             const submitBtn = document.getElementById('submitBtn');
@@ -425,9 +398,9 @@
                 submitBtn.disabled = false;
               }
             });
-        </script>
+</script>
 
-        <script>
+<script>
             function toggleForm(formId) {
         // Hide all forms
         const forms = document.querySelectorAll("form");
@@ -440,9 +413,9 @@
         }
       }
 
-        </script>
-        </script>
-        <script>
+</script>
+
+<script>
             // Only redirect if the success message is shown
 if (document.querySelector('.alert-info')) {
     // Redirect to login page after 5 seconds
@@ -450,7 +423,20 @@ if (document.querySelector('.alert-info')) {
         window.location.href = '/';
     }, 2000);  // 2000ms = 2 seconds
 }
-        </script>
+</script>
+
+<script>
+            document.getElementById("phoneNumber").addEventListener("input", function () {
+                const phoneNumberInput = this.value;
+                const phoneNumberPattern = /^\d{10,15}$/;
+
+                if (!phoneNumberPattern.test(phoneNumberInput)) {
+                    this.setCustomValidity("Please enter a valid phone number (10 to 15 digits).");
+                } else {
+                    this.setCustomValidity(""); // Clear error
+                }
+            });
+</script>
 
         <!-- jQery -->
         <script src="js/jquery-3.4.1.min.js"></script>

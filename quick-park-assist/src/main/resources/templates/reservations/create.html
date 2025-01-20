@@ -165,6 +165,7 @@
             <!-- Add New Parking Spot Form -->
             <div class="container" style="max-height: 400px; overflow-y: auto;">
 
+                <h3 class="mb-4">Reserve Your Charging Slot </h3>
                 <!-- Show confirmation message -->
                 <div th:if="${message}" class="alert alert-success">
                     <p th:text="${message}"></p>
@@ -256,6 +257,13 @@
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-primary w-100">Reserve Slot</button>
+
+                            <div class="form-group text-center mt-3">
+      <span>
+        Vehicle Not Found?
+        <a href="/" th:href="@{/registration}"> Add Vehicle</a>
+      </span>
+                            </div>
                         </div>
                     </div>
                 </form>

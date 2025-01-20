@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>net.javaguides</groupId>
-	<artifactId>registration-login-spring-boot-security-thymeleaf</artifactId>
+	<artifactId>quick-park-assist</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>registration-login-spring-boot-security-thymeleaf</name>
+	<name>quick-park-assist</name>
 	<description>Demo project for Spring Boot Thymeleaf and Hibernate </description>
 
 	<properties>

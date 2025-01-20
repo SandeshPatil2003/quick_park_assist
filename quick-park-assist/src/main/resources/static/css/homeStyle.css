@@ -581,7 +581,7 @@ body {
     color: #ffffff;
     padding: 25px;
   }
-  
+
   .why_section .box .img-box {
     width: 105px;
     height: 105px;
@@ -599,28 +599,22 @@ body {
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
   }
-  
+
   .why_section .box .img-box img {
     width: 55px;
   }
-  
-  .why_section .box .detail-box {
-    margin-top: 20px;
-  }
-  
+
   .why_section .box .detail-box h4 {
     font-weight: bold;
     font-size: 22px;
   }
-  
-  .why_section .box .detail-box p {
-    margin-bottom: 0;
-  }
-  
-  .why_section .box.active .img-box, .why_section .box:hover .img-box {
+
+  .why_section .box.active .img-box,
+  .why_section .box:hover .img-box {
     -webkit-transform: scale(1.2);
             transform: scale(1.2);
   }
+
   
   .pricing_section {
     position: relative;
@@ -907,3 +901,110 @@ body {
     color: inherit;
   }
   /*# sourceMappingURL=style.css.map */
+
+
+  .custom-alert {
+    border: 2px solid #ff4d4d; /* Red border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #ffe6e6; /* Light red background */
+    color: #990000; /* Dark red text */
+    font-weight: bold; /* Bold text */
+    font-size: 16px; /* Larger font */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 15px; /* Add padding for better spacing */
+    margin: 10px auto; /* Center the alert */
+    max-width: 520px; /* Limit the width */
+    text-align: center; /* Center-align the text */
+  }
+
+                .custom-alert:hover {
+    background-color: #ffcccc; /* Slightly darker red on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+  }
+
+
+ /* Scoped custom styles for the About Us section */
+    .custom-about-section {
+        padding: 50px 0;
+        background-color: #f9f9f9;
+    }
+
+    .custom-about-title {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .custom-about-desc {
+        font-size: 18px;
+        color: #555;
+    }
+
+    .custom-about-btn {
+        background-color: orange;
+        border-color: orange;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .custom-about-btn:hover {
+        background-color: darkorange;
+        border-color: darkorange;
+    }
+
+    /* Full-view mode styles when "Read More" is clicked */
+    .custom-about-row.full-view .custom-about-image {
+        display: none; /* Hide the image */
+    }
+
+    .custom-about-row.full-view .custom-about-text {
+        text-align: center;
+    }
+
+    /* Add specific styles for text alignment and collapse padding */
+    .custom-about-collapse {
+        margin-top: 15px;
+        font-size: 16px;
+        color: #666;
+    }
+
+  .custom-about-section {
+      padding: 50px 0;
+      background-color: white;
+    }
+
+    .custom-about-title {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .custom-about-desc {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .custom-about-btn {
+      background-color: #ff6f3c;
+      border-color: orange;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .custom-about-btn:hover {
+      background-color: darkorange;
+      border-color: darkorange;
+    }
+
+    .custom-about-text p {
+      margin: 0 auto;
+      max-width: 800px; /* Optional: Limit text width for readability */
+    }

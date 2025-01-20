@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <!-- Basic -->
@@ -34,11 +34,61 @@
   <!-- Font awesome style -->
 <!--  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">-->
 
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Custom styles for this template -->
   <link href="css/homeStyle.css" rel="stylesheet" />
   <!-- Responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+
+  <style>
+    .card {
+      border-radius: 15px;
+      border: none;
+      width: 100%; /* Ensures the card takes up the full width available */
+      max-width: 700px; /* Increase the max width to make the card wider */
+      margin: 0 auto; /* Center the card horizontally */
+    }
+
+    .card-title {
+      font-size: 1.8rem; /* Increase the font size of the title */
+      font-weight: bold;
+    }
+
+    .card-text {
+      line-height: 1.6;
+      font-size: 1.2rem; /* Increase the font size for better readability */
+    }
+
+    .btn-warning {
+      background-color: #ff6f3c;
+      border-color: #ff6f3c;
+      color: white;
+    }
+
+    .alert {
+      background: linear-gradient(to right, #56ccf2, #155263);
+      color: white;
+      border-radius: 15px;
+      padding: 40px 25px; /* Increased padding */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-out;
+      width: 100%;
+      max-width: 900px; /* Make alert the same width as the card */
+      margin: 0 auto; /* Center the alert horizontally */
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+
 
 </head>
 
@@ -152,10 +202,12 @@
             <form th:action="@{/login}" method="post" class="mt-4">
               <!-- Error message -->
               <div th:if="${param.error}">
-                <div class="alert alert-danger mb-4 ">
-                  Invalid username or password.
+                <div class=" alert-danger custom-alert mb-4 ">
+                  Invalid email address or password.
                 </div>
               </div>
+
+
 
               <!-- Logout message -->
               <div th:if="${param.logout}">
@@ -224,48 +276,6 @@
 
 
         <br> <br>
-        <style>
-          .card {
-            border-radius: 15px;
-            border: none;
-            width: 100%; /* Ensures the card takes up the full width available */
-            max-width: 700px; /* Increase the max width to make the card wider */
-            margin: 0 auto; /* Center the card horizontally */
-          }
-
-          .card-title {
-            font-size: 1.8rem; /* Increase the font size of the title */
-            font-weight: bold;
-          }
-
-          .card-text {
-            line-height: 1.6;
-            font-size: 1.2rem; /* Increase the font size for better readability */
-          }
-
-          .btn-warning {
-            background-color: #ff6f3c;
-            border-color: #ff6f3c;
-            color: white;
-          }
-
-          .alert {
-            background: linear-gradient(to right, #56ccf2, #155263);
-            color: white;
-            border-radius: 15px;
-            padding: 40px 25px; /* Increased padding */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1s ease-out;
-            width: 100%;
-            max-width: 900px; /* Make alert the same width as the card */
-            margin: 0 auto; /* Center the alert horizontally */
-          }
-
-          @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-          }
-        </style>
 
         <div class="row justify-content-center">
           <!-- Display message if user is not null -->
@@ -305,33 +315,40 @@
                     </p>
 
                     <!-- Updated button to Update Profile -->
-                    <a href="/edit/{email}" class="btn btn-warning btn-sm"
+                    <a href="/edit/{email}" class="btn btn-warning btn-sm  mt-2"
                        th:href="@{/edit/{email}(email=${user.email})}">
                       Update Profile
                     </a>
-                    <a href="/spot-management" class="btn btn-warning btn-sm ml-2" th:href="@{/spot-management}"
+                    <a href="/spot-management" class="btn btn-warning btn-sm ml-2  mt-2" th:href="@{/spot-management}"
                        th:if="${user.role == 'SPOT_OWNER'}">
                       Add Spots
                     </a>
 
+                    <a href="/addAddonServices" class="btn btn-warning btn-sm ml-2  mt-2" th:href="@{/addAddonServices}"
+                       th:if="${user.role == 'SPOT_OWNER'}">
+                      Create Addon Pack
+                    </a>
 
-                    <a href="/registration" class="btn btn-warning btn-sm ml-2" th:href="@{/registration}"  th:if="${user.role != 'SPOT_OWNER'}">
+
+
+                    <a href="/registration" class="btn btn-warning btn-sm ml-2  mt-2" th:href="@{/registration}"  th:if="${user.role != 'SPOT_OWNER'}">
                       Add Vehicles
                     </a>
 
 
-                    <a href="/view-vehicle" class="btn btn-warning btn-sm ml-2" th:href="@{/view-vehicle}"  th:if="${user.role != 'SPOT_OWNER'}">
+                    <a href="/view-vehicle" class="btn btn-warning btn-sm ml-2  mt-2" th:href="@{/view-vehicle}"  th:if="${user.role != 'SPOT_OWNER'}">
                       View Vehicles
                     </a>
 
                     <!-- Updated button to Book Spot -->
-                    <a href="/booking" class="btn btn-warning btn-sm ml-2" th:href="@{/booking}"  th:if="${user.role != 'SPOT_OWNER'}">
+                    <a href="/booking" class="btn btn-warning btn-sm ml-2  mt-2 md-6" th:href="@{/booking}"  th:if="${user.role != 'SPOT_OWNER'}">
                       Booking Spot
                     </a>
                     <!--                     Updated button for EV reservation-->
-                    <a href="/reservations" class="btn btn-warning btn-sm ml-2" th:href="@{/reservations}"  th:if="${user.role != 'SPOT_OWNER'}">
+                    <a href="/reservations" class="btn btn-warning btn-sm ml-2 mt-2 md-6" th:href="@{/reservations}"  th:if="${user.role != 'SPOT_OWNER'}">
                       Reserve EV
                     </a>
+
 
                   </div>
                 </div>
@@ -342,112 +359,125 @@
 
       </div>
 
-      </div>
+
     </section>
     <!-- End slider section -->
   </div>
 
 
+
   <!-- About Section -->
-<section class="about_section layout_padding">
-	<div class="container">
-	  <div class="heading_container">
-		<h2>
-		  About Us
-		</h2>
-		<p>
-		  Magni quod blanditiis non minus sed aut voluptatum illum quisquam aspernatur ullam vel beatae rerum ipsum voluptatibus
-		</p>
-	  </div>
-	  <div class="row">
-		<div class="col-lg-6">
-		  <div class="img-box">
-			<!-- Thymeleaf syntax for images -->
-			<img th:src="@{/images/about-img.jpg}" alt="About Us">
-		  </div>
-		</div>
-		<div class="col-lg-6">
-		  <div class="detail-box">
-			<h3>
-			  We Are Here For Help
-			</h3>
-			<p>
-			  There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-			  in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-			  are going to use a passage to be sure there isn't anything
-			  the middle of text.
-			</p>
-			<p>
-			  Molestiae odio earum non qui cumque provident voluptates, repellendus exercitationem, possimus at iste corrupti officiis unde alias eius ducimus reiciendis soluta eveniet. Nobis ullam ab omnis quasi expedita.
-			</p>
-			<a th:href="@{/about}"> <!-- Update the href to point to a relevant Thymeleaf route -->
-			  Read More
-			</a>
-		  </div>
-		</div>
-	  </div>
-	</div>
+  <section class="custom-about-section">
+    <div class="container">
+      <div class="mb-5">
+        <h2 class="custom-about-title" id="aboutTitle">About Us</h2>
+        <p class="custom-about-desc" id="aboutDesc">
+          We are a team of passionate tech enthusiasts, urban problem-solvers, and customer-focused innovators.
+        </p>
+      </div>
+
+      <div class="row align-items-center custom-about-row" id="customAboutRow">
+        <!-- Image Box -->
+        <div class="col-lg-6 custom-about-image" id="aboutImage">
+          <img th:src="@{/images/about-img.jpg}" alt="About Us" class="img-fluid rounded">
+        </div>
+
+        <!-- Text Box -->
+        <div class="col-lg-6 custom-about-text" id="customAboutText">
+          <h3 class="mb-3" id="helpTitle">We Are Here To Help</h3>
+          <p>
+            We understand the frustrations of wasting time and fuel searching for parking, and we're here to change that. With cutting-edge technology and user-friendly design, we're committed to creating a seamless parking experience for everyone.
+          </p>
+          <p>At SmartPark, we believe that parking shouldn't be a headache—it should be effortless.</p>
+
+          <!-- Collapsible Section -->
+          <div class="collapse custom-about-collapse" id="customAboutCollapse">
+            <p>
+              With the increasing demand for smart urban solutions, we aim to create an ecosystem that enhances mobility and makes parking more accessible, efficient, and sustainable. Our solutions are designed to reduce congestion, save time, and provide more control to both users and spot owners.
+            </p>
+            <p>
+              Whether it's smart spot management, real-time availability, or seamless integration with payment systems, we are dedicated to revolutionizing parking to benefit everyone involved.
+            </p>
+            <p>
+              Join us in shaping the future of urban mobility, and let's work together to make parking smarter, safer, and easier for all.
+            </p>
+          </div>
+
+          <!-- Read More Button -->
+          <a href="javascript:void(0);"
+             class="btn custom-about-btn mt-3"
+             id="customAboutReadMoreBtn"
+             data-bs-toggle="collapse"
+             data-bs-target="#customAboutCollapse"
+             aria-expanded="false"
+             aria-controls="customAboutCollapse">
+            Read More
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
-  <!-- End About Section -->
 
 
   <!-- why section -->
-
-  <section class="why_section layout_padding-bottom">
+  <section class="why_section py-5">
     <div class="container">
-      <div class="col-md-10 px-0">
-        <div class="heading_container">
-          <h2>
-            Why Choose Us
-          </h2>
-          <p>
-            Eaque nostrum quis ad aliquam autem odio assumenda accusamus, consequuntur, iste voluptate voluptates quia non dicta hic repellendus similique a facere earum omnis? Repellendus nemo, aspernatur ullam est deserunt officiis.
-          </p>
-        </div>
+      <div class="heading_container text-center ">
+        <h2>Why Choose Us</h2>
+        <p>
+          Trusted by thousands of users for reliable parking solutions. Partnerships with top parking operators to ensure maximum coverage.
+        </p>
+        <p> A user-first approach, continuously improving based on your feedback. </p>
+
       </div>
-      <div class="row">
-        <div class="col-md-6 col-lg-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/w1.png" alt="">
+
+      <br>
+      <span>That’s why we focus on: </span>
+      <span class="mb-5" style="white-space: pre; margin-left: 2em;">
+        Convenience: Real-time availability and hassle-free booking at your fingertips.
+        Efficiency: Optimizing parking to save time and reduce environmental impact.
+        Reliability: Ensuring you always have a spot when you need it.
+      </span>
+
+      <div class="row gy-4">
+        <!-- Box 1 -->
+        <div class="col-md-5 col-lg-4">
+          <div class="box text-center">
+            <div class="img-box mx-auto">
+              <img src="images/w1.png" alt="No Booking Fees">
             </div>
-            <div class="detail-box">
-              <h4>
-                No Booking Fees
-              </h4>
+            <div class="detail-box mt-4">
+              <h4>No Booking Fees</h4>
               <p>
-                Voluptatem earum eveniet mollitia sit animi dolorum. Iste, quas? Omnis error culpa illo nihil consequatur consectetur tenetur harum modi, quae libero ducimus reiciendis voluptat excepturi. Cum ducimus nesciunt dicta tenetur ducimus perferendis.
-              </p>
+                When you book your parking spot through our platform, you only pay for what matters - the parking itself. No hidden charges, no surprises. Just a simple, straightforward way to reserve your spot and save money.              </p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/w2.png" alt="">
+
+        <!-- Box 2 -->
+        <div class="col-md-5 col-lg-4">
+          <div class="box text-center">
+            <div class="img-box mx-auto">
+              <img src="images/w2.png" alt="Online Payments">
             </div>
-            <div class="detail-box">
-              <h4>
-                Online Payments
-              </h4>
+            <div class="detail-box mt-4">
+              <h4>Online Payments</h4>
               <p>
-                Voluptatem earum eveniet mollitia sit animi dolorum. Iste, quas? Omnis error culpa illo nihil consequatur consectetur tenetur harum modi, quae libero ducimus reiciendis voluptat excepturi. Cum ducimus nesciunt dicta tenetur ducimus perferendis.
-              </p>
+                Say goodbye to cash or worrying about change. With SmartPark, paying for your parking is as effortless as booking it. Our secure online payment system ensures a smooth checkout process every time.              </p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 mx-auto">
-          <div class="box ">
-            <div class="img-box">
-              <img src="images/w3.png" alt="">
+
+        <!-- Box 3 -->
+        <div class="col-md-5 col-lg-4">
+          <div class="box text-center">
+            <div class="img-box mx-auto">
+              <img src="images/w3.png" alt="Simple Booking Process">
             </div>
-            <div class="detail-box">
-              <h4>
-                Simple Booking Process
-              </h4>
+            <div class="detail-box mt-4">
+              <h4>Simple Booking Process</h4>
               <p>
-                Voluptatem earum eveniet mollitia sit animi dolorum. Iste, quas? Omnis error culpa illo nihil consequatur consectetur tenetur harum modi, quae libero ducimus reiciendis voluptat excepturi. Cum ducimus nesciunt dicta tenetur ducimus perferendis.
-              </p>
+                Find, book, and park in just a few taps with our simple and user-friendly booking process. Real-time options, transparent pricing, and instant confirmations - parking has never been this effortless!              </p>
             </div>
           </div>
         </div>
@@ -475,8 +505,7 @@
               <div class="box">
                 <div class="detail-box">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  </p>
+                    Quick Park Assist has been a game-changer for me! I used to spend so much time circling the block looking for a parking spot. Now, I just book in advance and head straight to my spot. It's quick, easy, and I never have to worry about finding parking again. Highly recommend it to anyone who hates the parking struggle!                  </p>
                 </div>
                 <div class="client_id">
                   <div class="img-box">
@@ -484,10 +513,10 @@
                   </div>
                   <div class="name">
                     <h6>
-                      Lisa Adams
+                      Sarah T
                     </h6>
                     <p>
-                      Magna
+                      Event-Goer
                     </p>
                   </div>
                 </div>
@@ -497,8 +526,7 @@
               <div class="box">
                 <div class="detail-box">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  </p>
+                    I love how convenient Quick Park Assist is! I can easily find parking near popular spots, even during busy hours. The booking process is seamless, and I don't have to deal with paying at meters or machines anymore. It's stress-free, and I'm always on time. Definitely my go-to app for parking! Will choose this always!                  </p>
                 </div>
                 <div class="client_id">
                   <div class="img-box">
@@ -506,10 +534,10 @@
                   </div>
                   <div class="name">
                     <h6>
-                      Michel Trout
+                      James M
                     </h6>
                     <p>
-                      Magna
+                      Commuter
                     </p>
                   </div>
                 </div>
@@ -520,6 +548,12 @@
       </div>
     </div>
   </section>
+
+  <!-- Owl Carousel JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+
 
   <!-- end client section -->
 
@@ -562,8 +596,7 @@
                 About Us
               </h4>
               <p>
-                Necessitatibus, culpa, totam quod neque cum officiis odio, excepturi magnam incidunt voluptates sed voluptate id expedita sint! Cum veritatis iusto molestiae reiciendis deserunt vel odio incidunt, tenetur itaque. Ullam, iste!
-              </p>
+                At Quick Park Assist, we're revolutionizing parking with easy, reliable, and hassle-free solutions. Our mission is to save you time, reduce stress, and make parking a breeze—wherever you go. Discover smarter parking today!              </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 info_col ">
@@ -572,8 +605,7 @@
                 Online Booking
               </h4>
               <p>
-                Accusantium quis architecto, necessitatibus libero nemo facere perferendis obcaecati pariatur magni quod praesentium provident nisi impedit nobis omnis. Assumenda vero impedit dolorum perspiciatis, ipsa quasi corrupti numquam.
-              </p>
+                Book your parking spot in just a few taps! With Quick Park Assist, find available spaces in real-time, reserve ahead, and enjoy a seamless, stress-free experience. Simple, fast, and reliable parking at your fingertips!              </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 info_col">
@@ -581,8 +613,7 @@
               Contact us
             </h4>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-            </p>
+              For any help or questions regarding bookings, payments, or the app, reach out to us at:            </p>
             <div class="contact_nav">
               <a href="">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -621,6 +652,46 @@
 </footer>
 <!-- footer section -->
 
+
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+     const readMoreBtn = document.getElementById("customAboutReadMoreBtn");
+     const aboutCollapse = document.getElementById("customAboutCollapse");
+     const aboutText = document.getElementById("customAboutText");
+     const aboutImage = document.getElementById("aboutImage");
+
+     // Monitor collapse show/hide events
+     aboutCollapse.addEventListener("show.bs.collapse", function () {
+       // Update button text and change text box to col-12
+       readMoreBtn.textContent = "Read Less";
+       aboutText.classList.remove("col-lg-6");
+       aboutText.classList.add("col-lg-12");
+       aboutImage.style.display = "none"; // Hide image
+     });
+
+     aboutCollapse.addEventListener("hide.bs.collapse", function () {
+       // Revert button text and text box to col-6
+       readMoreBtn.textContent = "Read More";
+       aboutText.classList.remove("col-lg-12");
+       aboutText.classList.add("col-lg-6");
+       aboutImage.style.display = "block"; // Show image
+     });
+   });
+   $(document).ready(function () {
+     $(".client_owl-carousel").owlCarousel({
+       loop: true,
+       margin: 20,
+       nav: true,
+       dots: true,
+       autoplay: true,
+       autoplayTimeout: 5000,
+       items: 1
+     });
+   });
+  </script>
+
   <!-- jQery -->
   <script src="js/jquery-3.4.1.min.js"></script>
   <!-- popper js -->
@@ -635,6 +706,11 @@
   </script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
+
+  <!-- Bootstrap JS and Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 
 </html>

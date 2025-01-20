@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parking Spot Booking</title>
+    <title>Quick Park Assist</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <link
@@ -13,7 +13,11 @@
             crossorigin="anonymous"
     />
     <link th:href="@{/css/homeStyle.css}" rel="stylesheet" />
-    <link rel="stylesheet" th:href="@{/css/spotbooking/style.css}">
+<!--    <link rel="stylesheet" th:href="@{/css/spotbooking/style.css}">-->
+    <style>  .active{
+      background-color: #ff6f3c;
+      color: white;
+    }</style>
 
 </head>
 
@@ -93,64 +97,80 @@
   }
 
 </script>
-<main th:class="@{main}" style="margin-top: 100px;">
-    <div th:class="@{grid-container}">
-        <!-- Sidebar (Aside) -->
-        <aside th:class="@{aside col-md-3 bg-dark p-5}">
-            <h2>Book a Spot</h2>
-            <ul th:class="@{nav flex-column}">
-                <li th:class="@{nav-item}"><a th:href="@{/book}" th:class="@{nav-link text-light}">Book Now</a></li>
-                <li th:class="@{nav-item}"><a th:href="@{/modify-Booking-Details}" th:class="@{active nav-link text-light}">Modify Booking Details</a></li>
-                <li th:class="@{nav-item}"><a th:href="@{/view-Booking-Details}" th:class="@{nav-link text-light}">View Booking</a></li>
-                <li th:class="@{nav-item}"><a th:href="@{/viewBookingByNumber}" th:class="@{nav-link text-light}">View Bookings by Mobile Number</a></li>
-                <li th:class="@{nav-item}"><a th:href="@{/viewBookingToCancel}" th:class="@{nav-link text-light}">Cancel a Booking</a></li>
-            </ul>
-        </aside>
+<div class="container-fluid m-5" >
+    <div class="row  my-5">
+        <!-- Sidebar Navigation -->
+        <div class="col-md-3 bg-dark p-5">
+    <h3 class="text-white">Book a Spot</h3>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link text-light" th:href="@{/book}" onclick="toggleForm('bookNowForm')">Book Now</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light active" th:href="@{/modify-Booking-Details}" onclick="toggleForm('modifyBookingForm')">Modify Booking Details</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" th:href="@{/view-Booking-Details}" onclick="toggleForm('viewBookingForm')">View Booking</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" th:href="@{/viewBookingByNumber}" onclick="toggleForm('viewByNumberForm')">View Bookings by Mobile Number</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" th:href="@{/viewBookingToCancel}" onclick="toggleForm('cancelBookingForm')">Cancel a Booking</a>
+        </li>
 
-        <div th:class="@{content}">
-            <div th:class="@{form-container}">
-                <h2 style="color: #333333;">Modify Your Bookings</h2>
-                <div th:if="${message}" th:class="@{alert alert-success}">
+    </ul>
+</div>
+
+            <!-- Content Section -->
+            <div class="col-md-8 bg-light py-5">
+                <h3 class="text-dark">Modify Your Bookings</h3>
+
+                <!-- Success Alert -->
+                <div class="alert alert-success" th:if="${message}">
                     <p th:text="${message}"></p>
                 </div>
-                <table border="1">
-                    <thead>
-                    <tr>
-                        <th>Full Name</th>
-                        <th>Mobile Number</th>
-                        <th>Parking Spot</th>
-                        <th>Duration (Hours)</th>
-                        <th>Start Time</th>
-                        <th>Price</th>
-                        <th>Payment Method</th>
-                        <th>Status</th>
-<!--                        <th>UserId</th>-->
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <th:block th:each="booking : ${bookings}">
+
+                <!-- Table -->
+                <div class="table-responsive my-4">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="table-primary">
                         <tr>
-                            <td th:text="${booking.fullName}"></td>
-                            <td th:text="${booking.mobileNumber}"></td>
-                            <td th:text="${booking.location}"></td>
-                            <td th:text="${booking.duration}"></td>
-                            <td th:text="${booking.startTime}"></td>
-                            <td th:text="${booking.price}"></td>
-                            <td th:text="${booking.paymentMethod}"></td>
-                            <td th:text="${booking.status}"></td>
-<!--                            <td th:text="${booking.userId}"></td>-->
-                            <td th:class="@{edit}">
-                                <a th:href="@{/editBooking/{id}(id=${booking.id})}">Edit</a>
-                            </td>
+                            <th>Full Name</th>
+                            <th>Mobile Number</th>
+                            <th>Parking Spot</th>
+                            <th>Duration (Hours)</th>
+                            <th>Start Time</th>
+                            <th>Price</th>
+                            <th>Payment Method</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
-                    </th:block>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="booking : ${bookings}">
+                            <tr>
+                                <td th:text="${booking.fullName}"></td>
+                                <td th:text="${booking.mobileNumber}"></td>
+                                <td th:text="${booking.location}"></td>
+                                <td th:text="${booking.duration}"></td>
+                                <td th:text="${booking.startTime}"></td>
+                                <td th:text="${booking.price}"></td>
+                                <td th:text="${booking.paymentMethod}"></td>
+                                <td th:text="${booking.status}"></td>
+                                <td>
+                                    <a th:href="@{/editBooking/{id}(id=${booking.id})}" class="btn btn-warning btn-sm">Edit</a>
+                                </td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </main>
+
 
 <script th:src="@{/js/script.js}"></script>
 <script>

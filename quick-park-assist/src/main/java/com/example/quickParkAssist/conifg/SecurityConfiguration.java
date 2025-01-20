@@ -69,6 +69,8 @@ protected void configure(HttpSecurity http) throws Exception {
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
             .logoutSuccessUrl("/") // Redirect after logout
             .permitAll();         // Allow logout for everyone
+
+
 }
 
 }

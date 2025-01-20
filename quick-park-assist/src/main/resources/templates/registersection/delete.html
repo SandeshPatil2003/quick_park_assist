@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
   <head>
     <!-- Basic -->
     <meta charset="utf-8" />
@@ -103,9 +103,7 @@
                   <span th:if="${user != null && user.role != 'SPOT_OWNER' }">Add Vehicle</span>
                 </a>
               </li>
-<!--              <li class="nav-item" th:classappend="${#request.requestURI == '/about'} ? 'active'">-->
-<!--                <a class="nav-link active" th:href="@{/registration}">Registration</a>-->
-<!--              </li>-->
+
               <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"
                   th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
                 <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
@@ -225,15 +223,20 @@ function confirmLogout() {
               </span>
             </div>
           </div>
+
+
+        </div>
+    </div>
           
-          <script>
+
+    <script>
             function confirmDeletion() {
               // Display an alert message
               const confirmAction = confirm("Are you sure you want to delete your profile?");
               // If the user clicks "OK", allow the link to proceed; otherwise, prevent it
               return confirmAction;
             }
-          </script>
+    </script>
           
     
 
