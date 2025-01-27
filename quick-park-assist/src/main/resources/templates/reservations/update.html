@@ -93,11 +93,7 @@
                       <a class="nav-link" th:href="@{/login}"><i class="fa fa-sign-in"></i> Login</a>
                   </li>
               </ul>
-          <form class="form-inline">
-            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </form>
+
         </div>
       </nav>
     </div>
@@ -160,59 +156,80 @@ function confirmLogout() {
 
 
         <!-- Forms Section -->
-        <div class="col-md-8 bg-light py-5">
-          <!-- Add New Parking Spot Form -->
-          <div class="container" style="max-height: 400px; overflow-y: auto;">
-                
-<!--                <form th:action="@{/reservations/update/}" method="post" th:object="${reservation}" class="p-4 border rounded shadow-sm bg-light">-->
-              <form th:action="@{/reservations/update/{id}(id=${reservation.id})}" method="post" th:object="${reservation}" class="p-4 border rounded shadow-sm bg-light">
+            <div class="col-md-8 bg-light py-5">
+                <!-- Add New Parking Spot Form -->
+                <div class="container" style="max-height: 400px; overflow-y: auto;">
+                    <form th:action="@{/reservations/update/{id}(id=${reservation.id})}" method="post" th:object="${reservation}" class="p-4 border rounded shadow-sm bg-light">
+                        <input type="hidden" th:field="*{id}" />
 
-                  <input type="hidden" th:field="*{id}" />
-                  <div class="mb-3">
-                  <label for="evSpot" class="form-label">Select EV Spot</label>
-                        <select id="evSpot" name="evSpot" class="form-control" required>
-                            <option value="">Select a Spot</option>
-                            <!-- Iterate over the evSpots list and create an option for each -->
-                            <th:block th:each="spot : ${evSpots}">
-                                <option th:value="${spot.spotId}"
-                                        th:text="${spot.spotName} + ' - ' + ${spot.location}"
-                                        th:data-location="${spot.location}"
-                                        th:selected="${spot.spotId == reservation.evSpot}"
-                                ></option>
-                            </th:block>
-                        </select>
-                    </div>
-            <div class="mb-3">
-                <label for="location" class="form-label">Location:</label>
-                <input type="text" id="location" th:field="*{location}" class="form-control" />
-                <div th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="text-danger"></div>
-            </div>
+                        <div class="mb-3">
+                            <label for="evSpot" class="form-label">Select EV Spot</label>
+                            <select id="evSpot" name="evSpot" class="form-control" required>
+                                <option value="">Select a Spot</option>
+                                <!-- Iterate over the evSpots list and create an option for each -->
+                                <th:block th:each="spot : ${evSpots}">
+                                    <option th:value="${spot.spotId}"
+                                            th:text="${spot.spotName} + ' - ' + ${spot.location}"
+                                            th:selected="${spot.spotId == reservation.evSpot}">
+                                    </option>
+                                </th:block>
+                            </select>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="reservation_Date" class="form-label">Reservation Date:</label>
-                        <input type="date" id="reservation_Date" th:field="*{reservation_Date}" class="form-control" />
-                        <div th:if="${#fields.hasErrors('reservation_Date')}" th:errors="*{reservation_Date}" class="text-danger"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="start_time" class="form-label">Start Time:</label>
-                        <input type="time" id="start_time" th:field="*{start_time}" class="form-control" />
-                        <div th:if="${#fields.hasErrors('start_time')}" th:errors="*{start_time}" class="text-danger"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="duration" class="form-label">Duration (in hours):</label>
-                            <input type="number" id="duration" th:field="*{duration}" class="form-control" placeholder="Enter duration in hours"  required value="1"/>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location:</label>
+                            <input type="text" id="location" th:field="*{location}" class="form-control" />
+                            <div th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="text-danger"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="reservation_Date" class="form-label">Reservation Date:</label>
+                            <input type="date" id="reservation_Date" th:field="*{reservation_Date}" class="form-control" />
+                            <div th:if="${#fields.hasErrors('reservation_Date')}" th:errors="*{reservation_Date}" class="text-danger"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="start_time" class="form-label">Start Time:</label>
+                            <input type="time" id="start_time" th:field="*{start_time}" class="form-control" />
+                            <div th:if="${#fields.hasErrors('start_time')}" th:errors="*{start_time}" class="text-danger"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">Duration (in hours):</label>
+                            <input type="number" id="duration" th:field="*{duration}" class="form-control" placeholder="Enter duration in hours" required value="1" />
                             <div class="text-danger" th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></div>
-                    </div>
-                    <input type="hidden" id="vehicle_id" th:field="*{vehicle_id}" />
-                    <input type="hidden" name="reservationId" th:field="*{reservation_id}" />
+                        </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Update</button>
-                </form>
+                        <div class="mb-3">
+                            <label for="vehicle_id" class="form-label">Select Vehicle:</label>
+                            <select id="vehicle_id" th:field="*{vehicle_id}" class="form-control" required>
+                                <option value="" selected>Select a vehicle</option>
+                                <th:block th:each="vehicle : ${vehicles}">
+                                    <option th:value="${vehicle.vehicleNumber}"
+                                            th:text="${vehicle.vehicleModel} + ' - ' + ${vehicle.vehicleNumber}"
+                                            th:selected="${vehicle.vehicleNumber == reservation.vehicle_id}">
+                                    </option>
+                                </th:block>
+                            </select>
+                            <div class="text-danger" th:if="${#fields.hasErrors('vehicle_id')}" th:errors="*{vehicle_id}"></div>
+                        </div>
+
+                        <input type="hidden" name="reservationId" th:field="*{reservation_id}" />
+
+                        <button type="submit" class="btn btn-primary w-100">Update</button>
+
+                        <div class="form-group text-center mt-3">
+                <span>
+                    Vehicle Not Found?
+                    <a href="/" th:href="@{/registration}"> Add Vehicle</a>
+                </span>
+                        </div>
+                    </form>
+                </div>
             </div>
-            
+
+
         </div>
-    
-    </div>
     
 
     <script>

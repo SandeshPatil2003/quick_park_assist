@@ -94,11 +94,7 @@
                     </li>
                 </ul>
 
-                <form class="form-inline">
-                    <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                </form>
+
             </div>
         </nav>
     </div>
@@ -178,15 +174,7 @@
 
                 <form th:action="@{/reservations/save}" method="post" th:object="${reservation}">
                     <div th:class="@{row mb-2}">
-                        <!--                      <label for="charging_station" class="col-md-3 col-form-label">Charging Station:</label>-->
-                        <!--                      <div class="col-md-6">-->
-                        <!--                      <select id="charging_station" class="form-control" name="location" th:field="*{location}" required>-->
-                        <!--                          <option value="">Select a Station</option>-->
-                        <!--                          &lt;!&ndash; Dynamically populate charging stations &ndash;&gt;-->
-                        <!--                          <option th:each="station : ${stations}"-->
-                        <!--                                  th:value="${station.location}"-->
-                        <!--                                  th:text="${station.name} + ' - ' + ${station.location}"></option>-->
-                        <!--                      </select>-->
+
                         <label for="evSpot" class="col-md-3 col-form-label">Select EV Spot</label>
                         <div class="col-md-6">
                             <select id="evSpot" name="evSpot" class="form-control" required>
@@ -201,13 +189,6 @@
                         </div>
                     </div>
 
-                    <!--              <div class="row mb-2">-->
-                    <!--                  <label for="location" class="col-md-3 col-form-label">Location:</label>-->
-                    <!--                  <div class="col-md-6">-->
-                    <!--                      <input type="text" id="location" th:field="*{location}" class="form-control" />-->
-                    <!--                      <div class="text-danger" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></div>-->
-                    <!--                  </div>-->
-                    <!--              </div>-->
                     <div class="row mb-2">
                         <label for="reservation_Date" class="col-md-3 col-form-label">Reservation Date:</label>
                         <div class="col-md-6">
@@ -230,13 +211,6 @@
                         </div>
                     </div>
 
-                    <!--              <div class="row mb-2">-->
-                    <!--                  <label for="end_time" class="col-md-3 col-form-label">End Time:</label>-->
-                    <!--                  <div class="col-md-6">-->
-                    <!--                      <input type="time" id="end_time" th:field="*{end_time}" class="form-control" />-->
-                    <!--                      <div class="text-danger" th:if="${#fields.hasErrors('end_time')}" th:errors="*{end_time}"></div>-->
-                    <!--                  </div>-->
-                    <!--              </div>-->
                     <div class="row mb-2">
                         <label for="vehicle_id" class="col-md-3 col-form-label">Select Vehicle:</label>
                         <div class="col-md-6">
@@ -273,35 +247,6 @@
             </div>
 
         </div>
-        <!--    <script>-->
-
-        <!--        // Function to fetch and populate charging stations-->
-        <!--function loadChargingStations() {-->
-        <!--    fetch('/charging-stations')  // This is where the request is made-->
-        <!--        .then(response => response.json()) // Parse the JSON response-->
-        <!--        .then(stations => {-->
-        <!--            const selectElement = document.getElementById('charging_station');-->
-
-        <!--            // Clear existing options (except the default one)-->
-        <!--            selectElement.innerHTML = '<option value="">Select a Station</option>';-->
-
-        <!--            // Loop through the stations and create <option> elements for each-->
-        <!--            stations.forEach(station => {-->
-        <!--                const option = document.createElement('option');-->
-        <!--                option.value = station.id;  // Set the station's ID as the value-->
-        <!--                option.textContent = station.name;  // Set the station's name as the display text-->
-        <!--                selectElement.appendChild(option);  // Append the new option to the select-->
-        <!--            });-->
-        <!--        })-->
-        <!--        .catch(error => {-->
-        <!--            console.error('Error fetching charging stations:', error);-->
-        <!--        });-->
-        <!--}-->
-
-        <!--// Call the function to load the charging stations when the page loads-->
-        <!--window.onload = loadChargingStations;-->
-
-        <!--    </script>-->
 
         <script>
             function toggleForm(formId) {

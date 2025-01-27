@@ -93,11 +93,7 @@
                   </li>
               </ul>
 
-          <form class="form-inline">
-            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </form>
+
         </div>
       </nav>
     </div>
@@ -162,107 +158,108 @@ function confirmLogout() {
         <!-- Forms Section -->
         <div class="col-md-8 bg-light py-5">
           <!-- Add New Parking Spot Form -->
-          <div class="container" style="max-height: 400px; overflow-y: auto;">
-
+            <div class="container" style="max-height: 400px; overflow-y: auto;">
                 <table class="table table-bordered table-striped">
                     <thead class="thead-dark">
-                        <tr>
-<!--                            <th scope="col">ID</th>-->
-                            <th scope="col">Reservation ID</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Spot Name</th>
-                            <th scope="col">Reservation Date</th>
-                            <th scope="col">Start Time</th>
-                            <th scope="col">End Time</th>
-                            <th scope="col">Vehicle Number</th>
-                            <th scope="col">Actions</th>
-                        </tr>
+                    <tr>
+                        <th scope="col" style="display:none;">Reservation ID</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Spot Name</th>
+                        <th scope="col">Reservation Date</th>
+                        <th scope="col">Start Time</th>
+                        <th scope="col">End Time</th>
+                        <th scope="col">Vehicle Number</th>
+                        <th scope="col">Actions</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="reservation : ${reservations}">
-<!--                            <td th:text="${reservation.id}"></td>-->
-                            <td th:text="${reservation.reservation_id}"></td>
-                            <td th:text="${reservation.location}"></td>
-                            <td th:text="${reservation.spotName}"></td>
-                            <td th:text="${reservation.reservation_Date}"></td>
-                            <td th:text="${reservation.start_time}"></td>
-                            <td th:text="${reservation.end_time}"></td>
-                            <td th:text="${reservation.vehicle_id}"></td>
-                            <td>
-                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#viewDetailsModal"
-                                    th:data-id="${reservation.id}" 
+                    <tr th:each="reservation, iterStat : ${reservations}">
+                        <!-- Hide Reservation ID -->
+                        <td style="display:none;" th:text="${reservation.reservation_id}"></td>
+                        <!-- Serial Number -->
+                        <td th:text="${iterStat.index + 1}"></td>
+                        <td th:text="${reservation.location}"></td>
+                        <td th:text="${reservation.spotName}"></td>
+                        <td th:text="${reservation.reservation_Date}"></td>
+                        <td th:text="${reservation.start_time}"></td>
+                        <td th:text="${reservation.end_time}"></td>
+                        <td th:text="${reservation.vehicle_id}"></td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#viewDetailsModal"
+                                    th:data-id="${reservation.id}"
                                     th:data-reservation_id="${reservation.reservation_id}"
                                     th:data-location="${reservation.location}"
                                     th:data-spotName="${reservation.spotName}"
-                                    th:data-reservation_Date="${reservation.reservation_Date}" 
-                                    th:data-start_time="${reservation.start_time}" 
-                                    th:data-end_time="${reservation.end_time}" 
+                                    th:data-reservation_Date="${reservation.reservation_Date}"
+                                    th:data-start_time="${reservation.start_time}"
+                                    th:data-end_time="${reservation.end_time}"
                                     th:data-vechile_id="${reservation.vehicle_id}">
-                                    View
-                                </button>
-                            </td>
-                        </tr>
+                                View
+                            </button>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
-            
-            
+
+
+
         </div>
     
     </div>
 
 
 
-   <!-- Modal -->
-<div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="viewDetailsModalLabel">Reservation Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>ID:</strong> <span id="modal-id"></span></li>
-                    <li class="list-group-item"><strong>Reservation ID:</strong> <span id="modal-reservation_id"></span></li>
-                    <li class="list-group-item"><strong>Location:</strong> <span id="modal-location"></span></li>
-                    <li class="list-group-item"><strong>Spot Name:</strong> <span id="modal-spotName"></span></li>
-                    <li class="list-group-item"><strong>Reservation Date:</strong> <span id="modal-reservation_Date"></span></li>
-                    <li class="list-group-item"><strong>Start Time:</strong> <span id="modal-start_time"></span></li>
-                    <li class="list-group-item"><strong>End Time:</strong> <span id="modal-end_time"></span></li>
-                    <li class="list-group-item"><strong>Vehicle ID:</strong> <span id="modal-vechile_id"></span></li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- Modal -->
+        <div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewDetailsModalLabel">Reservation Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group">
+                            <!-- Hidden Reservation ID -->
+                            <li class="list-group-item d-none"><strong>Reservation ID:</strong> <span id="modal-reservation_id"></span></li>
+                            <li class="list-group-item"><strong>Location:</strong> <span id="modal-location"></span></li>
+                            <li class="list-group-item"><strong>Spot Name:</strong> <span id="modal-spotName"></span></li>
+                            <li class="list-group-item"><strong>Reservation Date:</strong> <span id="modal-reservation_Date"></span></li>
+                            <li class="list-group-item"><strong>Start Time:</strong> <span id="modal-start_time"></span></li>
+                            <li class="list-group-item"><strong>End Time:</strong> <span id="modal-end_time"></span></li>
+                            <li class="list-group-item"><strong>Vehicle ID:</strong> <span id="modal-vechile_id"></span></li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<script>
-    const viewDetailsModal = document.getElementById('viewDetailsModal');
-    viewDetailsModal.addEventListener('show.bs.modal', function (event) {
-        const button = event.relatedTarget; // Button that triggered the modal
-        const id = button.getAttribute('data-id');
-        const reservationId = button.getAttribute('data-reservation_id');
-        const location = button.getAttribute('data-location');
-        const spotName = button.getAttribute('data-spotName');
-        const reservationDate = button.getAttribute('data-reservation_Date');
-        const startTime = button.getAttribute('data-start_time');
-        const endTime = button.getAttribute('data-end_time');
-        const vehicleId = button.getAttribute('data-vechile_id');
+        <script>
+            const viewDetailsModal = document.getElementById('viewDetailsModal');
+            viewDetailsModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget; // Button that triggered the modal
+                const location = button.getAttribute('data-location');
+                const spotName = button.getAttribute('data-spotName');
+                const reservationDate = button.getAttribute('data-reservation_Date');
+                const startTime = button.getAttribute('data-start_time');
+                const endTime = button.getAttribute('data-end_time');
+                const vehicleId = button.getAttribute('data-vechile_id');
 
-        // Populate the modal fields
-        document.getElementById('modal-id').textContent = id;
-        document.getElementById('modal-reservation_id').textContent = reservationId;
-        document.getElementById('modal-location').textContent = location;
-        document.getElementById('modal-spotName').textContent = spotName;
-        document.getElementById('modal-reservation_Date').textContent = reservationDate;
-        document.getElementById('modal-start_time').textContent = startTime;
-        document.getElementById('modal-end_time').textContent = endTime;
-        document.getElementById('modal-vechile_id').textContent = vehicleId;
-    });
-</script>
+                // Populate the modal fields
+                document.getElementById('modal-location').textContent = location;
+                document.getElementById('modal-spotName').textContent = spotName;
+                document.getElementById('modal-reservation_Date').textContent = reservationDate;
+                document.getElementById('modal-start_time').textContent = startTime;
+                document.getElementById('modal-end_time').textContent = endTime;
+                document.getElementById('modal-vechile_id').textContent = vehicleId;
+
+                // Hide the reservation ID field completely
+                document.getElementById('modal-reservation_id').textContent = '';
+            });
+        </script>
 
 
 

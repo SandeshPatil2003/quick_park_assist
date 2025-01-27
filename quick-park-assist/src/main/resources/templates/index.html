@@ -17,6 +17,8 @@
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
+
+
   <!-- Fonts style -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
@@ -43,51 +45,10 @@
 
   <!-- Custom styles for this template -->
   <link href="css/homeStyle.css" rel="stylesheet" />
+
+  <link href="css/dashboard.css" rel="stylesheet" />
   <!-- Responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
-
-  <style>
-    .card {
-      border-radius: 15px;
-      border: none;
-      width: 100%; /* Ensures the card takes up the full width available */
-      max-width: 700px; /* Increase the max width to make the card wider */
-      margin: 0 auto; /* Center the card horizontally */
-    }
-
-    .card-title {
-      font-size: 1.8rem; /* Increase the font size of the title */
-      font-weight: bold;
-    }
-
-    .card-text {
-      line-height: 1.6;
-      font-size: 1.2rem; /* Increase the font size for better readability */
-    }
-
-    .btn-warning {
-      background-color: #ff6f3c;
-      border-color: #ff6f3c;
-      color: white;
-    }
-
-    .alert {
-      background: linear-gradient(to right, #56ccf2, #155263);
-      color: white;
-      border-radius: 15px;
-      padding: 40px 25px; /* Increased padding */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 1s ease-out;
-      width: 100%;
-      max-width: 900px; /* Make alert the same width as the card */
-      margin: 0 auto; /* Center the alert horizontally */
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-  </style>
 
 
 </head>
@@ -119,17 +80,23 @@
               <li class="nav-item" th:classappend="${#request.requestURI == '/'} ? 'active'">
                 <a class="nav-link" th:href="@{/}">Home</a>
               </li>
-              <li class="nav-item"
+              <li class="nav-item " th:if="${user==null or user.availability=='ACTIVE'}"
                   th:classappend="${#request.requestURI == '/registration'} ? 'active'">
                 <a class="nav-link"
-                   th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/users' : '/registration'">
+                   th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/users' : '/registration'" >
                   <span th:if="${user == null}">Registration</span>
-                  <span th:if="${user != null && user.role == 'SPOT_OWNER'}">View Profile</span>
-                  <span th:if="${user != null && user.role != 'SPOT_OWNER' }">Add Vehicle</span>
+                  <span th:if="${user != null && user.role == 'SPOT_OWNER'  && user.availability != 'DE-ACTIVATED'}">View Profile</span>
+                  <span th:if="${user != null && user.role != 'SPOT_OWNER'  && user.availability != 'DE-ACTIVATED' }">Add Vehicle</span>
                 </a>
               </li>
 
-              <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"
+              <li class="nav-item  " th:classappend="${#request.requestURI == '/registration'} ? 'active'">
+                <a class="nav-link" th:href="@{/edit/{email}(email=${user.email})}" th:if="${user!=null && user.availability !='ACTIVE'}" >Activate Account</a></li>
+
+
+
+
+              <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER' and user.availability != 'DE-ACTIVATED'}"
                   th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
                 <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
               </li>
@@ -137,19 +104,29 @@
               <li class="nav-item"
                   th:classappend="${#request.requestURI == '/why'} ? 'active'">
                 <a class="nav-link"
-                   th:href="${user == null or user.role == 'SPOT_OWNER'} ? '/users' : '/booking'"
-                   th:if="${user == null or user.role != 'SPOT_OWNER'}">Booking</a>
+                   th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/users' : '/booking'"
+                   th:if="${user != null && user.role != 'SPOT_OWNER' and user.availability != 'DE-ACTIVATED'}">Booking</a>
+
+
+                <a class="nav-link" th:if="${#authentication.principal == 'anonymousUser'}" th:href="@{'/'}">Booking</a>
               </li>
 
+
               <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
+
+
                 <a class="nav-link"
+                    th:if="${  user!=null && user.availability != 'DE-ACTIVATED'}"
                    th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/addAddonServices' :  '/viewAllAddonServices'">
                   Addon Services
                 </a>
+
+                <a class="nav-link" th:if="${#authentication.principal == 'anonymousUser'}" th:href="@{'/'}">Addon Services</a>
               </li>
 
               <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
-                <a class="nav-link"  th:href="${user == null or user.role == 'SPOT_OWNER'} ? '/users' : '/reservations'"   th:if="${user == null or user.role != 'SPOT_OWNER'}">Ev charge</a>
+                <a class="nav-link"  th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/users' : '/reservations'"     th:if="${user != null && user.role != 'SPOT_OWNER' and user.availability != 'DE-ACTIVATED'}">Ev Charge</a>
+                <a class="nav-link" th:if="${#authentication.principal == 'anonymousUser'}" th:href="@{'/'}">Ev Charge</a>
               </li>
             </ul>
 
@@ -169,11 +146,11 @@
               </li>
             </ul>
 
-            <form class="form-inline">
-              <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </form>
+<!--            <form class="form-inline">-->
+<!--              <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">-->
+<!--                <i class="fa fa-search" aria-hidden="true"></i>-->
+<!--              </button>-->
+<!--            </form>-->
           </div>
         </nav>
       </div>
@@ -317,35 +294,37 @@
                     <!-- Updated button to Update Profile -->
                     <a href="/edit/{email}" class="btn btn-warning btn-sm  mt-2"
                        th:href="@{/edit/{email}(email=${user.email})}">
-                      Update Profile
+                      <span th:if="${user.availability != 'DE-ACTIVATED'}">Update Profile</span>
+                      <span th:if="${user.availability == 'DE-ACTIVATED'}">Activate Account</span>
+
                     </a>
                     <a href="/spot-management" class="btn btn-warning btn-sm ml-2  mt-2" th:href="@{/spot-management}"
-                       th:if="${user.role == 'SPOT_OWNER'}">
+                       th:if="${user.role == 'SPOT_OWNER'  && user.availability!='DE-ACTIVATED'}">
                       Add Spots
                     </a>
 
                     <a href="/addAddonServices" class="btn btn-warning btn-sm ml-2  mt-2" th:href="@{/addAddonServices}"
-                       th:if="${user.role == 'SPOT_OWNER'}">
+                       th:if="${user.role == 'SPOT_OWNER'  && user.availability!='DE-ACTIVATED'}">
                       Create Addon Pack
                     </a>
 
 
 
-                    <a href="/registration" class="btn btn-warning btn-sm ml-2  mt-2" th:href="@{/registration}"  th:if="${user.role != 'SPOT_OWNER'}">
+                    <a href="/registration" class="btn btn-warning btn-sm ml-2  mt-2" th:href="@{/registration}"  th:if="${user.role != 'SPOT_OWNER'  && user.availability!='DE-ACTIVATED'}">
                       Add Vehicles
                     </a>
 
 
-                    <a href="/view-vehicle" class="btn btn-warning btn-sm ml-2  mt-2" th:href="@{/view-vehicle}"  th:if="${user.role != 'SPOT_OWNER'}">
+                    <a href="/view-vehicle" class="btn btn-warning btn-sm ml-2  mt-2" th:href="@{/view-vehicle}"  th:if="${user.role != 'SPOT_OWNER'  && user.availability!='DE-ACTIVATED'}">
                       View Vehicles
                     </a>
 
                     <!-- Updated button to Book Spot -->
-                    <a href="/booking" class="btn btn-warning btn-sm ml-2  mt-2 md-6" th:href="@{/booking}"  th:if="${user.role != 'SPOT_OWNER'}">
+                    <a href="/booking" class="btn btn-warning btn-sm ml-2  mt-2 md-6" th:href="@{/booking}"  th:if="${user.role != 'SPOT_OWNER'  && user.availability!='DE-ACTIVATED'}">
                       Booking Spot
                     </a>
                     <!--                     Updated button for EV reservation-->
-                    <a href="/reservations" class="btn btn-warning btn-sm ml-2 mt-2 md-6" th:href="@{/reservations}"  th:if="${user.role != 'SPOT_OWNER'}">
+                    <a href="/reservations" class="btn btn-warning btn-sm ml-2 mt-2 md-6" th:href="@{/reservations}"  th:if="${user.role != 'SPOT_OWNER' && user.availability!='DE-ACTIVATED'}">
                       Reserve EV
                     </a>
 

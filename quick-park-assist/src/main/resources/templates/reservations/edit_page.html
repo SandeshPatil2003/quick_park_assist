@@ -92,11 +92,7 @@
                       <a class="nav-link" th:href="@{/login}"><i class="fa fa-sign-in"></i> Login</a>
                   </li>
               </ul>
-          <form class="form-inline">
-            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </form>
+
         </div>
       </nav>
     </div>
@@ -167,7 +163,8 @@ function confirmLogout() {
                     <thead class="thead-dark">
                         <tr>
 <!--                            <th scope="col">ID</th>-->
-                            <th scope="col">Reservation ID</th>
+                            <th scope="col" style="display:none;">Reservation ID</th>
+                            <th scope="col">#</th>
                             <th scope="col">Spot Name</th>
                             <th scope="col">Reservation Date</th>
                             <th scope="col">Start Time</th>
@@ -177,10 +174,13 @@ function confirmLogout() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="reservation : ${reservations}">
-<!--                            <td th:text="${reservation.id}"></td>-->
-                            <td th:text="${reservation.reservation_id}"></td>
-                            <td th:text="${reservation.spotName}"></td>
+                    <tr th:each="reservation, iterStat : ${reservations}">
+                        <!-- Hide Reservation ID -->
+                        <td style="display:none;" th:text="${reservation.reservation_id}"></td>
+                        <!-- Serial Number -->
+                        <td th:text="${iterStat.index + 1}"></td>
+
+                        <td th:text="${reservation.spotName}"></td>
                             <td th:text="${reservation.reservation_Date}"></td>
                             <td th:text="${reservation.start_time}"></td>
                             <td th:text="${reservation.duration}"></td>

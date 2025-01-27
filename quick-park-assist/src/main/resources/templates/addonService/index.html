@@ -116,11 +116,6 @@
           </li>
         </ul>
 
-        <form class="form-inline">
-          <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </form>
       </div>
     </nav>
   </div>
@@ -163,6 +158,7 @@ function confirmLogout() {
         <li class="nav-item">
           <a
                   class="nav-link text-light"
+                  th:if="${user.role != 'SPOT_OWNER'}"
                   th:href="@{/viewAllAddonServices}"
                   onclick="toggleForm('removeSpotForm')"
           >View all Addon Offers</a
@@ -171,6 +167,7 @@ function confirmLogout() {
         <li class="nav-item" >
           <a
                   class="nav-link text-light"
+                  th:if="${user.role != 'SPOT_OWNER'}"
                   th:href="@{/modifySelectedAddonServices}"
                   onclick="toggleForm('userVehiclesFrom')"
           >Modify Addon Details</a
@@ -181,7 +178,7 @@ function confirmLogout() {
 
           <a th:href="@{/removeAddonServices}" class="nav-link text-light"
 
-             onclick="toggleForm('modifySpotForm')">Remove an addon pack</a>
+             onclick="toggleForm('modifySpotForm')">Modify Price/Remove addon pack</a>
 
 
         </li>

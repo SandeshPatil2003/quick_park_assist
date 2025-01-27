@@ -152,11 +152,6 @@
           </li>
         </ul>
 
-        <form class="form-inline">
-          <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </form>
       </div>
     </nav>
   </div>
@@ -199,6 +194,7 @@ function confirmLogout() {
         <li class="nav-item">
           <a
                   class="nav-link text-light"
+                  th:if="${user.role != 'SPOT_OWNER'}"
                   th:href="@{/viewAllAddonServices}"
                   onclick="toggleForm('removeSpotForm')"
           >View all Addon Offers</a
@@ -207,6 +203,7 @@ function confirmLogout() {
         <li class="nav-item">
           <a
                   class="nav-link active text-light"
+                  th:if="${user.role != 'SPOT_OWNER'}"
                   th:href="@{/modifySelectedAddonServices}"
                   onclick="toggleForm('userVehiclesFrom')"
           >Modify Addon Details</a
@@ -217,7 +214,7 @@ function confirmLogout() {
 
           <a th:href="@{/removeAddonServices}" class="nav-link  text-light"
 
-             onclick="toggleForm('modifySpotForm')">Remove an addon pack</a>
+             onclick="toggleForm('modifySpotForm')">Modify Price/Remove addon pack</a>
 
 
         </li>
@@ -235,7 +232,7 @@ function confirmLogout() {
         <h3 class="text-dark mb-4">Modify Selected Addon Services</h3>
 
         <table class="table table-bordered table-hover">
-          <thead class="table-primary text-center">
+          <thead class="table-dark text-center">
           <tr>
             <th>#</th>
             <th>Selected Service Info</th>
@@ -253,7 +250,7 @@ function confirmLogout() {
             <!-- Nested table for services under this booking -->
             <td>
               <table class="table table-sm table-striped bg-light">
-                <thead class="table-secondary text-center">
+                <thead class="table-grey text-center">
                 <tr>
                   <th>Service Name</th>
                   <th>Description</th>
@@ -269,16 +266,16 @@ function confirmLogout() {
                   <td th:text="${serviceData.service.price}"></td>
                   <td th:text="${serviceData.service.duration}"></td>
                   <td class="text-center">
-                    <button
-                            class="btn btn-sm btn-info mb-2"
-                            th:attr="data-serviceid=${serviceData.service.serviceID}"
-                            onclick="modifyPrice(this)"
-                    >
-                      Modify Price
-                    </button>
+<!--                    <button-->
+<!--                            class="btn btn-sm btn-info mb-2"-->
+<!--                            th:attr="data-serviceid=${serviceData.service.serviceID}"-->
+<!--                            onclick="modifyPrice(this)"-->
+<!--                    >-->
+<!--                      Modify Price-->
+<!--                    </button>-->
 
                     <button
-                            class="btn btn-sm btn-warning mb-2"
+                            class="btn btn-sm btn-warning "
                             th:attr="data-serviceid=${serviceData.service.serviceID}"
                             onclick="modifyDuration(this)"
                     >

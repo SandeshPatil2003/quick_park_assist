@@ -67,18 +67,33 @@
                         <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
                     </li>
 
-                    <li class="nav-item" th:classappend="${#request.requestURI == '/why'} ? 'active'">
-                        <a class="nav-link" th:href="@{/booking}">Booking</a>
-                    </li>
-                    <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
+                    <li class="nav-item" th:classappend="${#request.requestURI == '/booking'} ? 'active'">
                         <a class="nav-link"
+                           th:href="${user != null and user.availability != 'ACTIVE'} ? '/' : '/booking'">
+                            Booking
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
+
+
+                        <a class="nav-link"
+                           th:if="${  #authentication.principal != 'anonymousUser' && user.availability != 'DE-ACTIVATED'}"
                            th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/addAddonServices' :  '/viewAllAddonServices'">
                             Addon Services
                         </a>
+
+                        <a class="nav-link" th:if="${#authentication.principal == 'anonymousUser'}" th:href="@{'/'}">Addon Services</a>
                     </li>
-                    <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
-                        <a class="nav-link" th:href="@{/reservations}">Ev charge</a>
+
+                    <li class="nav-item" th:classappend="${#request.requestURI == '/reservations'} ? 'active'">
+                        <a class="nav-link"
+                           th:href="${user != null and user.availability != 'ACTIVE'} ? '/' : '/reservations'">
+                            Ev charge
+                        </a>
                     </li>
+
                 </ul>
 
                 <!-- Authentication Section -->
@@ -98,11 +113,7 @@
                     </li>
                 </ul>
 
-                <form class="form-inline">
-                    <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                </form>
+
             </div>
         </nav>
     </div>
@@ -125,39 +136,40 @@
                     </a>
 
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" th:if="${#authentication.principal != 'anonymousUser'}">
                     <a
                             class="nav-link text-light"
                             th:href="@{/users}"
                             onclick="toggleForm('searchSpotForm')"
-                    >View User profiles</a
-                    >
+                    >View User Profiles</a>
                 </li>
-                <li class="nav-item">
+
+
+                <!-- View User Vehicles -->
+                <li class="nav-item" th:if="${#authentication.principal != 'anonymousUser'}">
                     <a
                             class="nav-link text-light"
                             th:href="@{/view-vehicle}"
                             onclick="toggleForm('userVehiclesFrom')"
-                    >View User Vehicles</a
-                    >
+                    >View User Vehicles</a>
                 </li>
 
-                <li class="nav-item" th:if="${#authentication.authenticated}">
-
-
-                    <a th:href="@{/edit/{email}(email=${#authentication.name})}" class="nav-link text-light"
-
-                       onclick="toggleForm('modifySpotForm')">Update User profile</a>
-
-
+                <!-- Update User Profile -->
+                <li class="nav-item" th:if="${#authentication.principal != 'anonymousUser'}">
+                    <a
+                            th:href="@{/edit/{email}(email=${#authentication.name})}"
+                            class="nav-link text-light"
+                            onclick="toggleForm('modifySpotForm')"
+                    >Update User Profile</a>
                 </li>
-                <li class="nav-item">
+
+                <!-- Deactivate/Delete Account -->
+                <li class="nav-item" th:if="${#authentication.principal != 'anonymousUser'}">
                     <a
                             class="nav-link text-light"
                             th:href="@{/delete}"
                             onclick="toggleForm('removeSpotForm')"
-                    >Deactivate/Delete account</a
-                    >
+                    >Deactivate/Delete Account</a>
                 </li>
             </ul>
         </div>
@@ -269,7 +281,7 @@
                     <div class="form-group row">
                         <div class="col-sm-9 offset-sm-3">
                             <button type="submit" class="btn btn-success" id="submitBtn">Register</button>
-                            <span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
+                            <span>Already registered? <a href="/" th:href="@{/}">Login here</a></span>
                         </div>
                     </div>
                 </form>

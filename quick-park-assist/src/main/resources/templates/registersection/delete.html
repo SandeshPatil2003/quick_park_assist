@@ -17,55 +17,11 @@
       crossorigin="anonymous"
     />
     <link th:href="@{/css/homeStyle.css}" rel="stylesheet" />
+
+    <link th:href="@{/css/delete-button.css}" rel="stylesheet" />
     
 
-    <style>
-      .active{
-        background-color: #ff6f3c;
-        color: white;
-      }
 
-      #deletebutton {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* Space between the links */
-  text-align: center;
-  align-items: center; /* Vertically align the text and links */
-  margin-top: 20px;
-}
-
-#deletebutton a {
-  background-color: #ff6f3c; /* Attractive color */
-  color: white;
-  padding: 10px 20px; /* Add padding for a better look */
-  text-align: center;
-  display: inline-block;
-  border-radius: 5px; /* Rounded corners */
-  text-decoration: none; /* Remove underline */
-  font-size: 16px; /* Increase font size for better readability */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-  transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
-}
-
-#deletebutton a:hover {
-  background-color: #e65a2f; /* Darker shade on hover */
-  transform: translateY(-2px); /* Slight lift on hover */
-}
-
-#deletebutton p {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-#deletebutton span {
-  font-size: larger;
-  font-weight: bold;
-  color: #ff6f3c;
-}
-
-    </style>
   </head>
 
   <body class="hero-area">
@@ -93,34 +49,46 @@
               <li class="nav-item" th:classappend="${#request.requestURI == '/'} ? 'active'">
                 <a class="nav-link" th:href="@{/}">Home</a>
               </li>
-              </li>
-              <li class="nav-item active"
-                  th:classappend="${#request.requestURI == '/edit'} ? 'active'">
+              <li class="nav-item active" th:if="${user.availability=='ACTIVE'}"
+                  th:classappend="${#request.requestURI == '/registration'} ? 'active'">
                 <a class="nav-link"
-                   th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/users' : '/registration'">
+                   th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/users' : '/registration'" >
                   <span th:if="${user == null}">Registration</span>
-                  <span th:if="${user != null && user.role == 'SPOT_OWNER'}">View Profile</span>
-                  <span th:if="${user != null && user.role != 'SPOT_OWNER' }">Add Vehicle</span>
+                  <span th:if="${user != null && user.role == 'SPOT_OWNER'  && user.availability != 'DE-ACTIVATED'}">View Profile</span>
+                  <span th:if="${user != null && user.role != 'SPOT_OWNER'  && user.availability != 'DE-ACTIVATED' }">Add Vehicle</span>
                 </a>
               </li>
 
-              <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER'}"
+              <li class="nav-item active " th:classappend="${#request.requestURI == '/registration'} ? 'active'">
+                <a class="nav-link" th:href="@{/edit/{email}(email=${user.email})}" th:if="${user!=null && user.availability !='ACTIVE'}" >Activate Account</a></li>
+
+
+              <li class="nav-item" th:if="${user != null and user.role == 'SPOT_OWNER' and user.availability != 'DE-ACTIVATED'}"
                   th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
                 <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
               </li>
-              <li class="nav-item" th:classappend="${#request.requestURI == '/why'} ? 'active'" th:if="${user.role != 'SPOT_OWNER'}">
-                <a class="nav-link" th:href="@{/booking}">Booking</a>
+
+              <li class="nav-item"
+                  th:classappend="${#request.requestURI == '/why'} ? 'active'">
+                <a class="nav-link"
+                   th:href="${user == null or user.role == 'SPOT_OWNER'} ? '/users' : '/booking'"
+                   th:if="${user != null and user.role != 'SPOT_OWNER' and user.availability != 'DE-ACTIVATED'}">Booking</a>
               </li>
+
+
               <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
                 <a class="nav-link"
+                   th:if="${  user == null or user.availability != 'DE-ACTIVATED'}"
                    th:href="${user != null && user.role == 'SPOT_OWNER'} ? '/addAddonServices' :  '/viewAllAddonServices'">
                   Addon Services
                 </a>
               </li>
-              <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'" th:if="${user.role != 'SPOT_OWNER'}">
-                <a class="nav-link" th:href="@{/reservations}">Ev charge</a>
+
+              <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
+                <a class="nav-link"  th:href="${user == null or user.role == 'SPOT_OWNER'} ? '/users' : '/reservations'"     th:if="${user == null or user.role != 'SPOT_OWNER' and user.availability != 'DE-ACTIVATED'}">Ev charge</a>
               </li>
             </ul>
+
             <!-- Authentication Section -->
             <ul class="navbar-nav ms-auto">
               <li th:if="${#authentication.authenticated}" class="nav-item dropdown">
@@ -136,11 +104,7 @@
               </li>
             </ul>
 
-          <form class="form-inline">
-            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </form>
+
         </div>
       </nav>
     </div>
@@ -165,7 +129,7 @@ function confirmLogout() {
           <div class="col-md-3 bg-dark p-5">
             <h3 style="color: white;">Parking Spots</h3>
             <ul class="nav flex-column">
-              <li class="nav-item" th:if="${user.role != 'SPOT_OWNER'}">
+              <li class="nav-item" th:if="${user.role != 'SPOT_OWNER' && user.availability !='DE-ACTIVATED'}">
                 <a class="nav-link text-light"
                    th:href="@{/registration}"
                    onclick="toggleForm('addNewSpotForm')">
@@ -182,7 +146,7 @@ function confirmLogout() {
                   >View User profiles</a
                 >
               </li>
-              <li class="nav-item" th:if="${user.role != 'SPOT_OWNER'}">
+              <li class="nav-item" th:if="${user.role != 'SPOT_OWNER' && user.availability !='DE-ACTIVATED'}">
                 <a
                         class="nav-link text-light"
                         th:href="@{/view-vehicle}"
@@ -204,7 +168,9 @@ function confirmLogout() {
                   class="nav-link active text-light"
                   th:href="@{/delete}" 
                   onclick="toggleForm('removeSpotForm')"
-                  >Deactivate/Delete account</a
+                  >    <span th:if="${user.availability !='DE-ACTIVATED'}">Deactivate/Delete account</span>
+                  <span th:if="${user.availability!='ACTIVE'}">Activate/Delete account</span>
+                </a
                 >
               </li>
             </ul>
@@ -218,8 +184,14 @@ function confirmLogout() {
                   We truly miss having you as our valued customer and look forward to serving you again soon. 
                   <span th:text="${#authentication.name}"></span>
                 </p>
-                <a th:href="@{/edit/{email}(email=${#authentication.name})}" class="nav-link text-dark">Deactivate Temporary</a>
-                <a th:href="@{/remove/{email}(email=${#authentication.name})}" class="nav-link text-dark" onclick="return confirmDeletion()">Delete permenantly</a>
+                <a th:href="@{/edit/{email}(email=${#authentication.name})}"  th:if="${user != null and user.availability == 'ACTIVE'}" class="nav-link text-dark">Deactivate Temporary</a>
+                <a th:href="@{/edit/{email}(email=${#authentication.name})}"
+                   class="nav-link text-dark"
+                   th:if="${user != null and user.availability != 'ACTIVE'}">
+   Activate Account
+</a>
+
+                <a th:href="@{/remove/{email}(email=${#authentication.name})}" class="nav-link text-dark" onclick="return confirmDeletion()">Delete permanently</a>
               </span>
             </div>
           </div>
