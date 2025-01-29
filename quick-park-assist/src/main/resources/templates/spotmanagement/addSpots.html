@@ -61,7 +61,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item active" th:if="${user != null and user.role == 'SPOT_OWNER'}"
+                    <li class="nav-item active"
                         th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
                         <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
                     </li>
@@ -315,6 +315,17 @@
         }
     }
     </script>
+
+</script>
+<!-- jQery -->
+<script src="js/jquery-3.4.1.min.js"></script>
+<!-- popper js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+</script>
+<!-- nice select -->
+<script src="js/jquery.nice-select.min.js"></script>
+<!-- bootstrap js -->
+<script src="js/bootstrap.js"></script>
     <!-- Bootstrap 5 Bundle (Includes Popper.js) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
