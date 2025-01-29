@@ -25,15 +25,6 @@ public class EVChargingStation {
         this.chargingStationId = chargingStationId;
     }
 
-//    private Long chargingStation;
-
-//    public Long getChargingStation() {
-//        return chargingStation;
-//    }
-//
-//    public void setChargingStation(Long chargingStation) {
-//        this.chargingStation = chargingStation;
-//    }
     // Getters and Setters
     public Long getId() {
         return id;

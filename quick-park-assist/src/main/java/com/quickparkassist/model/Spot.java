@@ -1,6 +1,5 @@
 package com.quickparkassist.model;
 
-//import jakarta.persistence.*;
 
 import javax.persistence.*;
 
@@ -12,15 +11,13 @@ public class Spot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long spotId;
-//    @Column(name = "spot_id")  // Specify the correct column name in the database
-//    private Long spotId;  // Corresponds to the spot_id column in the parkingspots table
-
 
     private String spotName;
     private String location;
     private String station;
     private int slot;
     private String spotStatus;  // Status of the parking spot (e.g., available, reserved, occupied)
+    private String description;
     private Long userId;
 
     @Column(name = "price_per_hour")
@@ -37,30 +34,41 @@ public class Spot {
     private String chargerType;      // For EV spots (e.g., Type 2, CCS)
     private Double powerCapacity;    // kW (optional for normal spots)
 
+    // Default constructor required by Hibernate
+    public Spot() {
+        // No-argument constructor (default constructor)
+    }
+
+    public Spot(Long spotId, String availability, String location, int slot, double pricePerHour, String spotName, String description, String spotStatus, String station, String spotType) {
+        this.spotId = spotId;
+        this.availability = availability;
+        this.location = location;
+        this.slot = slot;
+        this.pricePerHour = pricePerHour;
+        this.spotName = spotName;
+        this.spotStatus = spotStatus;
+        this.description = description;
+        this.station = station;
+        this.spotType = spotType;
+    }
+
+
     public String getStation() {
-		return station;
-	}
+        return station;
+    }
 
-	public void setStation(String station) {
-		this.station = station;
-	}
+    public void setStation(String station) {
+        this.station = station;
+    }
 
-	public int getSlot() {
-		return slot;
-	}
+    public int getSlot() {
+        return slot;
+    }
 
-	public void setSlot(int slot) {
-		this.slot = slot;
-	}
+    public void setSlot(int slot) {
+        this.slot = slot;
+    }
 
-
-//    public Long getId() {
-//        return id;
-//    }
-//
-//        public void setId(Long id) {
-//        this.id = id;
-//    }
     public Long getSpotId() {
         return spotId;
     }
@@ -141,4 +149,22 @@ public class Spot {
     public void setPowerCapacity(Double powerCapacity) {
         this.powerCapacity = powerCapacity;
     }
+
+    public Object getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int i) {
+        this.ownerId=i;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
 }

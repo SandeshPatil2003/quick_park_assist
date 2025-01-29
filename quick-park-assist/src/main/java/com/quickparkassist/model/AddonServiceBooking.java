@@ -1,13 +1,5 @@
 package com.quickparkassist.model;
 
-// import java.util.List;
-
-// import jakarta.persistence.ElementCollection;
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.GeneratedValue;
-//import jakarta.persistence.GenerationType;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.Table;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,9 +18,22 @@ public class AddonServiceBooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long addonServiceBookingID;
+
+    @Column(name = "serviceids")
     private String serviceIDs;
+
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "quantities")
     private String quantities;
 
+
+    public AddonServiceBooking(Long addonServiceBookingID, String quantities, String serviceIDs) {
+        this.addonServiceBookingID = addonServiceBookingID;
+        this.quantities = quantities;
+        this.serviceIDs = serviceIDs;
+    }
 
     public String getServiceIDs() {
         return serviceIDs;
@@ -45,6 +50,12 @@ public class AddonServiceBooking {
         this.quantities = quantities;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
 }

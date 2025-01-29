@@ -13,9 +13,6 @@ public interface SpotRepository extends JpaRepository<Spot, Long> {
     // Find spots by availability status
     List<Spot> findByAvailability(String availability);
 
-    // Find spots by both location and availability status
-   // List<Spot> findByLocationAndAvailability(String location, String spotType, String availability);
-
     List<Spot> findByLocationAndSpotTypeAndAvailability(String location, String spotType, String availability);
 
     // Find spots by location only (regardless of availability)
@@ -36,7 +33,5 @@ public interface SpotRepository extends JpaRepository<Spot, Long> {
     // Find spots by userId and availability status
     List<Spot> findByUserIdAndAvailability(Long userId, String availability);
 
-    // Custom query to fetch unavailable spots owned by a specific user
-//    List<Spot> findByUserIdAndAvailableFalse(Long userId);
 
 }

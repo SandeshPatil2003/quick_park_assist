@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,6 +27,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    public UserServiceImpl(BCryptPasswordEncoder passwordEncoder, UserRepository userRepository) {
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+    }
+
     public UserServiceImpl(UserRepository userRepository) {
         super();
         this.userRepository = userRepository;
@@ -42,7 +49,7 @@ public class UserServiceImpl implements UserService {
                 registrationDto.getPhoneNumber(),
                 registrationDto.getAddress(),
                 registrationDto.getRole()
-               );
+        );
 
         return userRepository.save(user);
     }
@@ -68,7 +75,7 @@ public class UserServiceImpl implements UserService {
     // single String role
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(String role) {
         return Collections.singletonList(new SimpleGrantedAuthority(role)); // Wrap the String in a
-                                                                            // SimpleGrantedAuthority
+        // SimpleGrantedAuthority
     }
     @Override
     public Long findUserIdByUsername(String email) {
@@ -107,8 +114,6 @@ public class UserServiceImpl implements UserService {
     public String findMobileNumberByUserId(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         return user.getPhoneNumber();  // Access mobileNumber from the User entity
-
- // If using Option 2
     }
     @Override
     public User findByUsername(String username) {
@@ -125,4 +130,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email) != null;
     }
 
+    @Override
+    public User getLoggedInUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByEmail(username);
+    }
 }

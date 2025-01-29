@@ -16,10 +16,7 @@ public class EVChargingStationService {
     @Autowired
     private EVChargingStationRepository chargingStationRepository;
 
-    // Get all charging stations
-//    public List<EVChargingStation> getAllStations() {
-//        return chargingStationRepository.findAll();
-//    }
+
     public List<EVChargingStation> getAllStations() {
         return chargingStationRepository.findAll(); // Ensure correct return type
     }

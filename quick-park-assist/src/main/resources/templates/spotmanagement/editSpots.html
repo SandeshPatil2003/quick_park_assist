@@ -211,7 +211,7 @@
 				<td th:text="${spot.slot}"></td>
                 <td th:text="${spot.spotType}"></td>
                 <td>
-                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editSpotModal" 
+                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editSpotModal"
                             th:data-id="${spot.spotId}" th:data-spotname="${spot.spotName}" th:data-location="${spot.location}"
                             th:data-priceperhour="${spot.pricePerHour}" th:data-availability="${spot.availability}" th:data-slot="${spot.slot}" th:data-station="${spot.station}"
                             th:data-spotType="${spot.spotType}">Edit</button>
@@ -311,7 +311,7 @@
                 var button = event.relatedTarget; // The button that triggered the modal
 
                 // Set the values of each input field based on the data attributes from the button
-                document.getElementById('editSpotId').value = button.getAttribute('data-spotId');
+                document.getElementById('editSpotId').value = button.getAttribute('data-id');
                 document.getElementById('editSpotName').value = button.getAttribute('data-spotName');
                 document.getElementById('editLocation').value = button.getAttribute('data-location');
                 document.getElementById('editSpotType').value = button.getAttribute('data-spotType'); // Read-only field

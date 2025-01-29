@@ -13,8 +13,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -34,9 +34,11 @@ public class PasswordResetService {
     @Autowired
     TokenRepository tokenRepository;
 
+    @Autowired
+    private PasswordResetService selfProxy;
 
 
-
+    @Transactional(propagation = Propagation.REQUIRED)
     public String sendEmail(User user) {
         try {
             String resetLink = generateResetToken(user);
@@ -60,13 +62,14 @@ public class PasswordResetService {
     }
 
 
-    @Transactional  // Ensures this runs within a transaction
+    @Transactional(propagation = Propagation.REQUIRED)
     public void deleteExistingToken(User user) {
         tokenRepository.deleteByUser(user);
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
     public String generateResetToken(User user) {
-        // Delete any existing token for this user
-       // tokenRepository.deleteByUser(user);
+
         deleteExistingToken(user);
 
         UUID uuid = UUID.randomUUID();

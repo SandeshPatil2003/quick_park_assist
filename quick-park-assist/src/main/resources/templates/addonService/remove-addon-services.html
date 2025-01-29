@@ -178,7 +178,7 @@
 
                     <a th:href="@{/removeAddonServices}" class="nav-link active text-light"
 
-                       onclick="toggleForm('modifySpotForm')">Modify Price/Remove addon pack</a>
+                       onclick="toggleForm('modifySpotForm')">Modify/Remove addon pack</a>
 
 
                 </li>
@@ -191,7 +191,7 @@
 
         <!-- Addon Services Section -->
         <div class="col-md-8 bg-light py-5">
-            <h3 class="ml-3">Modify Price / Delete Addon Services</h3>
+            <h3 class="ml-3">Modify Price & Duration / Delete Addon Services</h3>
 
             <!-- Show confirmation message -->
             <div th:if="${confirmationMessage}" class="alert alert-success mt-3 mx-3">
@@ -221,11 +221,6 @@
                             <td th:text="${service.price}"></td>
                             <td th:text="${service.duration}"></td>
                             <td>
-                                <!-- Delete Button -->
-                                <form th:action="@{/deleteAddonService}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this service?');">
-                                    <input type="hidden" name="serviceID" th:value="${service.ServiceID}" />
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
 
                                 <button
                                         class="btn btn-sm btn-info"
@@ -234,6 +229,20 @@
                                 >
                                     Modify Price
                                 </button>
+
+                                <button
+                                        class="btn btn-sm btn-warning "
+                                        th:attr="data-serviceid=${service.serviceID}"
+                                        onclick="modifyDuration(this)"
+                                >
+                                    Modify Duration
+                                </button>
+
+                                <!-- Delete Button -->
+                                <form th:action="@{/deleteAddonService}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this service?');">
+                                    <input type="hidden" name="serviceID" th:value="${service.ServiceID}" />
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
 
                             </td>
                         </tr>
@@ -276,6 +285,12 @@ if (selectedForm) {
       window.location.href = `/modifyAddonService?serviceID=${serviceID}`;
     }
 
+
+
+     function modifyDuration(button) {
+      const serviceID = button.getAttribute("data-serviceid");
+      window.location.href = `/modifyAddonServiceDuration?serviceID=${serviceID}`;
+    }
 
 </script>
 <!-- jQery -->

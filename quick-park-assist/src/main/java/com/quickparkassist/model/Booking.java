@@ -1,10 +1,6 @@
 package com.quickparkassist.model;
 
 
-//import jakarta.persistence.*;
-
-//import org.apache.catalina.User;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -38,14 +34,13 @@ public class Booking {
     private String price;
     private String paymentMethod;
     private String mobileNumber;
-    private Long parkingSpotId; // Reference to the selected parking spot ID
 
 
     @Transient // This field is not persisted in the Booking table
     private String username;
 
     // Add a property for userId
-    //private Long userId;
+
     @Column(name = "user_id") // Maps to "user_id" column in the database
     private Long userId;
 
@@ -53,8 +48,8 @@ public class Booking {
     @JoinColumn(name = "spot_Id")
     private Spot spot;
 
-@Enumerated(EnumType.STRING)
-private Status status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     // Here, we store the location directly in the parking_spot column
     @Column(name = "parking_spot")  // Use the parking_spot column to store the location

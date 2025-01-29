@@ -54,10 +54,7 @@ public class SpotService {
     public List<Spot> getUnavailableSpotsByUserId(Long userId) {
         return spotRepository.findByUserIdAndAvailability(userId, "no"); // Only unavailable spots
     }
-    // Method to get unavailable spots for a specific user
-//    public List<Spot> getUnavailableSpotsByUserId(Long userId) {
-//        return spotRepository.findByUserId(userId); // Fetch spots where available is false
-//    }
+
     // Get a spot by its ID
     public Spot getSpotById(Long id) {
         return spotRepository.findById(id).orElse(null);
@@ -77,4 +74,9 @@ public class SpotService {
     public void removeSpot(Long id) {
         spotRepository.deleteById(id);
     }
+
+    public void setSpotRepository(SpotRepository spotRepository) {
+        this.spotRepository = spotRepository;
+    }
+
 }

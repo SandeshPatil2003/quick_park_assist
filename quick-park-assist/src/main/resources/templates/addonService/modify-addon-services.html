@@ -214,7 +214,7 @@ function confirmLogout() {
 
           <a th:href="@{/removeAddonServices}" class="nav-link  text-light"
 
-             onclick="toggleForm('modifySpotForm')">Modify Price/Remove addon pack</a>
+             onclick="toggleForm('modifySpotForm')">Modify/Remove addon pack</a>
 
 
         </li>
@@ -274,13 +274,13 @@ function confirmLogout() {
 <!--                      Modify Price-->
 <!--                    </button>-->
 
-                    <button
-                            class="btn btn-sm btn-warning "
-                            th:attr="data-serviceid=${serviceData.service.serviceID}"
-                            onclick="modifyDuration(this)"
-                    >
-                      Modify Duration
-                    </button>
+<!--                    <button-->
+<!--                            class="btn btn-sm btn-warning "-->
+<!--                            th:attr="data-serviceid=${serviceData.service.serviceID}"-->
+<!--                            onclick="modifyDuration(this)"-->
+<!--                    >-->
+<!--                      Modify Duration-->
+<!--                    </button>-->
 
                     <button
                             class="btn btn-sm btn-danger"

@@ -4,13 +4,7 @@ package com.quickparkassist.model;
 import java.time.LocalTime;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "evmodel")
@@ -20,16 +14,19 @@ public class Evmodel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //private int reservation_id;
+    @Column(name = "reservation_id")
     private Integer reservation_id; // This will auto-generate the ID
 
 
     private String location;
     private double duration;
     private String spotName;
+
+    @Column(name = "ev_spot")
     private Long evSpot;
 
     @Temporal(TemporalType.DATE)
+    @Column(name = "reservation_date")
     private Date reservation_Date;
 
     private String start_time;
@@ -93,9 +90,15 @@ public class Evmodel {
     public void setDuration(double duration) {
         this.duration = duration;
     }
-    // Optionally, calculate end_time based on duration if needed
-    public LocalTime calculateEndTime(LocalTime startTime) {
-        return startTime.plusHours((long) duration);
+
+    public LocalTime calculateEndTime(LocalTime startTime)
+    {
+        double duration = this.getDuration();  // Assuming duration is stored in hours
+
+        long hours = (long) duration;  // Integer part (e.g., 2 from 2.5)
+        long minutes = Math.round((duration - hours) * 60);  // Fractional part to minutes
+        return startTime.plusHours(hours).plusMinutes(minutes);
+
     }
 
     public String getSpotName() {

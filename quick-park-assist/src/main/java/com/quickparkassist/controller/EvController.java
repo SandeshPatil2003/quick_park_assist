@@ -2,18 +2,12 @@ package com.quickparkassist.controller;
 
 
 import com.quickparkassist.model.*;
-import com.quickparkassist.model.Evmodel;
-import com.quickparkassist.model.Spot;
-import com.quickparkassist.model.User;
-import com.quickparkassist.model.Vehicle;
 import com.quickparkassist.repository.SpotRepository;
 import com.quickparkassist.repository.VehicleRepository;
 import com.quickparkassist.service.*;
-import com.quickparkassist.service.EVChargingStationService;
-import com.quickparkassist.service.EvService;
-import com.quickparkassist.service.SpotService;
-import com.quickparkassist.service.UserServiceImpl;
 import com.quickparkassist.util.UserContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -46,121 +40,141 @@ public class EvController {
 
     @Autowired
     private VehicleRepository vehicleRepository;
-//@Autowired
-//private UserService userService;
+
+    @Autowired
+    private EvService evService;
+
 
     @Autowired
     private EVChargingStationService chargingStationService;
 
+    private static final String VEHICLES = "vehicles";
+    private static final String USER = "user";
+    private static final String RESERVATIONS = "reservations";
+    private static final String RESERVATION = "reservation";
+    private static final Logger logger = LoggerFactory.getLogger(EvController.class);
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
+        logger.info("Initializing binder with custom date format.");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-
-
     }
 
     @GetMapping({"/create", "", "/"})
     public String createReservationForm(Model model, @AuthenticationPrincipal UserDetails loggedInUser) {
+        logger.info("Entering the reservation creation form.");
+
         if (loggedInUser != null) {
+            logger.info("Logged-in user: {}", loggedInUser.getUsername());
+
             // Fetch logged-in user details using email
             User user = userService.getUserByEmail(loggedInUser.getUsername());
-            model.addAttribute("user", user); // Pass the logged-in user to the view
+            model.addAttribute(USER, user); // Pass the logged-in user to the view
 
             // Fetch vehicles for the current user where hasElectric == "YES"
             List<Vehicle> electricVehicles = vehicleRepository.findByUserEmailAndHasElectric(user.getEmail(), "YES");
-
             // Add electric vehicles to the model
-            model.addAttribute("vehicles", electricVehicles);
+            model.addAttribute(VEHICLES, electricVehicles);
+            logger.info("Fetched electric vehicles for user: {}", electricVehicles.size());
+
         } else {
-            model.addAttribute("user", null); // No user is logged in
-            model.addAttribute("vehicles", Collections.emptyList()); // Empty vehicle list
+            model.addAttribute(USER, null); // No user is logged in
+            model.addAttribute(VEHICLES, Collections.emptyList()); // Empty vehicle list
+            logger.warn("No user logged in. Empty vehicle list.");
         }
 
         // Add a new reservation model attribute
-        model.addAttribute("reservation", new Evmodel());
+        model.addAttribute(RESERVATION, new Evmodel());
 
         // Fetch all parking spots where spot_type is 'ev'
         List<Spot> evSpots = spotService.getSpotsByType("ev");
         model.addAttribute("evSpots", evSpots);
+        logger.info("Fetched EV spots for the reservation form.");
 
         return "reservations/create";
     }
 
 
-    @Autowired
-    private EvService evService;
 
     @GetMapping("/view")
     public String viewAllReservations(Model model) {
+        logger.info("Fetching all reservations for the logged-in user.");
+
         // Get the email (username) of the current user from UserContext
         String email = UserContext.getCurrentUsername();
 
         // Fetch the userId using the email
         Long userId = userService.findUserIdByUsername(email);
 
-//        Long testId = userId;
-
-        System.out.println(userId);
         if (userId == null) {
+            logger.warn("User ID is null for email: {}", email);
+
             // Handle the case where userId is null, maybe show an error page or return an empty list
-            model.addAttribute("reservations", new ArrayList<>()); // No reservations available
+            model.addAttribute(RESERVATIONS, new ArrayList<>()); // No reservations available
             return "reservations/ "; // Or redirect to an error page
         }
 
-        // List<Evmodel> reservations = evService.getAllReservations();
 
         // Get all reservations and filter them by userId
         List<Evmodel> reservations = evService.getAllReservations().stream()
                 .filter(reservation -> reservation.getUserId().equals(userId)) // Only include reservations for the logged-in user
                 .collect(Collectors.toList());
 
-        model.addAttribute("reservations", reservations);
+        model.addAttribute(RESERVATIONS, reservations);
+        logger.info("Fetched {} reservations for userId: {}", reservations.size(), userId);
+
         return "reservations/view";
     }
 
     @GetMapping("/edit_ev")
     public String edit_ev(Model model) {
+        logger.info("Entering edit reservations page for the logged-in user.");
+
         // Get the email (username) of the current user from UserContext
         String email = UserContext.getCurrentUsername();
 
         // Fetch the userId using the email
         Long userId = userService.findUserIdByUsername(email);
 
-        // List<Evmodel> reservations = evService.getAllReservations();
-
         // Get all reservations and filter them by userId
         List<Evmodel> reservations = evService.getAllReservations().stream()
                 .filter(reservation -> reservation.getUserId().equals(userId)) // Only include reservations for the logged-in user
                 .collect(Collectors.toList());
-        model.addAttribute("reservations", reservations);
+        model.addAttribute(RESERVATIONS, reservations);
+        logger.info("Fetched {} reservations for editing by userId: {}", reservations.size(), userId);
+
         return "reservations/edit_page";
     }
 
     @GetMapping("/delete_ev")
     public String delete_ev(Model model) {
+        logger.info("Entering delete reservations page for the logged-in user.");
+
         // Get the email (username) of the current user from UserContext
         String email = UserContext.getCurrentUsername();
 
         // Fetch the userId using the email
         Long userId = userService.findUserIdByUsername(email);
 
-        //  List<Evmodel> reservations = evService.getAllReservations();
-
         // Get all reservations and filter them by userId
         List<Evmodel> reservations = evService.getAllReservations().stream()
                 .filter(reservation -> reservation.getUserId().equals(userId)) // Only include reservations for the logged-in user
                 .collect(Collectors.toList());
-        model.addAttribute("reservations", reservations);
+        model.addAttribute(RESERVATIONS, reservations);
+        logger.info("Fetched {} reservations for deletion by userId: {}", reservations.size(), userId);
+
         return "reservations/delete_page";
     }
 
 
 
     @PostMapping("/save")
-    public String saveReservation(@ModelAttribute("reservation") Evmodel reservation, RedirectAttributes redirectAttributes) {
+    public String saveReservation(@ModelAttribute(RESERVATION) Evmodel reservation, RedirectAttributes redirectAttributes) {
         // Get the email (username) of the current user from UserContext
+        logger.info("Attempting to save reservation for user: {}", reservation.getUserId());
+
         String email = UserContext.getCurrentUsername();
 
         // Fetch the userId using the email
@@ -183,24 +197,30 @@ public class EvController {
             // Set the spot details (name and location) on the reservation
             reservation.setSpotName(spot.getSpotName());
             reservation.setLocation(spot.getLocation());
+            logger.info("Assigned spot {} to reservation.", spot.getSpotName());
+
         } else {
             // Handle the case when the spot is not found, for example, add an error message
             redirectAttributes.addFlashAttribute("errorMessage", "Selected EV spot not found.");
+            logger.error("EV spot not found with ID: {}", spotId);
+
             return "redirect:/reservations";
         }
 
         evService.saveReservation(reservation);
 
         redirectAttributes.addFlashAttribute("message", "Your charging slot has been successfully reserved.");
+        logger.info("Reservation saved successfully for userId: {}", userId);
+
         return "redirect:/reservations";
     }
 
     @GetMapping("/edit/{id}")
-    public String editReservationForm(@PathVariable Long id,
-                                      Model model,
+    public String editReservationForm(@PathVariable Long id, Model model,
                                       @AuthenticationPrincipal UserDetails loggedInUser) {
-        // Fetch the reservation by its ID
+        logger.info("Editing reservation with ID: {}", id);
         Evmodel reservation = evService.getReservationById(id);
+
         model.addAttribute("reservation", reservation);
 
         // Check if a user is logged in
@@ -224,9 +244,10 @@ public class EvController {
         return "reservations/update";
     }
 
-
     @PostMapping("/update/{id}")
-    public String updateReservation(@ModelAttribute("reservation") Evmodel reservation) {
+    public String updateReservation(@ModelAttribute(RESERVATION) Evmodel reservation) {
+        logger.info("Updating reservation with ID: {}", reservation.getId());
+
         // Get the email (username) of the current user from UserContext
         String email = UserContext.getCurrentUsername();
 
@@ -237,6 +258,7 @@ public class EvController {
         if (userId != null) {
             reservation.setUserId(userId); // Set the userId in the reservation object
         } else {
+            logger.error("User ID is null for email: {}", email);
             // Handle the case where userId is null (perhaps redirect to login or error page)
             return "redirect:/"; // Example: redirect to login page if user is not found
         }
@@ -246,6 +268,7 @@ public class EvController {
         if (spot != null) {
             reservation.setSpotName(spot.getSpotName()); // Set the spotName in the reservation
         }
+
 // Parse the start time as LocalTime (only time, no date)
         LocalTime startTime = LocalTime.parse(reservation.getStart_time());  // This will handle "17:30"
 
@@ -257,12 +280,18 @@ public class EvController {
 
 
         evService.saveReservation(reservation);
+        logger.info("Reservation updated successfully with ID: {}", reservation.getId());
+
         return "redirect:/reservations/edit_ev";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteReservation(@PathVariable Long id) {
+        logger.info("Attempting to delete reservation with ID: {}", id);
+
         evService.deleteReservation(id);
+        logger.info("Reservation with ID: {} has been deleted.", id);
+
         return "redirect:/reservations/delete_ev";
     }
 }

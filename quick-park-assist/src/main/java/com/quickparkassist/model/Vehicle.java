@@ -24,6 +24,12 @@ public class Vehicle {
     // Default constructor
     public Vehicle() {}
 
+    // Constructor with 3 parameters
+    public Vehicle(Long id, String model, String number) {
+        this.id = id;
+        this.vehicleModel = model;
+        this.vehicleNumber = number;
+    }
     // Getters and Setters
     public Long getId() {
         return id;

@@ -45,6 +45,7 @@ public class User {
 
     private String role;
 
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private PasswordResetToken passwordResetToken;
 
@@ -89,6 +90,13 @@ public class User {
         this.address = address;
     }
 
+
+
+    // Add this constructor for testing purposes
+    public User(String email) {
+        this.email = email;
+    }
+
     public User() {
     }
 
@@ -103,6 +111,7 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.role = role;
+
     }
     public Long getId() {
         return id;

@@ -19,6 +19,6 @@ public interface UserService extends UserDetailsService {
     User findUserById(Long id);
     boolean emailExists(String email);
 
-
+    User getLoggedInUser();
 
 }

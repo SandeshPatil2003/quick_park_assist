@@ -104,30 +104,25 @@
                     <li class="nav-item"
                         th:classappend="${#request.requestURI == '/registration'} ? 'active'">
                         <a class="nav-link"
-                           th:href="@{registration}">
-                            <span >Add Vehicle</span>
+                           th:href="@{/users}">
+                            View Profile
                         </a>
                     </li>
 
-
-
                     <li class="nav-item"
-                        th:classappend="${#request.requestURI == '/why'} ? 'active'">
-                        <a class="nav-link"
-                           th:href="@{booking}"
-                        >Booking</a>
+                        th:classappend="${#request.requestURI == '/spot-management'} ? 'active'">
+                        <a class="nav-link" th:href="@{/spot-management}">Smart spots</a>
                     </li>
+
 
                     <li class="nav-item active" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
                         <a class="nav-link "
-                           th:href="@{viewAllAddonServices}">
+                           th:href="@{/addAddonServices}">
                             Addon Services
                         </a>
                     </li>
 
-                    <li class="nav-item" th:classappend="${#request.requestURI == '/testimonial'} ? 'active'">
-                        <a class="nav-link"  th:href="@{reservations}" >Ev charge</a>
-                    </li>
+
                 </ul>
 
                 <!-- Authentication Section -->
@@ -175,27 +170,27 @@
         <div class="col-md-3 bg-dark p-5">
             <h3 style="color: white;">Addon Services</h3>
             <ul class="nav flex-column">
+                <li class="nav-item" >
+                    <a class="nav-link   text-light"
+                       th:href="@{/addAddonServices}"
+                       onclick="toggleForm('addNewSpotForm')">
+                        <span >Create new Addon Pack </span>
 
+                    </a>
 
-                <li class="nav-item">
-                    <a
-                            class="nav-link text-light"
-
-                            th:href="@{/viewAllAddonServices}"
-                            onclick="toggleForm('removeSpotForm')"
-                    >View all Addon Offers</a
-                    >
-                </li>
-                <li class="nav-item">
-                    <a
-                            class="nav-link active text-light"
-
-                            th:href="@{/modifySelectedAddonServices}"
-                            onclick="toggleForm('userVehiclesFrom')"
-                    >Modify Addon Details</a
-                    >
                 </li>
 
+
+
+                <li class="nav-item"   >
+
+
+                    <a th:href="@{/removeAddonServices}" class="nav-link active  text-light"
+
+                       onclick="toggleForm('modifySpotForm')">Modify/Remove addon pack</a>
+
+
+                </li>
 
             </ul>
         </div>
