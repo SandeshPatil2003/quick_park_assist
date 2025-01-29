@@ -183,6 +183,11 @@ public class SpotController {
     public String modifySpot(@ModelAttribute Spot spot) {
         logger.info("Modifying spot with ID: {}", spot.getSpotId());
 
+        System.out.println("modify spot controller is called");
+        String email = UserContext.getCurrentUsername();
+        Long userId = userService.findUserIdByUsername(email);
+
+        spot.setUserId(userId);
         spotService.updateSpot(spot);
         return "redirect:/edit";
     }
