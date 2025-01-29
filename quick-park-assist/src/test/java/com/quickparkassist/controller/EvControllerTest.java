@@ -217,13 +217,19 @@ void testViewAllReservations_UserNotFound() {
         Evmodel reservation = new Evmodel();
         UserDetails loggedInUser = mock(UserDetails.class);
         User user = new User();
-        List<Vehicle> electricVehicles = Collections.singletonList(new Vehicle());
+        user.setEmail("test@example.com");
+
+        Vehicle electricVehicle = new Vehicle();
+        electricVehicle.setHasElectric("YES");
+
+        List<Vehicle> electricVehicles = Collections.singletonList(electricVehicle);
         List<Spot> evSpots = Collections.singletonList(testSpot);
 
         when(evService.getReservationById(reservationId)).thenReturn(reservation);
         when(loggedInUser.getUsername()).thenReturn("test@example.com");
         when(userService.getUserByEmail("test@example.com")).thenReturn(user);
-        when(vehicleRepository.findByUserEmailAndHasElectric("test@example.com", "YES")).thenReturn(electricVehicles);
+        when(vehicleRepository.findByUserEmailAndHasElectric("test@example.com", "YES"))
+                .thenReturn(electricVehicles);
         when(spotService.getSpotsByType("ev")).thenReturn(evSpots);
 
         String viewName = evController.editReservationForm(reservationId, model, loggedInUser);
@@ -234,7 +240,6 @@ void testViewAllReservations_UserNotFound() {
         verify(model).addAttribute("evSpots", evSpots);
         assertEquals("reservations/update", viewName);
     }
-
 
     @Test
     void testUpdateReservation_Success() {

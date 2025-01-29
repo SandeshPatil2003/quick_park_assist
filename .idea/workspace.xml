@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8b160f72-4785-462e-88f0-db7afc648c71" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quick-park-assist/src/main/java/com/quickparkassist/controller/SpotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quick-park-assist/src/main/java/com/quickparkassist/controller/SpotController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quick-park-assist/src/main/resources/templates/spotmanagement/editSpots.html" beforeDir="false" afterPath="$PROJECT_DIR$/quick-park-assist/src/main/resources/templates/spotmanagement/editSpots.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/quick-park-assist/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/src/test/java/com/quickparkassist/controller/AddonControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/quick-park-assist/src/test/java/com/quickparkassist/controller/AddonControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/src/test/java/com/quickparkassist/controller/EvControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/quick-park-assist/src/test/java/com/quickparkassist/controller/EvControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/src/test/java/com/quickparkassist/controller/UserRegistrationControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/quick-park-assist/src/test/java/com/quickparkassist/controller/UserRegistrationControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quick-park-assist/src/test/java/com/quickparkassist/repository/TestSpotRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quick-park-assist/src/test/java/com/quickparkassist/repository/TestSpotRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +161,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/quick-park-assist/src/test/java/com/quickparkassist/controller/EvControllerTest.java</url>
+          <line>247</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/quick_park_assist$ForgotPasswordControllerTest_testPasswordResetProcess_UserNotExists.ic" NAME="ForgotPasswordControllerTest.testPasswordResetProcess_UserNotExists Coverage Results" MODIFIED="1737555650245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">

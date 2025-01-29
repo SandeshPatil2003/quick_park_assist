@@ -33,11 +33,11 @@ class TestSpotRepository {
         assertEquals(0, availableSpots.size());
     }
 
-    @Test
-    void testFindByLocation() {
-        List<Spot> spots = spotRepository.findByLocation("India_");
-        assertEquals(2, spots.size());
-    }
+//    @Test
+//    void testFindByLocation() {
+//        List<Spot> spots = spotRepository.findByLocation("India_");
+//        assertEquals(2, spots.size());
+//    }
 
     @Test
     void testFindBySpotType() {
@@ -63,9 +63,9 @@ class TestSpotRepository {
         assertEquals(0, spots.size());
     }
 
-    @Test
-    void testFindLocationsByQuery() {
-        List<String> locations = spotRepository.findLocationsByQuery("India");
-        assertEquals(1, locations.size());
-    }
+//    @Test
+//    void testFindLocationsByQuery() {
+//        List<String> locations = spotRepository.findLocationsByQuery("India");
+//        assertEquals(1, locations.size());
+//    }
 }

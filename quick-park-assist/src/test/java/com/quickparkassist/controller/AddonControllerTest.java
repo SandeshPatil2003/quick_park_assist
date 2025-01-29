@@ -288,7 +288,7 @@ void testProcessSelectedAddons_Success() {
         when(eRepo.findById(anyLong())).thenReturn(Optional.of(testAddonService));
 
         String viewName = addonController.updateAddonServicePrice(1L, 120.0f, redirectAttributes);
-        assertEquals("redirect:/modifySelectedAddonServices", viewName);
+        assertEquals("redirect:/removeAddonServices", viewName);
         verify(redirectAttributes).addFlashAttribute("success", "Price updated successfully.");
     }
 
@@ -297,7 +297,7 @@ void testProcessSelectedAddons_Success() {
         when(eRepo.findById(anyLong())).thenReturn(Optional.empty());
 
         String viewName = addonController.updateAddonServicePrice(1L, 120.0f, redirectAttributes);
-        assertEquals("redirect:/modifySelectedAddonServices", viewName);
+        assertEquals("redirect:/removeAddonServices", viewName);
         verify(redirectAttributes).addFlashAttribute("error", "Service not found.");
     }
 
@@ -437,7 +437,7 @@ void testShowModifyDurationPage_ServiceFound() {
         // Assert
         verify(eRepo).save(addonService); // Verify save was called on the repository
         assertEquals(newDuration, addonService.getDuration()); // Ensure duration was updated
-        assertEquals("redirect:/modifySelectedAddonServices", result); // Check redirect path
+        assertEquals("redirect:/removeAddonServices", result); // Check redirect path
         verify(redirectAttributes).addFlashAttribute("success", "Duration updated successfully."); // Check success message
     }
 
@@ -454,7 +454,7 @@ void testShowModifyDurationPage_ServiceFound() {
 
         // Assert
         verify(eRepo, never()).save(any()); // Ensure save was not called since service was not found
-        assertEquals("redirect:/modifySelectedAddonServices", result); // Check redirect path for not found case
+        assertEquals("redirect:/removeAddonServices", result); // Check redirect path for not found case
         verify(redirectAttributes).addFlashAttribute("error", "Service not found."); // Check error message
     }
 

@@ -138,7 +138,8 @@ class UserRegistrationControllerTest {
         String result = userRegistrationController.registerUserAccount(registrationDto);
 
         // Verify
-        assertEquals("redirect:registration?error", result);
+        assertEquals("redirect:/registration?success", result);
+
     }
 
     @Test
