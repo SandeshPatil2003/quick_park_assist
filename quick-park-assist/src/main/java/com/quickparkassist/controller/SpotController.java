@@ -97,10 +97,18 @@ public class SpotController {
     @GetMapping("/remove")
     public String remove(Model model) {
         logger.info("Fetching all unavailable spots for removal.");
-        model.addAttribute(UNAVAILBALESPOTS, spotService.getUnavailableSpots());
+
+        String email = UserContext.getCurrentUsername();
+        logger.info("User '{}' is attempting to edit their spots. ", email);
+        // Fetch the user ID using the email/username
+        Long userId = userService.findUserIdByUsername(email);
+        logger.info("Fetched user ID for email  '{}': {}", email, userId);
+
+
+        model.addAttribute(UNAVAILBALESPOTS, spotService.getUnavailableSpotsByUserId(userId)); // Only unavailable spots for the user
+
         return "spotmanagement/unavailableSpots";
     }
-
     @PostMapping("/addSpot")
     public String addSpot(@ModelAttribute Spot spot, RedirectAttributes redirectAttributes) {
         // Get the currently logged-in user's email/username

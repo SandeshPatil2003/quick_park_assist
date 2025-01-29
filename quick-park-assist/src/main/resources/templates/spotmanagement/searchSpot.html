@@ -170,10 +170,10 @@
           <form action="/searchspots" method="POST">
             <div class="mb-3">
                 <label for="location" class="form-label">Location:</label>
-                <input type="text" id="location" name="location" class="form-control" required onkeyup="fetchLocationSuggestions(this.value)">
+                <input type="text" id="location" placeholder="Enter your location here" name="location" class="form-control" required onkeyup="fetchLocationSuggestions(this.value)">
                 <ul id="location-suggestions" class="list-group mt-2" style="display:none;"></ul>
             </div>
-            
+
             <div class="mb-3">
                 <label for="availability" class="form-label">Availability:</label>
                 <select id="availability" name="availability" class="form-select">
@@ -192,9 +192,9 @@
 
               <button type="submit" class="btn btn-primary">Search</button>
         </form>
-        
-    
-         
+
+
+
     </div>
     </div>
 </div>

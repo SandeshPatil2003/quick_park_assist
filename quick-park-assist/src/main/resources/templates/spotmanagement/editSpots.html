@@ -211,14 +211,14 @@
                             <td th:text="${spot.spotName}"></td>
                             <td th:text="${spot.location}"></td>
                             <td th:text="${spot.pricePerHour}"></td>
-                            <td th:text="${spot.availability}"></td>
                             <td th:text="${spot.station}"></td>
                             <td th:text="${spot.slot}"></td>
+                            <td th:text="${spot.availability}"></td>
                             <td th:text="${spot.spotType}"></td>
                             <td>
                                 <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editSpotModal"
                                         th:data-spotId="${spot.spotId}" th:data-spotname="${spot.spotName}" th:data-location="${spot.location}"
-                                        th:data-priceperhour="${spot.pricePerHour}" th:data-availability="${spot.availability}" th:data-slot="${spot.slot}" th:data-station="${spot.station}"
+                                        th:data-priceperhour="${spot.pricePerHour}" th:data-availability="${spot.availability}"  th:data-slot="${spot.slot}" th:data-station="${spot.station}"
                                         th:data-spotType="${spot.spotType}">Edit</button>
                             </td>
                         </tr>
@@ -293,7 +293,63 @@
       }
 
         </script>
+        <!--    <script>-->
+        <!--        // JavaScript to populate the edit form in the modal with the data of the selected spot-->
+        <!--        const editButtons = document.querySelectorAll('[data-bs-toggle="modal"]');-->
+        <!--        editButtons.forEach(button => {-->
+        <!--            button.addEventListener('click', function () {-->
+        <!--                document.getElementById('editSpotId').value = this.getAttribute('data-spotId');-->
+        <!--                document.getElementById('editSpotName').value = this.getAttribute('data-spotname');-->
+        <!--                document.getElementById('editLocation').value = this.getAttribute('data-location');-->
+        <!--                document.getElementById('editPricePerHour').value = this.getAttribute('data-priceperhour');-->
+        <!--                document.getElementById('editAvailability').value = this.getAttribute('data-availability');-->
+        <!--				document.getElementById('editStation').value = this.getAttribute('data-station');-->
+        <!--				document.getElementById('editSlot').value = this.getAttribute('data-slot');-->
+        <!--				/ Set spotType value (read-only)-->
+        <!--        document.getElementById('editSpotType').value = button.getAttribute('data-spottype');-->
+        <!--            });-->
+        <!--        });-->
+        <!--    </script>-->
+        <!--        <script>-->
+        <!--            // Ensure modal is populated when the edit button is clicked-->
+        <!--            document.getElementById('editSpotModal').addEventListener('show.bs.modal', function (event) {-->
+        <!--                var button = event.relatedTarget; // The button that triggered the modal-->
 
+        <!--                // Set the values of each input field based on the data attributes from the button-->
+        <!--                document.getElementById('editSpotId').value = button.getAttribute('data-id');-->
+        <!--                document.getElementById('editSpotName').value = button.getAttribute('data-spotName');-->
+        <!--                document.getElementById('editLocation').value = button.getAttribute('data-location');-->
+        <!--                document.getElementById('editSpotType').value = button.getAttribute('data-spotType'); // Read-only field-->
+        <!--                document.getElementById('editPricePerHour').value = button.getAttribute('data-pricePerHour');-->
+        <!--                document.getElementById('editAvailability').value = button.getAttribute('data-availability');-->
+        <!--                document.getElementById('editSlot').value = button.getAttribute('data-slot');-->
+        <!--                document.getElementById('editStation').value = button.getAttribute('data-station');-->
+        <!--            });-->
+        <!--        </script>-->
+
+        <!--        <script>-->
+        <!--            document.addEventListener('DOMContentLoaded', function () {-->
+        <!--            // Attach the event listener for modal population-->
+        <!--            const editSpotModal = document.getElementById('editSpotModal');-->
+
+        <!--            editSpotModal.addEventListener('show.bs.modal', function (event) {-->
+        <!--            const button = event.relatedTarget; // The button that triggered the modal-->
+
+        <!--            if (!button) return;-->
+
+        <!--            // Populate modal fields using data attributes-->
+        <!--            document.getElementById('editSpotId').value = button.getAttribute('data-spotId');-->
+        <!--            document.getElementById('editSpotName').value = button.getAttribute('data-spotName');-->
+        <!--            document.getElementById('editLocation').value = button.getAttribute('data-location');-->
+        <!--            document.getElementById('editSpotType').value = button.getAttribute('data-spotType'); // Read-only field-->
+        <!--            document.getElementById('editPricePerHour').value = button.getAttribute('data-pricePerHour');-->
+        <!--            document.getElementById('editAvailability').value = button.getAttribute('data-availability');-->
+        <!--            document.getElementById('editSlot').value = button.getAttribute('data-slot');-->
+        <!--            document.getElementById('editStation').value = button.getAttribute('data-station');-->
+        <!--            });-->
+        <!--            });-->
+
+        <!--        </script>-->
         <script>
             // JavaScript to populate the edit form in the modal with the data of the selected spot
             const editButtons = document.querySelectorAll('[data-bs-toggle="modal"]');
@@ -310,6 +366,7 @@
                 });
             });
         </script>
+
         </script>
         <!-- jQery -->
         <script src="js/jquery-3.4.1.min.js"></script>
