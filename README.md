@@ -273,4 +273,57 @@ Ensure you have the following software installed on your system:
 ```bash
 git clone https://github.com/SandeshPatil2003/quick_park_assist.git
 
+## Project Setup & Configuration
+### 1️⃣ Database Configuration
+
+spring.datasource.url=jdbc:mysql://localhost:3306/quick_park_assist  # Replace with your database name
+spring.datasource.username=root  # Replace with your MySQL username
+spring.datasource.password=password  # Replace with your MySQL password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+
+✅ Ensure MySQL is installed and running. If your database runs on a different port (default 3306), update the URL accordingly.
+
+---
+
+### 2️⃣ Server Configuration
+Change the server port in case of conflicts:
+server.port=8082  # Modify if required
+By default, the application runs on 8082 for this project. Change it if needed.
+
+---
+
+### 3️⃣Email Configuration
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=your-email@gmail.com  # Replace with your email
+spring.mail.password=your-app-password  # Replace with your app password
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.protocol=smtp
+
+📌 Important:
+
+Replace your-email@gmail.com with your Gmail ID.
+Generate an App Password instead of using your actual email password.
+
+**How to Generate an App Password for Gmail:** <br>
+
+1. Go to Google Account Settings:
+Open https://myaccount.google.com/.
+
+2. Enable Two-Factor Authentication (2FA):
+Enable 2FA in the Security section if not already done.
+
+3. Generate an App Password:
+
+ In the Security section, under "Signing in to Google," find App Passwords.
+Select Mail for the app and Windows Computer (or your preferred device) for the device.
+Click Generate to get a 16-character App Password.
+
+4. Use the App Password:
+Copy the generated App Password and use it in your application.properties file under spring.mail.password.
+
+**If you face any issues, verify that your database and email credentials are correctly set up.**
 
