@@ -106,6 +106,9 @@ We have used **Swagger** for API documentation. Follow these steps to access it:
 2. Open your browser and go to:  
    👉 [`http://localhost:8000/swagger-ui/index.html`](http://localhost:8000/swagger-ui/index.html)
 
+   ### Swagger UI Preview:  
+![Swagger UI](./src/main/resources/static/images/qpa_swagger.png)
+
 ---
 
 # SonarQube Integration Guide
