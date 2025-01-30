@@ -3,90 +3,90 @@
 
 ### 1. User Registration
 
-Feature 1: Register New Users
+Feature 1: Register New Users <br>
 Users (drivers, vehicle owners, and parking spot owners) can register by providing personal details like name, email, phone number, and vehicle or parking spot details.
 
-**Feature 2: Forgotten Password (SMTP Mail)**
+**Feature 2: Forgotten Password (SMTP Mail)** <br>
 If users forget their password, they can reset it using the Forgotten Password feature. An email with a password reset link is sent via SMTP mail to their registered email address.
 
-Feature 3: View Profiles
+Feature 3: View Profiles <br>
 Users can view their profile, which includes their personal information, vehicle details, and account settings.
 
-Feature 4: Update Profiles
+Feature 4: Update Profiles <br>
 Users can update their profile information, including contact details, email, phone number, and vehicle-related information.
 
-Feature 5: Add Vehicles (EV or Normal)
+Feature 5: Add Vehicles (EV or Normal) <br>
 Users can add multiple vehicles, specifying whether they own an Electric Vehicle (EV) or a normal vehicle, allowing better service customization.
 
-Feature 6: View Added Vehicles
+Feature 6: View Added Vehicles <br>
 Users can view a list of their registered vehicles, including details like model, registration number, and type (EV or normal).
 
-Feature 7: Deactivate Account
+Feature 7: Deactivate Account <br>
 Users can deactivate their account to temporarily disable it, which can be reactivated later.
 
-Feature 8: Delete Account
+Feature 8: Delete Account <br>
 Users have the option to permanently delete their account and all associated data from the system.
 
-### 2. Parking Spot Management
+### 2. Parking Spot Management 
 
-Feature 1: Add New Parking Spot
+Feature 1: Add New Parking Spot <br>
 Parking spot owners can add new spots by providing details such as location, availability, and pricing.
 
-Feature 2: Search for Available Parking Spots
+Feature 2: Search for Available Parking Spots <br>
 Users can search for available parking spots in different locations based on their needs.
 
-Feature 3: View Parking Spot Details
+Feature 3: View Parking Spot Details <br>
 Users can view information about each parking spot, including price, location, and availability.
 
-Feature 4: Modify Parking Spot Details
+Feature 4: Modify Parking Spot Details <br>
 Parking spot owners can update details such as pricing, availability, and other attributes.
 
-Feature 5: Remove Parking Spot
+Feature 5: Remove Parking Spot <br>
 Parking spot owners can remove unavailable or no longer needed parking spots from the system.
 
 ### 3. Parking Spot Booking
 
-Feature 1: Book a Parking Spot
+Feature 1: Book a Parking Spot <br>
 Users can book an available parking spot by selecting the location and preferred time.
 
-Feature 2: View Booking History
+Feature 2: View Booking History <br>
 Users can check their past and current bookings along with booking status.
 
-Feature 3: Identify Booked Spot via Mobile Number
+Feature 3: Identify Booked Spot via Mobile Number <br>
 Users can enter their mobile number to quickly find their reserved parking spot.
 
-Feature 4: Modify Booking Details
+Feature 4: Modify Booking Details <br>
 Users can edit their booking details, such as extending the parking duration or changing the date.
 
-Feature 5: Cancel Booking
+Feature 5: Cancel Booking <br>
 Users can cancel their parking spot booking if plans change.
 
 ### 4. Addon Services
 
-Feature 1: Add New Addon Services
+Feature 1: Add New Addon Services <br>
 Users can add extra services like interior/exterior cleaning and polishing while booking a parking spot.
 
-Feature 2: View Available Addon Services
+Feature 2: View Available Addon Services <br>
 Users can browse a list of available addon services and their details.
 
-Feature 3: Modify Addon Service Details
+Feature 3: Modify Addon Service Details <br>
 Users can update addon service details, such as price or duration.
 
-Feature 4: Delete Addon Service
+Feature 4: Delete Addon Service <br>
 Users can remove addon services that are no longer required.
 
 ### 5. EV Charge Reservation
 
-Feature 1: Reserve an EV Charging Spot
+Feature 1: Reserve an EV Charging Spot <br>
 Users can book an EV charging slot by selecting a charging station, date, and time.
 
-Feature 2: View Reservation Details
+Feature 2: View Reservation Details <br>
 Users can view their reservation details, including time, station location, and vehicle info.
 
-Feature 3: Modify EV Charge Reservation
+Feature 3: Modify EV Charge Reservation <br>
 Users can change their reservation details, such as date and time, based on availability.
 
-Feature 4: Delete EV Charge Reservation
+Feature 4: Delete EV Charge Reservation <br>
 Users can cancel their EV charging reservation if they no longer need the service.
 
 
