@@ -273,7 +273,7 @@ Ensure you have the following software installed on your system:
 ```bash
 git clone https://github.com/SandeshPatil2003/quick_park_assist.git
 ```
-
+```bash
 # Project Setup & Configuration
 ### 1️⃣ Database Configuration
 
