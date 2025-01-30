@@ -104,7 +104,7 @@ We have used **Swagger** for API documentation. Follow these steps to access it:
 
 1. **Run the application**  
 2. Open your browser and go to:  
-   👉 [Swagger UI](http://localhost:8000/swagger-ui/index.html)  
+   👉 [`http://localhost:8000/swagger-ui/index.html`](http://localhost:8000/swagger-ui/index.html)
 
 ---
 
