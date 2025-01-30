@@ -26,7 +26,9 @@ Users can deactivate their account to temporarily disable it, which can be react
 
 Feature 8: Delete Account <br>
 Users have the option to permanently delete their account and all associated data from the system.
+
 ---
+
 ### 2. Parking Spot Management 
 
 Feature 1: Add New Parking Spot <br>
@@ -43,7 +45,9 @@ Parking spot owners can update details such as pricing, availability, and other 
 
 Feature 5: Remove Parking Spot <br>
 Parking spot owners can remove unavailable or no longer needed parking spots from the system.
+
 ---
+
 ### 3. Parking Spot Booking
 
 Feature 1: Book a Parking Spot <br>
@@ -60,7 +64,9 @@ Users can edit their booking details, such as extending the parking duration or 
 
 Feature 5: Cancel Booking <br>
 Users can cancel their parking spot booking if plans change.
+
 ---
+
 ### 4. Addon Services
 
 Feature 1: Add New Addon Services <br>
@@ -74,7 +80,9 @@ Users can update addon service details, such as price or duration.
 
 Feature 4: Delete Addon Service <br>
 Users can remove addon services that are no longer required.
+
 ---
+
 ### 5. EV Charge Reservation
 
 Feature 1: Reserve an EV Charging Spot <br>
@@ -88,7 +96,9 @@ Users can change their reservation details, such as date and time, based on avai
 
 Feature 4: Delete EV Charge Reservation <br>
 Users can cancel their EV charging reservation if they no longer need the service.
+
 ---
+
 ### API Documentation with Swagger  
 We have used **Swagger** for API documentation. Follow these steps to access it:  
 
