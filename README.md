@@ -89,6 +89,13 @@ Users can change their reservation details, such as date and time, based on avai
 Feature 4: Delete EV Charge Reservation <br>
 Users can cancel their EV charging reservation if they no longer need the service.
 
+### API Documentation with Swagger  
+We have used **Swagger** for API documentation. Follow these steps to access it:  
+
+1. **Run the application**  
+2. Open your browser and go to:  
+   👉 [Swagger UI](http://localhost:8000/swagger-ui/index.html)  
+
 
 # SonarQube Integration Guide
 
@@ -211,3 +218,5 @@ Users can cancel their EV charging reservation if they no longer need the servic
 ---
 
 By following these steps, you will successfully integrate SonarQube with IntelliJ IDEA and analyze your project for code quality.
+
+
