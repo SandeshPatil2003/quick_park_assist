@@ -107,7 +107,7 @@ We have used **Swagger** for API documentation. Follow these steps to access it:
    👉 [`http://localhost:8000/swagger-ui/index.html`](http://localhost:8000/swagger-ui/index.html)
 
    ### Swagger UI Preview:  
-![Swagger UI](./src/main/resources/static/images/qpa_swagger.png)
+<img src="./src/main/resources/static/images/qpa_swagger.png" alt="Swagger UI" width="600px">
 
 ---
 
@@ -232,6 +232,9 @@ We have used **Swagger** for API documentation. Follow these steps to access it:
 ---
 
 By following these steps, you will successfully integrate SonarQube with IntelliJ IDEA and analyze your project for code quality.
+
+  ### SonaeQube Preview:  
+<img src="./src/main/resources/static/images/qpa_sonarqube.png" alt="Swagger UI" width="600px">
 ---
 
 # Quick Park Assist - Project Setup Guide
