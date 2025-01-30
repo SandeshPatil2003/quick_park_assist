@@ -273,8 +273,10 @@ Ensure you have the following software installed on your system:
 ```bash
 git clone https://github.com/SandeshPatil2003/quick_park_assist.git
 ```
-```bash
+
 # Project Setup & Configuration
+```bash
+
 ### 1️⃣ Database Configuration
 
 spring.datasource.url=jdbc:mysql://localhost:3306/quick_park_assist  # Replace with your database name
@@ -328,3 +330,14 @@ Copy the generated App Password and use it in your application.properties file u
 
 **If you face any issues, verify that your database and email credentials are correctly set up.**
 
+4️⃣ Database Structure
+The project includes a folder named script, which contains the quick_park_assist.sql file with the database structure.
+
+To set up the database:
+
+Locate the quick_park_assist.sql file inside the script folder.
+Run the script in your MySQL database to create the required tables and structure:
+
+mysql -u root -p < script/quick_park_assist.sql
+
+This will set up the database structure for the project. Make sure to update the database credentials in the application.properties file accordingly.
