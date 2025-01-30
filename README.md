@@ -272,8 +272,9 @@ Ensure you have the following software installed on your system:
 ### Step 2: Clone the Repository
 ```bash
 git clone https://github.com/SandeshPatil2003/quick_park_assist.git
+```
 
-## Project Setup & Configuration
+# Project Setup & Configuration
 ### 1️⃣ Database Configuration
 
 spring.datasource.url=jdbc:mysql://localhost:3306/quick_park_assist  # Replace with your database name
