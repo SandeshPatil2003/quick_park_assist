@@ -26,7 +26,7 @@ Users can deactivate their account to temporarily disable it, which can be react
 
 Feature 8: Delete Account <br>
 Users have the option to permanently delete their account and all associated data from the system.
-
+---
 ### 2. Parking Spot Management 
 
 Feature 1: Add New Parking Spot <br>
@@ -43,7 +43,7 @@ Parking spot owners can update details such as pricing, availability, and other 
 
 Feature 5: Remove Parking Spot <br>
 Parking spot owners can remove unavailable or no longer needed parking spots from the system.
-
+---
 ### 3. Parking Spot Booking
 
 Feature 1: Book a Parking Spot <br>
@@ -60,7 +60,7 @@ Users can edit their booking details, such as extending the parking duration or 
 
 Feature 5: Cancel Booking <br>
 Users can cancel their parking spot booking if plans change.
-
+---
 ### 4. Addon Services
 
 Feature 1: Add New Addon Services <br>
@@ -74,7 +74,7 @@ Users can update addon service details, such as price or duration.
 
 Feature 4: Delete Addon Service <br>
 Users can remove addon services that are no longer required.
-
+---
 ### 5. EV Charge Reservation
 
 Feature 1: Reserve an EV Charging Spot <br>
@@ -88,7 +88,7 @@ Users can change their reservation details, such as date and time, based on avai
 
 Feature 4: Delete EV Charge Reservation <br>
 Users can cancel their EV charging reservation if they no longer need the service.
-
+---
 ### API Documentation with Swagger  
 We have used **Swagger** for API documentation. Follow these steps to access it:  
 
@@ -96,6 +96,7 @@ We have used **Swagger** for API documentation. Follow these steps to access it:
 2. Open your browser and go to:  
    👉 [Swagger UI](http://localhost:8000/swagger-ui/index.html)  
 
+---
 
 # SonarQube Integration Guide
 
@@ -218,5 +219,43 @@ We have used **Swagger** for API documentation. Follow these steps to access it:
 ---
 
 By following these steps, you will successfully integrate SonarQube with IntelliJ IDEA and analyze your project for code quality.
+---
+
+# Quick Park Assist - Project Setup Guide
+
+## Overview
+This project is a **Spring Boot** web application using **Thymeleaf** and **Hibernate** for quick and efficient parking spot management.
+
+## Technologies & Software Used
+- **Java Development Kit (JDK)** - Version 21
+- **Spring Boot** - Version 2.3.0 RELEASE
+- **Thymeleaf** - Integrated templating engine
+- **Hibernate Validator** - Version 6.2.0.Final
+- **MySQL** - MySQL Connector Java 8.0.20
+- **MySQL Workbench** - Version 8.0 CE
+- **IntelliJ IDEA** - Version 2024.3
+- **SonarQube** - Version 9.9.8.100196
+- **Splunk** - Log analysis and monitoring tool (Version 1.8.0)
+- **Spring Security** - Authentication and Authorization
+- **Lombok** - Version 1.18.30
+- **Swagger (Springfox Boot Starter)** - Version 3.0.0
+- **JUnit & Mockito** - Testing frameworks
+- **H2 Database** - Testing environment
+- **Maven** - Project build management
+
+## Installation & Setup Guide
+
+### Step 1: Install Required Software
+Ensure you have the following software installed on your system:
+1. **JDK 21** - [Download JDK](https://www.oracle.com/java/technologies/javase-downloads.html)
+2. **MySQL & MySQL Workbench 8.0 CE** - [Download MySQL](https://dev.mysql.com/downloads/)
+3. **IntelliJ IDEA 2024.3** - [Download IntelliJ](https://www.jetbrains.com/idea/download/)
+4. **SonarQube 9.9.8.100196** - [Download SonarQube](https://www.sonarqube.org/downloads/)
+5. **Splunk** - [Download Splunk](https://www.splunk.com/en_us/download.html)
+
+### Step 2: Clone the Repository
+```bash
+git clone https://github.com/your-username/quick-park-assist.git
+cd quick-park-assist
 
 
