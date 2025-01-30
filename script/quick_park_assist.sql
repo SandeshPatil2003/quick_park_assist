@@ -4,24 +4,10 @@
 -- ------------------------------------------------------
 -- Server version	8.1.0
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
+CREATE DATABASE quick_park_assist;
+USE quick_park_assist;
 -- Table structure for table `booking`
---
-
 DROP TABLE IF EXISTS `booking`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `booking` (
   `full_name` varchar(255) NOT NULL,
   `duration` varchar(255) DEFAULT NULL,
@@ -46,15 +32,12 @@ CREATE TABLE `booking` (
   CONSTRAINT `FKejehywt60rdh29uvn8ejths82` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicle` (`id`),
   CONSTRAINT `FKewv68n7xxnaq9qs2fn1ty2lhy` FOREIGN KEY (`spot_id`) REFERENCES `parkingspots` (`spot_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=179 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `booking`
 --
 
 LOCK TABLES `booking` WRITE;
-/*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-/*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -62,8 +45,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `bookings`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `bookings` (
   `booking_id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
@@ -82,15 +64,13 @@ CREATE TABLE `bookings` (
   KEY `spot_id` (`spot_id`),
   CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`spot_id`) REFERENCES `parkingspots` (`spot_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `bookings`
 --
 
 LOCK TABLES `bookings` WRITE;
-/*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 --
@@ -98,8 +78,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `ev_charging_station`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `ev_charging_station` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `charging_station` bigint DEFAULT NULL,
@@ -107,15 +86,11 @@ CREATE TABLE `ev_charging_station` (
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
 --
 -- Dumping data for table `ev_charging_station`
---
+-
 
 LOCK TABLES `ev_charging_station` WRITE;
-/*!40000 ALTER TABLE `ev_charging_station` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ev_charging_station` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -123,8 +98,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `ev_charging_stations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ev_charging_stations` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -132,16 +105,13 @@ CREATE TABLE `ev_charging_stations` (
   `charging_station_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ev_charging_stations`
 --
 
 LOCK TABLES `ev_charging_stations` WRITE;
-/*!40000 ALTER TABLE `ev_charging_stations` DISABLE KEYS */;
 INSERT INTO `ev_charging_stations` VALUES (1,'Station 1','Downtown Area',NULL),(2,'Station 2','Central Park',NULL),(3,'Station 3','Airport Terminal',NULL),(4,'Station 4','City Mall',NULL),(5,'Station 5','Train Station',NULL),(6,'Station 6','University Campus',NULL),(7,'Station 7','Business District',NULL),(8,'Station 8','Hospital Complex',NULL),(9,'Station 9','Beachfront',NULL),(10,'Station 10','Tech Park',NULL);
-/*!40000 ALTER TABLE `ev_charging_stations` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -149,8 +119,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `evcharging_station`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `evcharging_station` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `location` varchar(255) DEFAULT NULL,
@@ -158,15 +127,13 @@ CREATE TABLE `evcharging_station` (
   `charging_station` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `evcharging_station`
 --
 
 LOCK TABLES `evcharging_station` WRITE;
-/*!40000 ALTER TABLE `evcharging_station` DISABLE KEYS */;
-/*!40000 ALTER TABLE `evcharging_station` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 --
@@ -174,8 +141,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `evmodel`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `evmodel` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `end_time` varchar(255) DEFAULT NULL,
@@ -191,16 +157,13 @@ CREATE TABLE `evmodel` (
   `ev_spot` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `evmodel`
 --
 
 LOCK TABLES `evmodel` WRITE;
-/*!40000 ALTER TABLE `evmodel` DISABLE KEYS */;
 INSERT INTO `evmodel` VALUES (45,'22:30','Pune','2025-01-13',173,'17:30','22345',31,5,NULL,'Spot A2',20),(46,'13:16','Pune','2025-01-16',719,'09:16','88888',34,4,NULL,'Spot A2',20),(50,'14:01','Pune','2025-01-07',510,'11:01','455666',29,3,NULL,'Spot A2',20);
-/*!40000 ALTER TABLE `evmodel` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -208,8 +171,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `parkingspots`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `parkingspots` (
   `spot_id` int NOT NULL AUTO_INCREMENT,
   `location` varchar(255) DEFAULT NULL,
@@ -228,16 +190,13 @@ CREATE TABLE `parkingspots` (
   PRIMARY KEY (`spot_id`),
   KEY `owner_id` (`owner_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1315 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `parkingspots`
 --
 
 LOCK TABLES `parkingspots` WRITE;
-/*!40000 ALTER TABLE `parkingspots` DISABLE KEYS */;
 INSERT INTO `parkingspots` VALUES (1,'India_','Active',10,0,'Downtown Parking Spot','YES',1,'A1','Station 1',NULL,NULL,'regular',1),(2,'Uptown, 6th Avenue (outdoor)','occupied',100,2,NULL,'yes',0,'Budget Uptown Outdoor',NULL,NULL,NULL,'normal',NULL),(3,'Midtown, 7th Avenue (indoor)','available',240,3,NULL,'yes',0,'Luxury Midtown Indoor',NULL,NULL,NULL,'normal',NULL),(4,'Eastside, 8th Avenue (outdoor)','available',100,1,NULL,'yes',0,'Standard Eastside Outdoor',NULL,NULL,NULL,'normal',NULL),(6,'mumbai','available',200,0,NULL,'YES',5,'New spot','East indoor ',NULL,NULL,'normal',NULL),(7,'mumbai','available',200,0,NULL,'yes',5,'New spot updated','East indoor ',NULL,NULL,'normal',NULL),(12,'Downtown Parking Lot','available',5,1,'Near the main square','yes',10,'Spot A1','Main Station',NULL,NULL,'normal',NULL),(18,'mumbai',NULL,130,0,NULL,'yes',6,'Premium Downtown Indoor','Main Station',NULL,NULL,'normal',NULL),(19,'mumbai',NULL,120,0,NULL,'yes',54,'Premium Downtown Indoor','Main Station',NULL,NULL,'normal',NULL),(20,'Pune',NULL,250,0,NULL,'YES',25,'Spot A2','Star ',NULL,NULL,'ev',NULL),(21,'mumbai',NULL,500,0,NULL,'YES',4,'Charging slot','New',NULL,NULL,'ev',NULL),(22,'Pune Outdoor',NULL,200,0,NULL,'yes',6,'Spot A','Downtown',NULL,NULL,'ev',NULL),(23,'mumbai',NULL,180,0,NULL,'yes',23,'Spot A3','Main Station ',NULL,NULL,'ev',NULL),(24,'mumbai',NULL,100,0,NULL,'yes',5,'Premium Downtown Indoor','Star ',NULL,NULL,'normal',NULL),(29,' Downtown, 5th Avenue (indoor) ',NULL,320,0,NULL,'yes',34,'Premium Downtown Indoor','Star ',NULL,NULL,'normal',NULL),(33,'Downtown, 5th Avenue',NULL,220,0,NULL,'yes',3,'Alpha-1','New updated',NULL,NULL,'normal',NULL),(291,'new updated',NULL,120,0,NULL,'yes',4,'Charging spot','4',NULL,NULL,'ev',NULL),(631,'Downtown, 5th Avenue, PUNE',NULL,200,0,NULL,'yes',5,'Alpha-1','refref','type2',NULL,'normal',53),(632,'Downtown, 5th Avenue, PUNE',NULL,200,0,NULL,'yes',5,'Alpha-1 new','refref',NULL,NULL,'normal',NULL),(633,'Downtown, 5th Avenue, PUNE',NULL,300,0,NULL,'yes',5,'Alpha-1','refref',NULL,NULL,'normal',NULL),(634,'Downtown, 5th Avenue, PUNE',NULL,200,0,NULL,'yes',5,'Alpha-1 Updated','refref',NULL,NULL,'normal',NULL),(1308,'India_','Active',15,0,'Delhi Parking Spot','YES',2,'A2','Station 2',NULL,NULL,'ev_',1),(1309,'India_','Active',15,0,'Delhi Parking Spot','YES',2,'A2','Station 2',NULL,NULL,'ev_',1),(1310,'India_','Active',15,0,'Delhi Parking Spot','YES',2,'A2','Station 2',NULL,NULL,'ev_',1),(1311,'India_','Active',15,0,'Delhi Parking Spot','YES',2,'A2','Station 2',NULL,NULL,'ev_',1),(1312,'India_','Active',15,0,'Delhi Parking Spot','YES',2,'A2','Station 2',NULL,NULL,'ev_',1),(1313,'India_','Active',15,0,'Delhi Parking Spot','YES',2,'A2','Station 2',NULL,NULL,'ev_',1),(1314,'India_','Active',15,0,'Delhi Parking Spot','YES',2,'A2','Station 2',NULL,NULL,'ev_',1);
-/*!40000 ALTER TABLE `parkingspots` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -245,8 +204,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `passwordresettoken`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `passwordresettoken` (
   `id` int NOT NULL AUTO_INCREMENT,
   `expiry_date_time` datetime DEFAULT NULL,
@@ -256,15 +214,13 @@ CREATE TABLE `passwordresettoken` (
   UNIQUE KEY `UK9dbcvg1tus9vsxrly63i6l16n` (`user_id`),
   CONSTRAINT `FKc926bi0aw9gcyy8uha1nk8efu` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `passwordresettoken`
 --
 
 LOCK TABLES `passwordresettoken` WRITE;
-/*!40000 ALTER TABLE `passwordresettoken` DISABLE KEYS */;
-/*!40000 ALTER TABLE `passwordresettoken` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 --
@@ -272,8 +228,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `payments`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `payments` (
   `payment_id` int NOT NULL AUTO_INCREMENT,
   `booking_id` int DEFAULT NULL,
@@ -287,15 +242,12 @@ CREATE TABLE `payments` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `payments`
 --
 
 LOCK TABLES `payments` WRITE;
-/*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -303,8 +255,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `spot`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `spot` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `availability` varchar(255) DEFAULT NULL,
@@ -316,16 +267,13 @@ CREATE TABLE `spot` (
   `station` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `spot`
 --
 
 LOCK TABLES `spot` WRITE;
-/*!40000 ALTER TABLE `spot` DISABLE KEYS */;
 INSERT INTO `spot` VALUES (1,'yes','new mumbai ',350,6,'Premium Downtown Indoor',NULL,'Main Station');
-/*!40000 ALTER TABLE `spot` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -333,8 +281,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `tbl_addon`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_addon` (
   `serviceid` bigint NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
@@ -345,16 +291,13 @@ CREATE TABLE `tbl_addon` (
   `owner_id` bigint NOT NULL,
   PRIMARY KEY (`serviceid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tbl_addon`
 --
 
 LOCK TABLES `tbl_addon` WRITE;
-/*!40000 ALTER TABLE `tbl_addon` DISABLE KEYS */;
 INSERT INTO `tbl_addon` VALUES (5,'egfd',6,_binary '\0','Car service',220,0);
-/*!40000 ALTER TABLE `tbl_addon` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -362,8 +305,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `tbl_addon_booking`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_addon_booking` (
   `addon_service_bookingid` bigint NOT NULL AUTO_INCREMENT,
   `quantities` varchar(255) DEFAULT NULL,
@@ -371,16 +312,14 @@ CREATE TABLE `tbl_addon_booking` (
   `user_id` bigint DEFAULT NULL,
   PRIMARY KEY (`addon_service_bookingid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Dumping data for table `tbl_addon_booking`
 --
 
 LOCK TABLES `tbl_addon_booking` WRITE;
-/*!40000 ALTER TABLE `tbl_addon_booking` DISABLE KEYS */;
 INSERT INTO `tbl_addon_booking` VALUES (5,'6.0','5',NULL),(6,'6.0','5',NULL);
-/*!40000 ALTER TABLE `tbl_addon_booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -388,8 +327,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `address` varchar(255) DEFAULT NULL,
@@ -407,16 +345,13 @@ CREATE TABLE `user` (
   UNIQUE KEY `UK_sb8bbouer5wak8vyiiy4pf2bx` (`username`),
   UNIQUE KEY `UKob8kqyqqgmefl0aco34akdtpe` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
 --
 
 LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` VALUES (51,NULL,NULL,'testuseragain@example.com','testuser','testpassword',NULL,NULL,NULL,NULL,'testuseragain@example.com',NULL),(52,'Pune new nagar west','ACTIVE','sandesh@gmail.com','Sandesh Patil','$2a$10$cm2W/atIucw5ujdbXuFWqOWJiI3XJf9Sh/HsF1kw5ut8XMGQ.Ei8m','8888888888','VEHICLE_OWNER',NULL,NULL,'sandesh@gmail.com',NULL),(53,'new address updated','ACTIVE','sandeshp9011@gmail.com','Sandesh Patil','$2a$10$8nUpRwCBFZZtvCH9.SDsMeEuJb9sRha3MNgw/yWRcEGqWF2KxZnG.','0000000000','SPOT_OWNER',NULL,NULL,'sandeshp9011@gmail.com',NULL);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -424,8 +359,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `users` (
   `user_id` bigint NOT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -437,16 +371,13 @@ CREATE TABLE `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `mobile_number` (`mobile_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users`
 --
 
 LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES (1,'User One','1234567890','user1@example.com','owner','default_username',NULL),(2,'User Two','0987654321','user2@example.com','owner','default_username',NULL),(3,'User Three','1122334455','user3@example.com','owner','default_username',NULL),(7,'User Testing','12345670','usertest@example.com','user','user','password'),(8,'Sandesh Patil','123456','sandesh@example.com','user','sandesh_patil','password'),(2003,'Sandesh Sanjay Patil','1234569088','sandesh@example.com','user','sandesh','password'),(2937464,'Sandesh Sanjay Patil','123456469088','sandesh@example.com','user','Test_user','password');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -454,8 +385,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `vehicle`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `vehicle` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `has_electric` varchar(255) DEFAULT NULL,
@@ -466,25 +396,12 @@ CREATE TABLE `vehicle` (
   KEY `FKrmyxjc1r0nxymg692mq9emy56` (`user_id`),
   CONSTRAINT `FKrmyxjc1r0nxymg692mq9emy56` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `vehicle`
 --
 
 LOCK TABLES `vehicle` WRITE;
-/*!40000 ALTER TABLE `vehicle` DISABLE KEYS */;
 INSERT INTO `vehicle` VALUES (54,'NO','Volkswagen Polo','123456',52),(55,'NO','Volkswagen Polo','453672',52);
-/*!40000 ALTER TABLE `vehicle` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
 -- Dump completed on 2025-01-30 18:20:21
