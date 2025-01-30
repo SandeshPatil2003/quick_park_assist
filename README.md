@@ -1,5 +1,5 @@
 # Quick Park Assist Project Overview
-## Modules to be Implemented
+## Modules Implemented
 
 ### 1. User Registration
 
