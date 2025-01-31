@@ -235,6 +235,9 @@ By following these steps, you will successfully integrate SonarQube with Intelli
 
   ### SonarQube Preview:  
 <img src="./src/main/resources/static/images/qpa_sonarqube.png" alt="Swagger UI" width="600px">
+
+<img src="./src/main/resources/static/images/quick_park_assist_sonarqube.png" alt="Swagger UI" width="600px">
+
 ---
 
 # Quick Park Assist - Project Setup Guide
