@@ -246,7 +246,7 @@ By following these steps, you will successfully integrate SonarQube with Intelli
 This project is a **Spring Boot** web application using **Thymeleaf** and **Hibernate** for quick and efficient parking spot management.
 
 ## Technologies & Software Used
-- **Java Development Kit (JDK)** - Version 21
+- **Java Development Kit (JDK)** 
 - **Spring Boot** - Version 2.3.0 RELEASE
 - **Thymeleaf** - Integrated templating engine
 - **Hibernate Validator** - Version 6.2.0.Final
