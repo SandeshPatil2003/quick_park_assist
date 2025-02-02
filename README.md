@@ -239,14 +239,173 @@ By following these steps, you will successfully integrate SonarQube with Intelli
 <img src="./src/main/resources/static/images/quick_park_assist_sonarqube.png" alt="Swagger UI" width="600px">
 
 ---
+# Splunk Integration Guide
 
+## OverviewSteps to Integrate Splunk with IntelliJ IDEA and Analyze Logs
+
+---
+#### **Step 1: Download Splunk from the Official Website**
+1. Visit the official Splunk website: https://www.splunk.com/en_us/download.
+2. Scroll down to the **Splunk Enterprise Free** section and click on the **Download Free** button.
+3. Select the appropriate version for your operating system (Windows, macOS, or Linux).
+4. The download should start automatically. You will get an installer file for Splunk.
+
+---
+#### **Step 2: Install Splunk**
+1. Once the download is complete, run the installer file.
+2. Follow the installation wizard to complete the installation.
+   - **On Windows**: Accept the default settings or customize as needed.
+   - **On Linux/macOS**: Follow the terminal prompts to complete the installation.
+3. After installation, Splunk Enterprise will start automatically.
+
+---
+#### **Step 3: Start the Splunk Enterprise Server**
+1. Open a terminal (or Command Prompt) and navigate to the Splunk Enterprise installation directory.
+   - **On Windows**: Navigate to `C:\Program Files\Splunk\bin`.
+   - **On Linux/macOS**: Navigate to `/opt/splunk/bin`.
+2. Start the Splunk Enterprise server:
+   - **On Windows**: Run `splunk start`.
+   - **On Linux/macOS**: Run `./splunk start`.
+3. Wait for the server to start. You should see log messages indicating that Splunk Enterprise is running.
+
+---
+#### **Step 4: Access the Splunk Enterprise Web Interface**
+1. Open a web browser and navigate to http://localhost:8000.
+2. Log in using the default credentials:
+   - **Username**: `admin`
+   - **Password**: `yourPassword`
+---
+#### **Step 5: Configure a Splunk Data Source for Logs**
+1. Open **Splunk Web UI** (http://localhost:8000).
+2. Click **Settings** > **Data Inputs**.
+3. Click **New Index** (top-right corner).
+4. Fill in the details:
+   - **Index Name**: quickparkassist_index
+   - **Max Size**: Default or as needed
+5. Click **Save** to create the index.
+---
+#### **Step 6: Enable HTTP Event Collector (HEC)**
+1. In **Splunk Web UI**, go to **Settings** > **Data Inputs**.
+2. Click **HTTP Event Collector (HEC)**.
+3. Click **Global Settings** and enable HEC.
+4. Click **New Token**, enter:
+   - **Name**: quick-park-assist
+   - **Index**: Select quickparkassist_index
+5. Copy the generated **HEC Token** (you'll need it in the Log4j2 config).
+---
+#### **Step 7: Configure Log4j2 to Send Logs to Splunk**
+1. Add Log4j and Splunk Dependencies (Maven) in `pom.xml`
+```bash
+<dependencies>
+   <dependency>
+   <groupId>com.splunk.logging</groupId>
+   <artifactId>splunk-library-javalogging</artifactId>
+   <version>1.9.0</version>
+   </dependency>
+   <dependency>
+       <groupId>com.squareup.okhttp3</groupId>
+       <artifactId>okhttp</artifactId>
+       <version>4.9.3</version> <!-- Required by Splunk library -->
+   </dependency>
+</dependencies>  
+<repositories>
+   <repository>
+       <id>splunk-artifactory</id>
+       <name>Splunk Releases</name>
+       <url>https://splunk.jfrog.io/splunk/ext-releases-local</url>
+   </repository>
+</repositories>
+```
+2. Configure `log4j2.xml` for Splunk Logging
+   - Create a `log4j2.xml` file inside `src/main/resources/` with the following content:
+```bash
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %logger{36} - %msg%n%throwable</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <!-- Splunk HTTP Event Collector Appender -->
+        <SplunkHttp
+                name="quick-park-assist"
+                url="http://localhost:8088"
+                token=<!-- your token -->
+                host="localhost"
+                index="quickparkassist_index"
+                type="raw"
+                source="quick-park-assist"
+                sourcetype="log4j"
+                messageFormat="text"
+                disableCertificateValidation="true">
+            <PatternLayout pattern="%m" />
+        </SplunkHttp>
+
+        <!-- File Appender (Rolling) -->
+        <RollingFile name="RollingFile"
+                     fileName="logs/app.log"
+                     filePattern="logs/app-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- Application-Specific Logger -->
+        <Logger name="com.quick_park_assist" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="quick-park-assist"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+
+        <!-- Root Logger (All Logs) -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="quick-park-assist"/>
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
+```
+3. Add 
+```bash
+splunk.hec.uri=http://localhost:8088/services/collector/raw
+#add your token here
+splunk.hec.token=
+splunk.hec.index=quickparkassist_index
+splunk.hec.sourcetype=quick_park_assist
+```
+---
+#### **Step 8: View Logs in Splunk Dashboard**
+1. Open **Splunk Web UI** (http://localhost:8000).
+2. Navigate to **Search & Reporting**.
+3. Run the following query:
+```bash
+index="quickparkassist_index"
+```
+
+---
+#### **Splunk Preview:**
+<img src="./src/main/resources/static/images/qpaSplunk_index.jpg" alt="Splunk index" width="600px">
+
+<img src="./src/main/resources/static/images/qpaSplunk_search.jpg" alt="Splunk" width="600px">
+
+---
 # Quick Park Assist - Project Setup Guide
 
 ## Overview
 This project is a **Spring Boot** web application using **Thymeleaf** and **Hibernate** for quick and efficient parking spot management.
 
 ## Technologies & Software Used
-- **Java Development Kit (JDK)** - Version 21
+- **Java Development Kit (JDK)** 
 - **Spring Boot** - Version 2.3.0 RELEASE
 - **Thymeleaf** - Integrated templating engine
 - **Hibernate Validator** - Version 6.2.0.Final
